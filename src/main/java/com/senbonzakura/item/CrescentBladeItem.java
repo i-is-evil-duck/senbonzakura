@@ -25,7 +25,6 @@ import java.util.UUID;
 
 public class CrescentBladeItem extends SwordItem {
 
-    // Same stats as diamond sword
     public CrescentBladeItem(Properties properties) {
         super(Tiers.DIAMOND, 3, -2.4f, properties);
     }

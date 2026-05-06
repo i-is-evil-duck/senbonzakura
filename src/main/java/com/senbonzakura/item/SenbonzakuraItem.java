@@ -27,7 +27,6 @@ import java.util.UUID;
 
 public class SenbonzakuraItem extends SwordItem {
 
-    // Same stats as netherite sword
     public SenbonzakuraItem(Properties properties) {
         super(Tiers.NETHERITE, 3, -2.4f, properties);
     }

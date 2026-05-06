@@ -28,7 +28,6 @@ import java.util.UUID;
 
 public class CryptBladeItem extends AxeItem {
 
-    // Same stats as netherite axe
     public CryptBladeItem(Properties properties) {
         super(Tiers.NETHERITE, 5, -3.0f, properties);
     }
