@@ -1,0 +1,13 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+    "java.format.settings.profile": "GoogleStyle",
+    "editor.formatOnSave": true,
+    "files.exclude": {
+        "**/.gradle": true,
+        "**/build": true,
+        "**/run": true
+    },
+    "java.import.gradle.enabled": true,
+    "java.import.gradle.wrapper.enabled": true
+}

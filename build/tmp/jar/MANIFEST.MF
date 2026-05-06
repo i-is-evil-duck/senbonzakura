@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: senbonzakura
+Specification-Vendor: senbonzakura
+Specification-Version: 1
+Implementation-Title: senbonzakura
+Implementation-Version: 1.0.0
+Implementation-Vendor: senbonzakura
+Implementation-Timestamp: 2026-05-06T11:11:39-0700
+

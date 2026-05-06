@@ -1,0 +1,10 @@
+{
+  "item.senbonzakura.senbonzakura": "Senbonzakura",
+  "item.senbonzakura.crescent_blade": "Crescent Blade of Winds",
+  "item.senbonzakura.crypt_blade": "Crypt Blade",
+  "item.senbonzakura.saw_blade_axe": "Saw Blade Axe",
+  "item.senbonzakura.senbonzakura.tooltip": "Hold right-click to charge, then release to dash and sweep!",
+  "item.senbonzakura.crescent_blade.tooltip": "Dual-wield to double damage! Hold right-click for 360° slash!",
+  "item.senbonzakura.crypt_blade.tooltip": "Hold right-click 5s to charge a devastating explosion. Immobile but resistant!",
+  "item.senbonzakura.saw_blade_axe.tooltip": "Mines wood as fast as a diamond axe!"
+}

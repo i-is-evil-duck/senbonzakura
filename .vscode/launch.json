@@ -1,0 +1,34 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Minecraft Client",
+            "request": "launch",
+            "mainClass": "net.minecraftforge.bootstrap.ForgeBootstrap",
+            "projectName": "senbonzakura",
+            "cwd": "${workspaceFolder}/run",
+            "vmArgs": "-Dforge.logging.console.level=debug -Dforge.logging.markers=REGISTRIES",
+            "args": "",
+            "env": {
+                "MOD_CLASSES": "${workspaceFolder}/build/resources/main:${workspaceFolder}/build/classes/java/main",
+                "MCP_MAPPINGS": "parchment_2023.09.03-1.20.1"
+            },
+            "preLaunchTask": "gradle: build"
+        },
+        {
+            "type": "java",
+            "name": "Minecraft Server",
+            "request": "launch",
+            "mainClass": "net.minecraftforge.bootstrap.ForgeBootstrap",
+            "projectName": "senbonzakura",
+            "cwd": "${workspaceFolder}/run",
+            "vmArgs": "-Dforge.logging.console.level=debug",
+            "args": "nogui",
+            "env": {
+                "MOD_CLASSES": "${workspaceFolder}/build/resources/main:${workspaceFolder}/build/classes/java/main"
+            },
+            "preLaunchTask": "gradle: build"
+        }
+    ]
+}
