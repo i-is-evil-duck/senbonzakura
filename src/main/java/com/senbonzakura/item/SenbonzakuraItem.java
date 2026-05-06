@@ -116,19 +116,17 @@ public class SenbonzakuraItem extends SwordItem {
         Vec3 start = player.position();
         Vec3 end = start.add(look.x * 12, look.y * 12, look.z * 12);
 
-        // Play dash sound
         level.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1.0f, 1.0f);
 
-        // Dash in segments to check for collisions and hit entities along the path
         int segments = 12;
         Vec3 step = end.subtract(start).scale(1.0 / segments);
         Vec3 currentPos = start;
+        Vec3 validPos = start;
 
         for (int i = 0; i < segments; i++) {
             Vec3 nextPos = currentPos.add(step);
 
-            // Check for entities in the dash path
             AABB dashBox = new AABB(
                     Math.min(currentPos.x, nextPos.x) - 1.5,
                     Math.min(currentPos.y, nextPos.y) - 1.0,
@@ -142,7 +140,6 @@ public class SenbonzakuraItem extends SwordItem {
 
             for (Entity target : entities) {
                 if (target instanceof LivingEntity living) {
-                    // Push back
                     Vec3 pushDir = target.position().subtract(player.position()).normalize();
                     if (pushDir.lengthSqr() < 0.001) {
                         pushDir = look;
@@ -150,13 +147,15 @@ public class SenbonzakuraItem extends SwordItem {
                     target.setDeltaMovement(pushDir.x * 1.5, 0.5, pushDir.z * 1.5);
                     target.hurtMarked = true;
 
-                    // Deal 50% weapon damage
                     float damage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.5f;
                     living.hurt(level.damageSources().playerAttack(player), damage);
                 }
             }
 
-            // Particle trail
+            if (!isInsideBlock(level, nextPos)) {
+                validPos = nextPos;
+            }
+
             level.sendParticles(ParticleTypes.CLOUD,
                     nextPos.x, nextPos.y + 1, nextPos.z,
                     2, 0.1, 0.1, 0.1, 0.02);
@@ -164,12 +163,18 @@ public class SenbonzakuraItem extends SwordItem {
             currentPos = nextPos;
         }
 
-        // Teleport player to end of dash
-        player.teleportTo(end.x, end.y, end.z);
+        player.teleportTo(validPos.x, validPos.y, validPos.z);
         player.fallDistance = 0;
 
-        // Mini 180° sweep attack at end
         performSweepAttack(player, level);
+    }
+
+    private boolean isInsideBlock(ServerLevel level, Vec3 pos) {
+        AABB playerBox = new AABB(
+                pos.x - 0.3, pos.y, pos.z - 0.3,
+                pos.x + 0.3, pos.y + 1.8, pos.z + 0.3
+        );
+        return !level.noCollision(playerBox);
     }
 
     private void performSweepAttack(Player player, ServerLevel level) {
