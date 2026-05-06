@@ -1,15 +1,15 @@
 package com.senbonzakura.item;
 
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.tags.BlockTags;
 
-public class SawBladeAxeItem extends SwordItem {
+public class SawBladeAxeItem extends AxeItem {
 
     public SawBladeAxeItem(Properties properties) {
-        super(Tiers.IRON, 3, -2.4f, properties);
+        super(Tiers.IRON, 5, -3.0f, properties);
     }
 
     @Override
