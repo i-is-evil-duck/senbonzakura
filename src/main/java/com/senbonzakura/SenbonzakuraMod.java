@@ -15,6 +15,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -66,6 +67,31 @@ public class SenbonzakuraMod {
             spawnGreenParticles((ServerLevel) player.level(), player);
         } else if (mainHand.getItem() instanceof CryptBladeItem) {
             spawnBlackParticles((ServerLevel) player.level(), player);
+        }
+    }
+
+    @net.minecraftforge.eventbus.api.SubscribeEvent
+    public void onLivingDrops(LivingDropsEvent event) {
+        if (event.getEntity().level().isClientSide()) return;
+
+        net.minecraft.world.entity.Entity entity = event.getEntity();
+        if (random.nextInt(1000) != 0) return;
+
+        if (entity instanceof net.minecraft.world.entity.monster.EnderMan) {
+            event.getDrops().add(new net.minecraft.world.entity.item.ItemEntity(
+                    entity.level(), entity.getX(), entity.getY(), entity.getZ(),
+                    new ItemStack(SENBONZAKURA.get()))
+            );
+        } else if (entity instanceof net.minecraft.world.entity.monster.Zombie) {
+            event.getDrops().add(new net.minecraft.world.entity.item.ItemEntity(
+                    entity.level(), entity.getX(), entity.getY(), entity.getZ(),
+                    new ItemStack(CRYPT_BLADE.get()))
+            );
+        } else if (entity instanceof net.minecraft.world.entity.monster.Skeleton) {
+            event.getDrops().add(new net.minecraft.world.entity.item.ItemEntity(
+                    entity.level(), entity.getX(), entity.getY(), entity.getZ(),
+                    new ItemStack(CRESCENT_BLADE.get()))
+            );
         }
     }
 
