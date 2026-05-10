@@ -125,28 +125,17 @@ public class SenbonzakuraItem extends SwordItem {
         level.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1.0f, 1.0f);
 
-        int segments = 12;
-        Vec3 step = end.subtract(start).scale(1.0 / segments);
-        Vec3 currentPos = start;
-        Vec3 validPos = start;
+        player.teleportTo(end.x, end.y, end.z);
+        player.fallDistance = 0;
 
-        for (int i = 0; i < segments; i++) {
-            Vec3 nextPos = currentPos.add(step);
-
-            AABB dashBox = new AABB(
-                    Math.min(currentPos.x, nextPos.x) - 1.5,
-                    Math.min(currentPos.y, nextPos.y) - 1.0,
-                    Math.min(currentPos.z, nextPos.z) - 1.5,
-                    Math.max(currentPos.x, nextPos.x) + 1.5,
-                    Math.max(currentPos.y, nextPos.y) + 2.0,
-                    Math.max(currentPos.z, nextPos.z) + 1.5
-            );
-
+        for (int i = 0; i <= 12; i++) {
+            Vec3 pos = start.add(look.x * i, look.y * i, look.z * i);
+            AABB dashBox = new AABB(pos.x - 1.5, pos.y - 1.0, pos.z - 1.5, pos.x + 1.5, pos.y + 2.0, pos.z + 1.5);
             List<Entity> entities = level.getEntities(player, dashBox, e -> e instanceof LivingEntity && e != player);
 
             for (Entity target : entities) {
                 if (target instanceof LivingEntity living) {
-                    Vec3 pushDir = target.position().subtract(player.position()).normalize();
+                    Vec3 pushDir = target.position().subtract(start).normalize();
                     if (pushDir.lengthSqr() < 0.001) {
                         pushDir = look;
                     }
@@ -158,29 +147,10 @@ public class SenbonzakuraItem extends SwordItem {
                 }
             }
 
-            if (!isInsideBlock(level, nextPos)) {
-                validPos = nextPos;
-            }
-
-            level.sendParticles(ParticleTypes.CLOUD,
-                    nextPos.x, nextPos.y + 1, nextPos.z,
-                    2, 0.1, 0.1, 0.1, 0.02);
-
-            currentPos = nextPos;
+            level.sendParticles(ParticleTypes.CLOUD, pos.x, pos.y + 1, pos.z, 1, 0.1, 0.1, 0.1, 0.02);
         }
 
-        player.teleportTo(validPos.x, validPos.y, validPos.z);
-        player.fallDistance = 0;
-
         performSweepAttack(player, level);
-    }
-
-    private boolean isInsideBlock(ServerLevel level, Vec3 pos) {
-        AABB playerBox = new AABB(
-                pos.x - 0.3, pos.y, pos.z - 0.3,
-                pos.x + 0.3, pos.y + 1.8, pos.z + 0.3
-        );
-        return !level.noCollision(playerBox);
     }
 
     private void performSweepAttack(Player player, ServerLevel level) {
