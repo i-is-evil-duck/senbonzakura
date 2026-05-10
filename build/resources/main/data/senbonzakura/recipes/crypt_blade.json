@@ -1,13 +1,20 @@
 {
-  "type": "minecraft:smithing_transform",
-  "template": {
-    "item": "minecraft:netherite_upgrade_smithing_template"
-  },
-  "base": {
-    "item": "minecraft:netherite_axe"
-  },
-  "addition": {
-    "item": "minecraft:sculk_catalyst"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AIA",
+    "ISI",
+    "SA "
+  ],
+  "key": {
+    "A": {
+      "item": "senbonzakura:archaic_crown"
+    },
+    "I": {
+      "item": "senbonzakura:inky_pearl"
+    },
+    "S": {
+      "item": "senbonzakura:supreme_alloy"
+    }
   },
   "result": {
     "item": "senbonzakura:crypt_blade"

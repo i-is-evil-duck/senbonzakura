@@ -16,6 +16,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -29,21 +30,31 @@ import java.util.Random;
 @Mod(SenbonzakuraMod.MOD_ID)
 public class SenbonzakuraMod {
     public static final String MOD_ID = "senbonzakura";
-    private static final Random random = new Random();
+    public static final Random random = new Random();
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
+    // Weapons
     public static final RegistryObject<Item> SENBONZAKURA = ITEMS.register("senbonzakura",
             () -> new SenbonzakuraItem(new Item.Properties().fireResistant()));
-
     public static final RegistryObject<Item> CRESCENT_BLADE = ITEMS.register("crescent_blade",
             () -> new CrescentBladeItem(new Item.Properties().fireResistant()));
-
     public static final RegistryObject<Item> CRYPT_BLADE = ITEMS.register("crypt_blade",
             () -> new CryptBladeItem(new Item.Properties().fireResistant()));
-
     public static final RegistryObject<Item> SAW_BLADE_AXE = ITEMS.register("saw_blade_axe",
             () -> new SawBladeAxeItem(new Item.Properties()));
+
+    // Crafting Items
+    public static final RegistryObject<Item> ARCHAIC_CROWN = ITEMS.register("archaic_crown", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> INKY_PEARL = ITEMS.register("inky_pearl", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> EXALTED_BLOSSOM = ITEMS.register("exalted_blossom", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ANCIENT_AMBER = ITEMS.register("ancient_amber", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DEEPWOKEN_RELIC = ITEMS.register("deepwoken_relic", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> EXCELLENT_PRINCESS_DIAMOND = ITEMS.register("excellent_princess_diamond", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SACRED_THREADS = ITEMS.register("sacred_threads", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> CRUDE_JEWEL_STEEL = ITEMS.register("crude_jewel_steel", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> TAMAHAGANE = ITEMS.register("tamahagane", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SUPREME_ALLOY = ITEMS.register("supreme_alloy", () -> new Item(new Item.Properties()));
 
     public SenbonzakuraMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -75,23 +86,109 @@ public class SenbonzakuraMod {
         if (event.getEntity().level().isClientSide()) return;
 
         net.minecraft.world.entity.Entity entity = event.getEntity();
+        net.minecraft.world.level.Level level = entity.level();
+
+        // Archaic Crowns - 1/5 from Ender Dragon, Wither
+        if (entity instanceof net.minecraft.world.entity.boss.enderdragon.EnderDragon ||
+            entity instanceof net.minecraft.world.entity.boss.wither.WitherBoss) {
+            if (random.nextInt(5) == 0) {
+                event.getDrops().add(new net.minecraft.world.entity.item.ItemEntity(
+                        level, entity.getX(), entity.getY(), entity.getZ(),
+                        new ItemStack(ARCHAIC_CROWN.get()))
+                );
+            }
+        }
+
+        // Inky Pearls - 1/30 Elder Guardian, 1/300 Guardian/Drowned
+        if (entity instanceof net.minecraft.world.entity.monster.Guardian) {
+            String entityName = net.minecraft.world.entity.EntityType.getKey(entity.getType()).toString();
+            boolean isElder = entityName.contains("elder");
+            if (isElder) {
+                if (random.nextInt(30) == 0) {
+                    event.getDrops().add(new net.minecraft.world.entity.item.ItemEntity(
+                            level, entity.getX(), entity.getY(), entity.getZ(),
+                            new ItemStack(INKY_PEARL.get()))
+                    );
+                }
+            } else {
+                if (random.nextInt(300) == 0) {
+                    event.getDrops().add(new net.minecraft.world.entity.item.ItemEntity(
+                            level, entity.getX(), entity.getY(), entity.getZ(),
+                            new ItemStack(INKY_PEARL.get()))
+                    );
+                }
+            }
+        } else if (entity instanceof net.minecraft.world.entity.monster.Drowned) {
+            if (random.nextInt(300) == 0) {
+                event.getDrops().add(new net.minecraft.world.entity.item.ItemEntity(
+                        level, entity.getX(), entity.getY(), entity.getZ(),
+                        new ItemStack(INKY_PEARL.get()))
+                );
+            }
+        }
+
+        // Deepwoken Relic - 1/2500 from Zombies, Skeletons, Creepers, Spiders, Endermen
+        if (entity instanceof net.minecraft.world.entity.monster.Zombie ||
+            entity instanceof net.minecraft.world.entity.monster.Skeleton ||
+            entity instanceof net.minecraft.world.entity.monster.Creeper ||
+            entity instanceof net.minecraft.world.entity.monster.Spider ||
+            entity instanceof net.minecraft.world.entity.monster.EnderMan) {
+            if (random.nextInt(2500) == 0) {
+                event.getDrops().add(new net.minecraft.world.entity.item.ItemEntity(
+                        level, entity.getX(), entity.getY(), entity.getZ(),
+                        new ItemStack(DEEPWOKEN_RELIC.get()))
+                );
+            }
+        }
+
+        // Weapon drops - 1/1000
         if (random.nextInt(1000) != 0) return;
 
         if (entity instanceof net.minecraft.world.entity.monster.EnderMan) {
             event.getDrops().add(new net.minecraft.world.entity.item.ItemEntity(
-                    entity.level(), entity.getX(), entity.getY(), entity.getZ(),
+                    level, entity.getX(), entity.getY(), entity.getZ(),
                     new ItemStack(SENBONZAKURA.get()))
             );
         } else if (entity instanceof net.minecraft.world.entity.monster.Zombie) {
             event.getDrops().add(new net.minecraft.world.entity.item.ItemEntity(
-                    entity.level(), entity.getX(), entity.getY(), entity.getZ(),
+                    level, entity.getX(), entity.getY(), entity.getZ(),
                     new ItemStack(CRYPT_BLADE.get()))
             );
         } else if (entity instanceof net.minecraft.world.entity.monster.Skeleton) {
             event.getDrops().add(new net.minecraft.world.entity.item.ItemEntity(
-                    entity.level(), entity.getX(), entity.getY(), entity.getZ(),
+                    level, entity.getX(), entity.getY(), entity.getZ(),
                     new ItemStack(CRESCENT_BLADE.get()))
             );
+        }
+    }
+
+    @net.minecraftforge.eventbus.api.SubscribeEvent
+    public void onBlockBreak(net.minecraftforge.event.level.BlockEvent.BreakEvent event) {
+        if (event.getLevel().isClientSide()) return;
+        net.minecraft.world.level.Level level = (net.minecraft.world.level.Level) event.getLevel();
+        net.minecraft.world.level.block.state.BlockState state = event.getState();
+        net.minecraft.world.level.block.Block block = state.getBlock();
+
+        // Ancient Amber - 1/1000 when stripping logs
+        if (block.toString().contains("stripped") || block.toString().contains("log")) {
+            if (event.getPlayer() != null && event.getPlayer().getMainHandItem().getItem() instanceof net.minecraft.world.item.AxeItem) {
+                if (random.nextInt(1000) == 0) {
+                    level.addFreshEntity(new net.minecraft.world.entity.item.ItemEntity(
+                            level, event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(),
+                            new ItemStack(ANCIENT_AMBER.get()))
+                    );
+                }
+            }
+        }
+
+        // Exalted Blossom - 1/5000 from cherry blossom leaves
+        if (block.toString().contains("cherry_leaves")) {
+            if (random.nextInt(5000) == 0) {
+                level.addFreshEntity(new net.minecraft.world.entity.item.ItemEntity(
+                        level, event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(),
+                        new ItemStack(EXALTED_BLOSSOM.get()))
+                );
+            }
         }
     }
 
@@ -145,6 +242,16 @@ public class SenbonzakuraMod {
             event.accept(CRESCENT_BLADE);
             event.accept(CRYPT_BLADE);
             event.accept(SAW_BLADE_AXE);
+            event.accept(ARCHAIC_CROWN);
+            event.accept(INKY_PEARL);
+            event.accept(EXALTED_BLOSSOM);
+            event.accept(ANCIENT_AMBER);
+            event.accept(DEEPWOKEN_RELIC);
+            event.accept(EXCELLENT_PRINCESS_DIAMOND);
+            event.accept(SACRED_THREADS);
+            event.accept(CRUDE_JEWEL_STEEL);
+            event.accept(TAMAHAGANE);
+            event.accept(SUPREME_ALLOY);
         }
     }
 }

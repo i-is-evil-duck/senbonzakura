@@ -1,13 +1,26 @@
 {
-  "type": "minecraft:smithing_transform",
-  "template": {
-    "item": "minecraft:netherite_upgrade_smithing_template"
-  },
-  "base": {
-    "item": "minecraft:diamond_sword"
-  },
-  "addition": {
-    "item": "minecraft:wind_charge"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ADA",
+    "SRS",
+    " N "
+  ],
+  "key": {
+    "A": {
+      "item": "senbonzakura:archaic_crown"
+    },
+    "D": {
+      "item": "senbonzakura:deepwoken_relic"
+    },
+    "S": {
+      "item": "senbonzakura:supreme_alloy"
+    },
+    "R": {
+      "item": "senbonzakura:deepwoken_relic"
+    },
+    "N": {
+      "item": "minecraft:netherite_sword"
+    }
   },
   "result": {
     "item": "senbonzakura:crescent_blade"

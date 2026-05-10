@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "senbonzakura:crude_jewel_steel"
+  },
+  "result": "senbonzakura:tamahagane",
+  "experience": 1.0,
+  "cookingtime": 200
+}

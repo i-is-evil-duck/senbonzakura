@@ -31,13 +31,19 @@ public class CrescentBladeItem extends SwordItem {
 
     private static final Map<UUID, Integer> chargeTicks = new HashMap<>();
     private static final Map<UUID, Boolean> isCharging = new HashMap<>();
-    private static final int CHARGE_TIME = 40; // 2 seconds at 20 tps
+    private static final Map<UUID, Long> cooldowns = new HashMap<>();
+    private static final int CHARGE_TIME = 10; // 0.5 seconds
+    private static final long COOLDOWN_TIME = 140L; // 7 seconds
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (!level.isClientSide) {
             UUID id = player.getUUID();
+            Long lastUse = cooldowns.get(id);
+            if (lastUse != null && level.getGameTime() - lastUse < COOLDOWN_TIME) {
+                return InteractionResultHolder.fail(stack);
+            }
             isCharging.put(id, true);
             chargeTicks.put(id, 0);
         }
@@ -84,6 +90,7 @@ public class CrescentBladeItem extends SwordItem {
         chargeTicks.put(id, 0);
 
         if (ticks >= CHARGE_TIME) {
+            cooldowns.put(id, level.getGameTime());
             performSlash(player, (ServerLevel) level);
         }
 
@@ -101,6 +108,7 @@ public class CrescentBladeItem extends SwordItem {
         chargeTicks.put(id, 0);
 
         if (ticks >= CHARGE_TIME) {
+            cooldowns.put(id, level.getGameTime());
             performSlash(player, (ServerLevel) level);
         }
     }
@@ -110,7 +118,6 @@ public class CrescentBladeItem extends SwordItem {
         return 72000;
     }
 
-    // Check if player is dual-wielding Crescent Blades
     public static boolean isDualWielding(Player player) {
         return player.getMainHandItem().getItem() instanceof CrescentBladeItem
             && player.getOffhandItem().getItem() instanceof CrescentBladeItem;
@@ -118,8 +125,7 @@ public class CrescentBladeItem extends SwordItem {
 
     @Override
     public float getDamage() {
-        // Base diamond sword damage
-        return 7.0f; // 3 (base) + 4 (tier bonus) = 7, but we handle dual-wield in attack logic
+        return 10.0f;
     }
 
     private void performSlash(Player player, ServerLevel level) {
@@ -128,8 +134,10 @@ public class CrescentBladeItem extends SwordItem {
 
         Vec3 pos = player.position();
         float baseDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
-        // Double damage if dual-wielding
-        float damage = dualWield ? baseDamage * 2.0f : baseDamage;
+        float damage = baseDamage * 1.5f; // 50% stronger slash
+        if (dualWield) {
+            damage *= 2.0f; // Double when dual-wielding
+        }
 
         for (int slash = 0; slash < slashCount; slash++) {
             // Delay second slash slightly

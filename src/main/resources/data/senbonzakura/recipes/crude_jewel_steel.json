@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "ICC",
+    "CCL",
+    "L  "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "C": {
+      "item": "minecraft:coal_block"
+    },
+    "L": {
+      "item": "minecraft:clay"
+    }
+  },
+  "result": {
+    "item": "senbonzakura:crude_jewel_steel"
+  }
+}

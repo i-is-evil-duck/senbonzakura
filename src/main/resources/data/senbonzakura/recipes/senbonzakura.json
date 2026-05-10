@@ -1,13 +1,31 @@
 {
-  "type": "minecraft:smithing_transform",
-  "template": {
-    "item": "minecraft:netherite_upgrade_smithing_template"
-  },
-  "base": {
-    "item": "minecraft:netherite_sword"
-  },
-  "addition": {
-    "item": "minecraft:cherry_blossoms"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EAE",
+    "DSD",
+    " T ",
+    " T ",
+    " N "
+  ],
+  "key": {
+    "E": {
+      "item": "senbonzakura:exalted_blossom"
+    },
+    "A": {
+      "item": "senbonzakura:ancient_amber"
+    },
+    "S": {
+      "item": "senbonzakura:sacred_threads"
+    },
+    "D": {
+      "item": "senbonzakura:excellent_princess_diamond"
+    },
+    "T": {
+      "item": "senbonzakura:tamahagane"
+    },
+    "N": {
+      "item": "minecraft:netherite_sword"
+    }
   },
   "result": {
     "item": "senbonzakura:senbonzakura"

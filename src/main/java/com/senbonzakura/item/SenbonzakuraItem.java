@@ -28,19 +28,24 @@ import java.util.UUID;
 public class SenbonzakuraItem extends SwordItem {
 
     public SenbonzakuraItem(Properties properties) {
-        super(Tiers.NETHERITE, 3, -2.4f, properties);
+        super(Tiers.NETHERITE, 4, -2.4f, properties);
     }
 
-    // Track charge progress per player
     private static final Map<UUID, Integer> chargeTicks = new HashMap<>();
     private static final Map<UUID, Boolean> isCharging = new HashMap<>();
-    private static final int CHARGE_TIME = 60; // 3 seconds at 20 tps
+    private static final Map<UUID, Long> cooldowns = new HashMap<>();
+    private static final int CHARGE_TIME = 10; // 0.5 seconds
+    private static final long COOLDOWN_TIME = 100L; // 5 seconds in ticks
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (!level.isClientSide) {
             UUID id = player.getUUID();
+            Long lastUse = cooldowns.get(id);
+            if (lastUse != null && player.level().getGameTime() - lastUse < COOLDOWN_TIME) {
+                return InteractionResultHolder.fail(stack);
+            }
             isCharging.put(id, true);
             chargeTicks.put(id, 0);
         }
@@ -83,8 +88,8 @@ public class SenbonzakuraItem extends SwordItem {
         isCharging.put(id, false);
         chargeTicks.put(id, 0);
 
-        // Only execute dash if charged for at least 3 seconds (60 ticks)
         if (ticks >= CHARGE_TIME) {
+            cooldowns.put(id, level.getGameTime());
             performDash(player, (ServerLevel) level);
         }
 
@@ -102,6 +107,7 @@ public class SenbonzakuraItem extends SwordItem {
         chargeTicks.put(id, 0);
 
         if (ticks >= CHARGE_TIME) {
+            cooldowns.put(id, level.getGameTime());
             performDash(player, (ServerLevel) level);
         }
     }
@@ -147,7 +153,7 @@ public class SenbonzakuraItem extends SwordItem {
                     target.setDeltaMovement(pushDir.x * 1.5, 0.5, pushDir.z * 1.5);
                     target.hurtMarked = true;
 
-                    float damage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.5f;
+                    float damage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.5f + 3.0f;
                     living.hurt(level.damageSources().playerAttack(player), damage);
                 }
             }
