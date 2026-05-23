@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BCB",
+    "DDD"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:blue_ice"
+    },
+    "C": {
+      "item": "senbonzakura:cindering_core"
+    },
+    "D": {
+      "item": "senbonzakura:excellent_princess_diamond"
+    }
+  },
+  "result": {
+    "item": "senbonzakura:frozen_core"
+  }
+}
