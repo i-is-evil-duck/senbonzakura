@@ -18,13 +18,13 @@
 | Item | Texture Path |
 |------|--------------|
 | Archaic Crown | `assets/senbonzakura/textures/item/archaic_crown.png` |
-| Inky Pearl | `assets/senbonzakura/textures/item/inky_pearl.png` |
-| Exalted Blossom | `assets/senbonzakura/textures/item/exalted_blossom.png` |
-| Ancient Amber | `assets/senbonzakura/textures/item/ancient_amber.png` |
-| Deepwoken Relic | `assets/senbonzakura/textures/item/deepwoken_relic.png` |
+| Inky Pearl | `assets/senbonzakura/textures/item/inky_pearl.png` | DONE
+| Exalted Blossom | `assets/senbonzakura/textures/item/exalted_blossom.png` | DONE
+| Ancient Amber | `assets/senbonzakura/textures/item/ancient_amber.png` | DONE
+| Deepwoken Relic | `assets/senbonzakura/textures/item/deepwoken_relic.png` | DONE
 | Excellent Princess Cut Diamond | `assets/senbonzakura/textures/item/excellent_princess_diamond.png` |
-| Sacred Threads | `assets/senbonzakura/textures/item/sacred_threads.png` |
-| Crude Jewel Steel | `assets/senbonzakura/textures/item/crude_jewel_steel.png` |
+| Sacred Threads | `assets/senbonzakura/textures/item/sacred_threads.png` | DONE
+| Crude Jewel Steel | `assets/senbonzakura/textures/item/crude_jewel_steel.png` | DONE
 | Tamahagane | `assets/senbonzakura/textures/item/tamahagane.png` |
 | Supreme Alloy | `assets/senbonzakura/textures/item/supreme_alloy.png` |
 | Cindering Core | `assets/senbonzakura/textures/item/cindering_core.png` |
