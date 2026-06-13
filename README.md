@@ -108,4 +108,4 @@ Output: `build/libs/senbonzakura-1.0.0-alpha.jar`
 
 ## License
 
-Copyright (c) Disk Image Contributors. All rights reserved. No part of this software or its source code may be reproduced, distributed, or transmitted in any form or by any means without the prior written permission of the author.
+Copyright (c) CCC Contributors. All rights reserved. No part of this software or its source code may be reproduced, distributed, or transmitted in any form or by any means without the prior written permission of the author.
