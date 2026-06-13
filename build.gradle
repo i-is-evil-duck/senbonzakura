@@ -4,8 +4,8 @@ plugins {
     id 'maven-publish'
 }
 
-version = '1.0.0'
-group = 'com.senbonzakura'
+version = '1.0.0-alpha'
+group = 'com.j3ly.senbonzakura'
 archivesBaseName = 'senbonzakura'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -77,8 +77,8 @@ tasks.named('processResources', ProcessResources).configure {
             forge_version: '47.2.0', forge_version_range: '[47,)',
             loader_version_range: '[47,)',
             mod_id: 'senbonzakura', mod_name: 'Senbonzakura',
-            mod_license: 'MIT', mod_version: '1.0.0',
-            mod_authors: 'Developer', mod_description: 'A powerful katana that dashes and sweeps.',
+            mod_license: 'All Rights Reserved', mod_version: '1.0.0-alpha',
+            mod_authors: 'j3ly', mod_description: 'A collection of powerful legendary weapons for Minecraft.',
     ]
     inputs.properties replaceProperties
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
@@ -90,11 +90,11 @@ tasks.named('jar', Jar).configure {
     manifest {
         attributes([
                 'Specification-Title'     : 'senbonzakura',
-                'Specification-Vendor'  : 'senbonzakura',
+                'Specification-Vendor'  : 'j3ly',
                 'Specification-Version'   : '1',
                 'Implementation-Title'    : project.name,
                 'Implementation-Version'  : project.jar.archiveVersion,
-                'Implementation-Vendor'   : 'senbonzakura',
+                'Implementation-Vendor'   : 'j3ly',
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }

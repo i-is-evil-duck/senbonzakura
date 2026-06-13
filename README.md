@@ -1,156 +1,111 @@
-# Senbonzakura Mod
+# Senbonzakura
 
-A Minecraft Forge 1.20.1 weapon mod featuring four legendary blades.
+A Minecraft Forge 1.20.1 mod adding a collection of legendary weapons with unique abilities, particle effects, and crafting progression.
+
+**Author**: j3ly
 
 ---
 
-## ⚔️ Weapons
+## Weapons
 
 ### Senbonzakura
-- **Base Stats**: Netherite Sword (8 ATK, 2031 durability)
-- **Ability**: Hold right-click 3s → Dash 12 blocks forward → Push enemies back (50% dmg) → 180° sweep (100% dmg)
-- **Particles**: Cherry blossom petals + cloud trail + sweep effects
-- **Crafting**: Netherite Sword + Cherry Leaves at Smithing Table
+- **Type**: Netherite Sword (8 ATK, 2031 durability)
+- **Ability**: Hold right-click to charge, release to dash 12 blocks forward, pushing enemies back (50% dmg) with a 180° sweep (100% dmg) — 5s cooldown
+- **Passive**: 4 hits grant bonus damage
+- **Particles**: Cherry blossom petals
+- **Crafting**: Smithing Table — Netherite Sword + Cherry Leaves
 
 ### Crescent Blade of Winds
-- **Base Stats**: Diamond Sword (7 ATK, 1561 durability)
-- **Passive**: **Dual-wield** (both hands) → **Damage doubles** on all attacks
-- **Ability**: Hold right-click 2s → **360° slash** with strong knockback
-- **Dual-wield Bonus**: Perform **TWO** consecutive slashes
-- **Particles**: Wind swirls + sweep ring + explosion burst
-- **Crafting**: Diamond Sword + Wind Charge at Smithing Table
+- **Type**: Diamond Sword (7 ATK, 1561 durability)
+- **Ability**: Hold right-click for a 360° slash with knockback — 7s cooldown
+- **Passive**: 4 hits grant bonus damage; dual-wielding doubles damage
+- **Particles**: Green wind swirls
+- **Crafting**: Smithing Table — Diamond Sword + Wind Charge
 
 ### Crypt Blade
-- **Base Stats**: Netherite Axe (10 ATK, 2031 durability)
-- **Ability**: Hold right-click **5 seconds** → **Explosion** (no block damage)
-- **During Charge**:
-  - **Cannot move** or be knocked back (frozen in place)
-  - **50% damage resistance** (Resistance II)
-  - Dark soul particles swirling around you
-- **Explosion**: Damages all enemies in 6-block radius, strong knockback, doesn't hurt you or break blocks
-- **Particles**: Soul fire + smoke + ash + explosion
-- **Crafting**: Netherite Axe + Sculk Catalyst at Smithing Table
+- **Type**: Netherite Axe (10 ATK, 2031 durability)
+- **Ability**: Hold right-click 15s to charge a devastating explosion (6-block radius, no block damage). Immobile with Resistance II during charge — 15s cooldown
+- **Passive**: 5 hits grant bonus damage
+- **Particles**: Dark soul particles
+- **Crafting**: Smithing Table — Netherite Axe + Sculk Catalyst
+
+### Rite of Commandments
+- **Type**: Netherite Sword (8 ATK, 2031 durability)
+- **Ability**: Hold right-click to charge, release to gain Absorption IV + Regeneration II for 8s — 12s cooldown
+- **Passive**: 4 hits grant bonus damage
+- **Particles**: White divine particles
+- **Crafting**: Smithing Table — Netherite Sword + Sacred Threads
+
+### Pyrerizer
+- **Type**: Netherite Sword (8 ATK, 2031 durability)
+- **Ability**: Hold right-click to charge, release to shoot a fire projectile dealing 6 dmg with fire effect — 7s cooldown
+- **Passive**: 4 hits grant bonus damage
+- **Particles**: Grey smoke and fire particles
+- **Crafting**: Smithing Table — Netherite Sword + Cindering Core
+
+### Yuki no Ame
+- **Type**: Diamond Sword (7 ATK, 1561 durability)
+- **Ability**: Hold right-click to charge, release to summon a snowstorm that slows enemies in an 8-block radius for 5s — 5s cooldown
+- **Passive**: 4 hits grant bonus damage
+- **Effects**: Slowness III to enemies, snow particles
+- **Crafting**: Smithing Table — Diamond Sword + Frozen Core
+
+### The Finale
+- **Type**: Netherite Sword (8 ATK, 2031 durability)
+- **Ability**: Hold right-click 3s to charge, release to fire a massive 10-damage projectile with explosion — 30s cooldown
+- **Passive**: 5 hits grant bonus damage
+- **Particles**: Red ominous particles
+- **Crafting**: Smithing Table — Netherite Sword + Supreme Alloy
 
 ### Saw Blade Axe
-- **Base Stats**: Iron Sword (6 ATK, 250 durability)
-- **Passive**: Mines **wood** (logs, planks) as fast as a **Diamond Axe** (speed 8.0)
-- **Can harvest** wood blocks like an axe
-- **No special charge ability** - straightforward utility weapon
-- **Crafting**: Crafting Table — 2 Iron Ingots + 2 Sticks in axe pattern
+- **Type**: Iron Sword (6 ATK, 250 durability)
+- **Passive**: Mines wood blocks as fast as a Diamond Axe (speed 8.0)
+- **Crafting**: Crafting Table — 2 Iron Ingots + 2 Sticks
 
 ---
 
-## 🎮 Controls
+## Crafting Items
+
+| Item | Source |
+|------|--------|
+| Archaic Crown | 1/5 drop from Ender Dragon, Wither |
+| Inky Pearl | 1/30 Elder Guardian, 1/300 Guardian/Drowned |
+| Exalted Blossom | 1/5000 breaking cherry leaves with shears |
+| Ancient Amber | 1/1000 stripping logs with axe |
+| Deepwoken Relic | 1/2500 from various monsters |
+| Excellent Princess Diamond | Crafted from Inky Pearl + Diamond |
+| Sacred Threads | Crafted from Exalted Blossom + String |
+| Crude Jewel Steel | Crafted from Ancient Amber + Iron Ingot |
+| Tamahagane | Crafted from Crude Jewel Steel + Deepwoken Relic |
+| Supreme Alloy | Crafted from Tamahagane + Excellent Princess Diamond |
+| Cindering Core | 1/1500 from Nether mobs |
+| Ultra Conductive Material | Crafted from Copper Ingot + Redstone |
+| Skystone | 1/100 from mobs killed by lightning |
+| Darkened Rubble | Crafted from Skystone + Cobblestone |
+| Sinners Ash | Crafted from Darkened Rubble + Blaze Powder |
+| Frozen Core | Crafted from Ice + Ultra Conductive Material |
+
+---
+
+## Controls
 
 | Weapon | Action |
 |--------|--------|
-| Senbonzakura | Right-click hold 3s → Release to dash |
-| Crescent Blade | Right-click hold 2s → Release for 360° slash |
-| Crescent Blade | Equip in **both hands** for double damage + double slash |
-| Crypt Blade | Right-click hold **5s** → Release for explosion |
-| Crypt Blade | You are **immobile** and **resistant** during charge |
-| Saw Blade Axe | Use like normal sword/axe — fast wood mining passive |
+| All | Hold right-click to charge, release to activate ability |
+| Saw Blade Axe | No special ability — wooden block mining passive |
 
 ---
 
-## 🛠️ VS Code Setup
-
-### Prerequisites
-- Java 17 JDK
-- VS Code with Java Extension Pack
-- `gradle.bat` in your PATH
-
-### Quick Start
-1. **Open** the project folder in VS Code
-2. **Install** recommended extensions when prompted
-3. Wait for Gradle sync (check bottom status bar)
-4. **Build**: `Ctrl+Shift+P` → `Tasks: Run Task` → `gradle: build`
-5. **Run**: `Ctrl+Shift+P` → `Tasks: Run Task` → `gradle: runClient`
-
-Or use Terminal:
-```bash
-gradle.bat build
-gradle.bat runClient
-```
-
-### VS Code Tasks
-| Task | Command |
-|------|---------|
-| Build | `gradle.bat build` |
-| Run Client | `gradle.bat runClient` |
-| Run Server | `gradle.bat runServer` |
-| Clean | `gradle.bat clean` |
-
-### Debug
-Press `F5` → select **"Minecraft Client"** to launch with debugger.
-
----
-
-## 📦 Project Structure
+## Building
 
 ```
-senbonzakura/
-├── .vscode/                          # VS Code config
-│   ├── settings.json
-│   ├── launch.json
-│   ├── tasks.json
-│   └── extensions.json
-├── build.gradle
-├── settings.gradle
-├── gradle.properties
-├── gradlew / gradlew.bat
-├── README.md
-└── src/main/
-    ├── java/com/senbonzakura/
-    │   ├── SenbonzakuraMod.java
-    │   ├── item/
-    │   │   ├── SenbonzakuraItem.java    # Dash + sweep
-    │   │   ├── CrescentBladeItem.java   # Dual-wield + 360° slash
-    │   │   ├── CryptBladeItem.java      # Immobile charge + explosion
-    │   │   └── SawBladeAxeItem.java     # Fast wood mining passive
-    │   ├── network/
-    │   │   └── DashPacket.java
-    │   └── client/
-    │       └── ClientEventHandler.java
-    └── resources/
-        ├── META-INF/mods.toml
-        ├── pack.mcmeta
-        └── assets/senbonzakura/
-            ├── models/item/
-            │   ├── senbonzakura.json
-            │   ├── crescent_blade.json
-            │   ├── crypt_blade.json
-            │   └── saw_blade_axe.json
-            ├── textures/item/
-            │   ├── senbonzakura.png       # Cherry blossom katana
-            │   ├── crescent_blade.png     # Wind crescent blade
-            │   ├── crypt_blade.png        # Dark corrupted great axe
-            │   └── saw_blade_axe.png      # Iron sword with saw teeth
-            ├── lang/en_us.json
-            └── data/senbonzakura/recipes/
-                ├── senbonzakura.json
-                ├── crescent_blade.json
-                ├── crypt_blade.json
-                └── saw_blade_axe.json
+.\gradlew.bat build
 ```
 
----
-
-## 🔧 Troubleshooting
-
-### "Could not find net.minecraftforge:forge:1.20.1-47.2.0"
-Ensure internet connection for first build. Forge downloads from Maven.
-
-### "JAVA_HOME not set"
-Set `JAVA_HOME` to your Java 17 JDK path.
-
-### Gradle sync fails
-1. `Ctrl+Shift+P` → `Java: Clean Workspace`
-2. Restart VS Code
-3. Wait for sync
+Output: `build/libs/senbonzakura-1.0.0-alpha.jar`
 
 ---
 
-## 📄 License
+## License
 
-MIT License
+Copyright (c) Disk Image Contributors. All rights reserved. No part of this software or its source code may be reproduced, distributed, or transmitted in any form or by any means without the prior written permission of the author.
