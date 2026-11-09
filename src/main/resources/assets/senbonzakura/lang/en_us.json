@@ -6,10 +6,7 @@
   "item.senbonzakura.rite_of_commandments": "Rite of Commandments",
   "item.senbonzakura.pyrerizer": "Pyrerizer",
   "item.senbonzakura.yuki_no_ame": "Yuki no Ame",
-  "item.senbonzakura.the_finale": "The Finale",
   "item.senbonzakura.god_rock": "God Rock",
-
-  "item.senbonzakura.archaic_crown": "Archaic Crown",
   "item.senbonzakura.inky_pearl": "Inky Pearl",
   "item.senbonzakura.exalted_blossom": "Exalted Blossom",
   "item.senbonzakura.ancient_amber": "Ancient Amber",
@@ -25,18 +22,14 @@
   "item.senbonzakura.darkened_rubble": "Darkened Rubble",
   "item.senbonzakura.sinners_ash": "Sinner's Ash",
   "item.senbonzakura.frozen_core": "Frozen Core",
-
   "item.senbonzakura.copper_coin": "Copper Coin",
   "item.senbonzakura.gold_coin": "Gold Coin",
   "item.senbonzakura.shiny_coin": "Shiny Coin",
-
   "item.senbonzakura.senbonzakura.tooltip": "Hold right-click to charge, then release to dash and sweep!",
   "item.senbonzakura.crescent_blade.tooltip": "Dual-wield to double damage! Hold right-click for 360° slash!",
   "item.senbonzakura.crypt_blade.tooltip": "Hold right-click to charge a devastating explosion. Immobile but resistant!",
   "item.senbonzakura.saw_blade_axe.tooltip": "Mines wood as fast as a diamond axe!",
-
   "message.senbonzakura.not_enough_xp": "Not enough XP levels to activate this ability (requires %s).",
-
   "gamerule.senbonzakuraAbilityXpCostEnabled": "Senbonzakura: Ability XP cost enabled",
   "gamerule.senbonzakuraAbilityXpCostLevels": "Senbonzakura: Ability XP cost (levels)"
 }

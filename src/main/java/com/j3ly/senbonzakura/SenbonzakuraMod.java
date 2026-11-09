@@ -46,13 +46,10 @@ public class SenbonzakuraMod {
             () -> new PyrerizerItem(new Item.Properties().fireResistant()));
     public static final DeferredHolder<Item, YukiNoAmeItem> YUKI_NO_AME = ITEMS.register("yuki_no_ame",
             () -> new YukiNoAmeItem(new Item.Properties().fireResistant()));
-    public static final DeferredHolder<Item, TheFinaleItem> THE_FINALE = ITEMS.register("the_finale",
-            () -> new TheFinaleItem(new Item.Properties().fireResistant()));
     public static final DeferredHolder<Item, GodRockItem> GOD_ROCK = ITEMS.register("god_rock",
             () -> new GodRockItem(new Item.Properties()));
 
     // Crafting Items
-    public static final DeferredHolder<Item, Item> ARCHAIC_CROWN = ITEMS.register("archaic_crown", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> INKY_PEARL = ITEMS.register("inky_pearl", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> EXALTED_BLOSSOM = ITEMS.register("exalted_blossom", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> ANCIENT_AMBER = ITEMS.register("ancient_amber", () -> new Item(new Item.Properties()));
@@ -101,8 +98,6 @@ public class SenbonzakuraMod {
             spawnWhiteParticles(level, player);
         } else if (mainHand.getItem() instanceof PyrerizerItem) {
             spawnGreyParticles(level, player);
-        } else if (mainHand.getItem() instanceof TheFinaleItem) {
-            spawnRedParticles(level, player);
         }
     }
 
@@ -115,17 +110,6 @@ public class SenbonzakuraMod {
 
         Entity entity = event.getEntity();
         var level = entity.level();
-
-        // Archaic Crowns - 1/5 from Ender Dragon, Wither
-        if (entity instanceof net.minecraft.world.entity.boss.enderdragon.EnderDragon ||
-            entity instanceof net.minecraft.world.entity.boss.wither.WitherBoss) {
-            if (random.nextInt(5) == 0) {
-                event.getDrops().add(new ItemEntity(
-                        level, entity.getX(), entity.getY(), entity.getZ(),
-                        new ItemStack(ARCHAIC_CROWN.get()))
-                );
-            }
-        }
 
         // Inky Pearls - 1/30 Elder Guardian, 1/300 Guardian/Drowned
         if (entity instanceof net.minecraft.world.entity.monster.ElderGuardian) {
@@ -341,11 +325,9 @@ public class SenbonzakuraMod {
             event.accept(RITE_OF_COMMANDMENTS.get());
             event.accept(PYRERIZER.get());
             event.accept(YUKI_NO_AME.get());
-            event.accept(THE_FINALE.get());
             event.accept(GOD_ROCK.get());
         }
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ARCHAIC_CROWN.get());
             event.accept(INKY_PEARL.get());
             event.accept(EXALTED_BLOSSOM.get());
             event.accept(ANCIENT_AMBER.get());

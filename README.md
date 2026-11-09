@@ -114,7 +114,6 @@ When enabled, fully charged ability activations consume XP levels (Creative play
 | **Sinners Ash** | 1/10 from Ender Dragon, Wither, Warden |
 | **Skystone** | 1/100 from Phantoms, Breeze |
 | **Cindering Core** | 1/100 from Ghast, Blaze |
-| **Archaic Crown** | (existing drop) |
 
 ---
 
