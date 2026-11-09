@@ -1,21 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "AIA",
-    "ISI",
-    "SA "
-  ],
-  "key": {
-    "A": {
-      "item": "senbonzakura:archaic_crown"
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:netherite_axe"
     },
-    "I": {
+    {
+      "item": "senbonzakura:deepwoken_relic"
+    },
+    {
+      "item": "senbonzakura:deepwoken_relic"
+    },
+    {
       "item": "senbonzakura:inky_pearl"
     },
-    "S": {
+    {
+      "item": "senbonzakura:sinners_ash"
+    },
+    {
+      "item": "senbonzakura:sinners_ash"
+    },
+    {
+      "item": "senbonzakura:supreme_alloy"
+    },
+    {
+      "item": "senbonzakura:supreme_alloy"
+    },
+    {
       "item": "senbonzakura:supreme_alloy"
     }
-  },
+  ],
   "result": {
     "id": "senbonzakura:crypt_blade",
     "count": 1

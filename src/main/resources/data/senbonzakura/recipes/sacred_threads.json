@@ -1,25 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "SSS",
-    "S I",
-    "S G",
-    " N "
-  ],
-  "key": {
-    "S": {
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
       "item": "minecraft:string"
     },
-    "I": {
-      "item": "minecraft:iron_ingot"
+    {
+      "item": "minecraft:gold_block"
     },
-    "G": {
-      "item": "minecraft:gold_ingot"
+    {
+      "item": "minecraft:gold_block"
     },
-    "N": {
-      "item": "minecraft:netherite_ingot"
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "minecraft:gold_block"
     }
-  },
+  ],
   "result": {
     "id": "senbonzakura:sacred_threads",
     "count": 1

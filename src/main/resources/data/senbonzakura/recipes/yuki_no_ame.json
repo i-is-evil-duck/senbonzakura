@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "senbonzakura:senbonzakura"
+    },
+    {
+      "item": "senbonzakura:frozen_core"
+    },
+    {
+      "item": "senbonzakura:frozen_core"
+    },
+    {
+      "item": "senbonzakura:frozen_core"
+    },
+    {
+      "item": "senbonzakura:frozen_core"
+    },
+    {
+      "item": "senbonzakura:excellent_princess_diamond"
+    },
+    {
+      "item": "senbonzakura:excellent_princess_diamond"
+    },
+    {
+      "item": "senbonzakura:excellent_princess_diamond"
+    },
+    {
+      "item": "senbonzakura:excellent_princess_diamond"
+    }
+  ],
+  "result": {
+    "id": "senbonzakura:yuki_no_ame",
+    "count": 1
+  }
+}

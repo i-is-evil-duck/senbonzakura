@@ -48,6 +48,8 @@ public class SenbonzakuraMod {
             () -> new YukiNoAmeItem(new Item.Properties().fireResistant()));
     public static final DeferredHolder<Item, TheFinaleItem> THE_FINALE = ITEMS.register("the_finale",
             () -> new TheFinaleItem(new Item.Properties().fireResistant()));
+    public static final DeferredHolder<Item, GodRockItem> GOD_ROCK = ITEMS.register("god_rock",
+            () -> new GodRockItem(new Item.Properties()));
 
     // Crafting Items
     public static final DeferredHolder<Item, Item> ARCHAIC_CROWN = ITEMS.register("archaic_crown", () -> new Item(new Item.Properties()));
@@ -105,18 +107,7 @@ public class SenbonzakuraMod {
     }
 
     public void onLivingDeath(LivingDeathEvent event) {
-        if (event.getEntity().level().isClientSide()) return;
-        var source = event.getSource();
-        if (source == null) return;
-
-        String sourceName = source.getMsgId();
-        if (sourceName != null && sourceName.contains("lightning") && random.nextInt(100) == 0) {
-            var level = event.getEntity().level();
-            level.addFreshEntity(new ItemEntity(
-                    level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(),
-                    new ItemStack(SKYSTONE.get()))
-            );
-        }
+        // Skystone drops from Phantoms/Breeze are handled in onLivingDrops.
     }
 
     public void onLivingDrops(LivingDropsEvent event) {
@@ -160,13 +151,13 @@ public class SenbonzakuraMod {
             }
         }
 
-        // Deepwoken Relic - 1/2500 from Zombies, Skeletons, Creepers, Spiders, Endermen
+        // Deepwoken Relic - 1/2000 from Zombies, Skeletons, Creepers, Spiders, Endermen
         if (entity instanceof net.minecraft.world.entity.monster.Zombie ||
             entity instanceof net.minecraft.world.entity.monster.AbstractSkeleton ||
             entity instanceof net.minecraft.world.entity.monster.Creeper ||
             entity instanceof net.minecraft.world.entity.monster.Spider ||
             entity instanceof net.minecraft.world.entity.monster.EnderMan) {
-            if (random.nextInt(2500) == 0) {
+            if (random.nextInt(2000) == 0) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(DEEPWOKEN_RELIC.get()))
@@ -174,23 +165,43 @@ public class SenbonzakuraMod {
             }
         }
 
+        // Cindering Core - 1/100 from Ghast, Blaze
+        if (entity instanceof net.minecraft.world.entity.monster.Blaze ||
+            entity instanceof net.minecraft.world.entity.monster.Ghast) {
+            if (random.nextInt(100) == 0) {
+                event.getDrops().add(new ItemEntity(
+                        level, entity.getX(), entity.getY(), entity.getZ(),
+                        new ItemStack(CINDERING_CORE.get()))
+                );
+            }
+        }
+
+        // Skystone - 1/100 from Phantoms, Breeze
+        if (entity instanceof net.minecraft.world.entity.monster.Phantom ||
+            entity instanceof net.minecraft.world.entity.monster.breeze.Breeze) {
+            if (random.nextInt(100) == 0) {
+                event.getDrops().add(new ItemEntity(
+                        level, entity.getX(), entity.getY(), entity.getZ(),
+                        new ItemStack(SKYSTONE.get()))
+                );
+            }
+        }
+
+        // Sinners Ash - 1/10 from Ender Dragon, Wither, Warden
+        if (entity instanceof net.minecraft.world.entity.boss.enderdragon.EnderDragon ||
+            entity instanceof net.minecraft.world.entity.boss.wither.WitherBoss ||
+            entity instanceof net.minecraft.world.entity.monster.warden.Warden) {
+            if (random.nextInt(10) == 0) {
+                event.getDrops().add(new ItemEntity(
+                        level, entity.getX(), entity.getY(), entity.getZ(),
+                        new ItemStack(SINNERS_ASH.get()))
+                );
+            }
+        }
+
         // Nether-only drops
         var dim = level.dimension();
         if (dim == net.minecraft.world.level.Level.NETHER) {
-            // Cindering Core - 1/1500 from select Nether mobs
-            if (entity instanceof net.minecraft.world.entity.monster.Blaze ||
-                entity instanceof net.minecraft.world.entity.monster.Ghast ||
-                entity instanceof net.minecraft.world.entity.monster.MagmaCube ||
-                entity instanceof net.minecraft.world.entity.monster.WitherSkeleton ||
-                entity instanceof net.minecraft.world.entity.boss.wither.WitherBoss) {
-                if (random.nextInt(1500) == 0) {
-                    event.getDrops().add(new ItemEntity(
-                            level, entity.getX(), entity.getY(), entity.getZ(),
-                            new ItemStack(CINDERING_CORE.get()))
-                    );
-                }
-            }
-
             // Darkened Rubble - from ZombifiedPiglin only (1/150)
             if (entity instanceof net.minecraft.world.entity.monster.ZombifiedPiglin) {
                 if (random.nextInt(150) == 0) {
@@ -230,10 +241,10 @@ public class SenbonzakuraMod {
         var block = state.getBlock();
         var player = event.getPlayer();
 
-        // Ancient Amber - 1/1000 when breaking/stripping logs with an axe
+        // Ancient Amber - 1/300 when breaking/stripping logs with an axe
         if (block.toString().contains("stripped") || block.toString().contains("log")) {
             if (player != null && player.getMainHandItem().getItem() instanceof net.minecraft.world.item.AxeItem) {
-                if (random.nextInt(1000) == 0) {
+                if (random.nextInt(300) == 0) {
                     level.addFreshEntity(new ItemEntity(
                             level, event.getPos().getX() + 0.5, event.getPos().getY() + 0.5, event.getPos().getZ() + 0.5,
                             new ItemStack(ANCIENT_AMBER.get()))
@@ -242,9 +253,9 @@ public class SenbonzakuraMod {
             }
         }
 
-        // Exalted Blossom - 1/5000 from cherry blossom leaves
+        // Exalted Blossom - 1/2500 from cherry blossom leaves
         if (block.toString().contains("cherry_leaves")) {
-            if (random.nextInt(5000) == 0) {
+            if (random.nextInt(2500) == 0) {
                 level.addFreshEntity(new ItemEntity(
                         level, event.getPos().getX() + 0.5, event.getPos().getY() + 0.5, event.getPos().getZ() + 0.5,
                         new ItemStack(EXALTED_BLOSSOM.get()))
@@ -331,6 +342,7 @@ public class SenbonzakuraMod {
             event.accept(PYRERIZER.get());
             event.accept(YUKI_NO_AME.get());
             event.accept(THE_FINALE.get());
+            event.accept(GOD_ROCK.get());
         }
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ARCHAIC_CROWN.get());

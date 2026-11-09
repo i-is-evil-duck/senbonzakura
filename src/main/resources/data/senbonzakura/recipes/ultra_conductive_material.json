@@ -1,24 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "CGC",
-    "GNG",
-    "I I"
-  ],
-  "key": {
-    "C": {
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
       "item": "minecraft:copper_block"
     },
-    "G": {
+    {
+      "item": "minecraft:copper_block"
+    },
+    {
+      "item": "minecraft:copper_block"
+    },
+    {
+      "item": "minecraft:copper_block"
+    },
+    {
       "item": "minecraft:gold_block"
     },
-    "N": {
-      "item": "minecraft:netherite_ingot"
+    {
+      "item": "minecraft:gold_block"
     },
-    "I": {
-      "item": "minecraft:iron_block"
+    {
+      "item": "senbonzakura:skystone"
+    },
+    {
+      "item": "senbonzakura:skystone"
+    },
+    {
+      "item": "senbonzakura:ancient_amber"
     }
-  },
+  ],
   "result": {
     "id": "senbonzakura:ultra_conductive_material",
     "count": 1

@@ -1,21 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "NNO",
-    "OOO",
-    "OOS"
-  ],
-  "key": {
-    "N": {
-      "item": "minecraft:netherite_ingot"
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:netherite_block"
     },
-    "O": {
-      "item": "minecraft:crying_obsidian"
+    {
+      "item": "minecraft:diamond_block"
     },
-    "S": {
-      "item": "minecraft:nether_star"
+    {
+      "item": "minecraft:diamond_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "senbonzakura:darkened_rubble"
+    },
+    {
+      "item": "senbonzakura:darkened_rubble"
+    },
+    {
+      "item": "senbonzakura:darkened_rubble"
     }
-  },
+  ],
   "result": {
     "id": "senbonzakura:supreme_alloy",
     "count": 1

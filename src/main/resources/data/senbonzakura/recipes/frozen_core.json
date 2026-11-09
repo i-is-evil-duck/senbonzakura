@@ -1,21 +1,14 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "BBB",
-    "BCB",
-    "DDD"
-  ],
-  "key": {
-    "B": {
-      "item": "minecraft:blue_ice"
-    },
-    "C": {
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
       "item": "senbonzakura:cindering_core"
     },
-    "D": {
-      "item": "senbonzakura:excellent_princess_diamond"
+    {
+      "item": "senbonzakura:skystone"
     }
-  },
+  ],
   "result": {
     "id": "senbonzakura:frozen_core",
     "count": 1

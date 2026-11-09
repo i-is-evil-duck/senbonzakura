@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:netherite_sword"
+    },
+    {
+      "item": "senbonzakura:sinners_ash"
+    },
+    {
+      "item": "senbonzakura:sinners_ash"
+    },
+    {
+      "item": "senbonzakura:sinners_ash"
+    },
+    {
+      "item": "senbonzakura:cindering_core"
+    },
+    {
+      "item": "senbonzakura:cindering_core"
+    },
+    {
+      "item": "senbonzakura:cindering_core"
+    },
+    {
+      "item": "senbonzakura:deepwoken_relic"
+    },
+    {
+      "item": "senbonzakura:supreme_alloy"
+    }
+  ],
+  "result": {
+    "id": "senbonzakura:pyrerizer",
+    "count": 1
+  }
+}

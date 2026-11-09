@@ -1,27 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "ADA",
-    "SRS",
-    " N "
-  ],
-  "key": {
-    "A": {
-      "item": "senbonzakura:archaic_crown"
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond_sword"
     },
-    "D": {
+    {
+      "item": "minecraft:diamond_sword"
+    },
+    {
       "item": "senbonzakura:deepwoken_relic"
     },
-    "S": {
+    {
       "item": "senbonzakura:supreme_alloy"
     },
-    "R": {
-      "item": "senbonzakura:deepwoken_relic"
+    {
+      "item": "senbonzakura:supreme_alloy"
     },
-    "N": {
-      "item": "minecraft:netherite_sword"
+    {
+      "item": "senbonzakura:skystone"
+    },
+    {
+      "item": "senbonzakura:skystone"
+    },
+    {
+      "item": "senbonzakura:skystone"
+    },
+    {
+      "item": "senbonzakura:skystone"
     }
-  },
+  ],
   "result": {
     "id": "senbonzakura:crescent_blade",
     "count": 1

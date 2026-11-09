@@ -1,108 +1,130 @@
 # Senbonzakura
 
-A Minecraft Forge 1.20.1 mod adding a collection of legendary weapons with unique abilities, particle effects, and crafting progression.
+A **Minecraft NeoForge 1.21.1** mod adding a collection of legendary weapons with unique abilities, particle effects, crafting progression, and coins.
 
 **Author**: j3ly
 
 ---
 
+## Requirements / Building
+
+- Minecraft **1.21.1**
+- **NeoForge** (21.1.x)
+- Java **21**
+
+```bash
+./gradlew build
+```
+
+---
+
+## Admin Configuration (Ability XP Cost)
+
+Ability activation XP cost is configurable via **game rules** (admin/operator):
+
+```mcfunction
+/gamerule senbonzakuraAbilityXpCostEnabled true|false   # default: false
+/gamerule senbonzakuraAbilityXpCostLevels <levels>       # default: 1
+```
+
+When enabled, fully charged ability activations consume XP levels (Creative players bypass the cost).
+
+---
+
 ## Weapons
+
+> Hold right-click to charge and release to activate abilities (unless noted).
 
 ### Senbonzakura
 - **Type**: Netherite Sword (8 ATK, 2031 durability)
 - **Ability**: Hold right-click to charge, release to dash 12 blocks forward, pushing enemies back (50% dmg) with a 180° sweep (100% dmg) — 5s cooldown
-- **Passive**: 4 hits grant bonus damage
+- **Passive**: every 4 hits, gain Swiftness II for 5 seconds
 - **Particles**: Cherry blossom petals
-- **Crafting**: Smithing Table — Netherite Sword + Cherry Leaves
+- **Crafting** (crafting table, 1 output): 1 Netherite Sword, 1 Exalted Blossom, 2 Sacred Threads, 1 Ancient Amber, 2 Excellent Princess Cut Diamond, 2 Tamahagane
 
 ### Crescent Blade of Winds
 - **Type**: Diamond Sword (7 ATK, 1561 durability)
 - **Ability**: Hold right-click for a 360° slash with knockback — 7s cooldown
-- **Passive**: 4 hits grant bonus damage; dual-wielding doubles damage
+- **Passive**: every 4 hits, instantly recharge ability; dual-wielding doubles damage
 - **Particles**: Green wind swirls
-- **Crafting**: Smithing Table — Diamond Sword + Wind Charge
+- **Crafting**: 2 Diamond Swords, 1 Deepwoken Relic, 2 Supreme Alloy, 4 Skystone
 
 ### Crypt Blade
 - **Type**: Netherite Axe (10 ATK, 2031 durability)
-- **Ability**: Hold right-click 15s to charge a devastating explosion (6-block radius, no block damage). Immobile with Resistance II during charge — 15s cooldown
-- **Passive**: 5 hits grant bonus damage
+- **Ability**: Hold right-click 5s to charge a devastating explosion (6-block radius, no block damage). Immobile with Resistance II during charge — 15s cooldown
+- **Passive**: every 8 hits, apply Withering and Darkness to opponent for 3 seconds
 - **Particles**: Dark soul particles
-- **Crafting**: Smithing Table — Netherite Axe + Sculk Catalyst
+- **Crafting**: 1 Netherite Axe, 2 Deepwoken Relic, 1 Inky Pearl, 2 Sinners Ash, 3 Supreme Alloy
 
 ### Rite of Commandments
 - **Type**: Netherite Sword (8 ATK, 2031 durability)
-- **Ability**: Hold right-click to charge, release to gain Absorption IV + Regeneration II for 8s — 12s cooldown
-- **Passive**: 4 hits grant bonus damage
+- **Ability**: Hold right-click for 2 seconds to summon a ring of lightning bolts around you and gain Absorption for 5 seconds — 8s cooldown
+- **Passive**: every 5 hits, summon a lightning bolt on your target
 - **Particles**: White divine particles
-- **Crafting**: Smithing Table — Netherite Sword + Sacred Threads
+- **Crafting**: 1 Netherite Sword, 2 Ultra Conductive Material, 1 Deepwoken Relic, 1 Supreme Alloy, 2 Skystone, 2 Sacred Threads
 
 ### Pyrerizer
 - **Type**: Netherite Sword (8 ATK, 2031 durability)
-- **Ability**: Hold right-click to charge, release to shoot a fire projectile dealing 6 dmg with fire effect — 7s cooldown
-- **Passive**: 4 hits grant bonus damage
+- **Ability**: Hold right-click to charge, release to shoot a volley of 4 fire projectiles dealing 6 dmg each with fire effect — 7s cooldown
+- **Passive**: every hit, set your opponent on fire and heal yourself by 0.5 hearts
 - **Particles**: Grey smoke and fire particles
-- **Crafting**: Smithing Table — Netherite Sword + Cindering Core
+- **Crafting**: 1 Netherite Sword, 3 Sinners Ash, 3 Cindering Core, 1 Deepwoken Relic, 1 Supreme Alloy
 
 ### Yuki no Ame
-- **Type**: Diamond Sword (7 ATK, 1561 durability)
-- **Ability**: Hold right-click to charge, release to summon a snowstorm that slows enemies in an 8-block radius for 5s — 5s cooldown
-- **Passive**: 4 hits grant bonus damage
-- **Effects**: Slowness III to enemies, snow particles
-- **Crafting**: Smithing Table — Diamond Sword + Frozen Core
+- **Type**: Netherite Sword (8 ATK, 2031 durability) — upgraded Senbonzakura
+- **Ability**: Hold right-click to charge, release to dash 12 blocks forward, pushing enemies back (50% dmg) with a 180° sweep (100% dmg) — 5s cooldown
+- **Passive**: every 4 hits, gain Swiftness II and Regeneration for 5 seconds and apply Slowness II and Weakness II to your opponent for 3 seconds
+- **Particles**: Snowflakes
+- **Crafting**: 1 Senbonzakura, 4 Frozen Core, 4 Excellent Princess Cut Diamond
 
-### The Finale
-- **Type**: Netherite Sword (8 ATK, 2031 durability)
-- **Ability**: Hold right-click 3s to charge, release to fire a massive 10-damage projectile with explosion — 30s cooldown
-- **Passive**: 5 hits grant bonus damage
-- **Particles**: Red ominous particles
-- **Crafting**: Smithing Table — Netherite Sword + Supreme Alloy
+### God Rock (NEW)
+- **Type**: Cobblestone-style item (19.5 ATK, infinite durability)
+- **Passive**: While holding, gain Resistance II
+- **Particles**: Yellow sparkles
+- **Crafting**: 1 Yuki no Ame, 2 Crescent Blade of Winds, 1 Crypt Blade, 1 Rite of Commandments, 1 Pyrerizer
 
 ### Saw Blade Axe
-- **Type**: Iron Sword (6 ATK, 250 durability)
-- **Passive**: Mines wood blocks as fast as a Diamond Axe (speed 8.0)
-- **Crafting**: Crafting Table — 2 Iron Ingots + 2 Sticks
+- **Type**: Axe
+- **Passive**: Mines wood blocks very fast
+- **Crafting**: (existing mod recipe)
 
 ---
 
-## Crafting Items
+## Crafting Items & Recipes (Crafting Table, 1 output)
 
-| Item | Source |
-|------|--------|
-| Archaic Crown | 1/5 drop from Ender Dragon, Wither |
-| Inky Pearl | 1/30 Elder Guardian, 1/300 Guardian/Drowned |
-| Exalted Blossom | 1/5000 breaking cherry leaves with shears |
-| Ancient Amber | 1/1000 stripping logs with axe |
-| Deepwoken Relic | 1/2500 from various monsters |
-| Excellent Princess Diamond | Crafted from Inky Pearl + Diamond |
-| Sacred Threads | Crafted from Exalted Blossom + String |
-| Crude Jewel Steel | Crafted from Ancient Amber + Iron Ingot |
-| Tamahagane | Crafted from Crude Jewel Steel + Deepwoken Relic |
-| Supreme Alloy | Crafted from Tamahagane + Excellent Princess Diamond |
-| Cindering Core | 1/1500 from Nether mobs |
-| Ultra Conductive Material | Crafted from Copper Ingot + Redstone |
-| Skystone | 1/100 from mobs killed by lightning |
-| Darkened Rubble | Crafted from Skystone + Cobblestone |
-| Sinners Ash | Crafted from Darkened Rubble + Blaze Powder |
-| Frozen Core | Crafted from Ice + Ultra Conductive Material |
+| Item | Recipe / Source |
+|------|------------------|
+| **Supreme Alloy** | 1 Netherite Block, 2 Diamond Blocks, 3 Gold Blocks, 3 Darkened Rubble |
+| **Darkened Rubble** | 4 Netherite Ingots, 4 Gilded Blackstone, 1 Nether Star (also drops from Zombified Piglin 1/150) |
+| **Inky Pearl** | 1 Eye of Ender, 6 Netherite Ingots, 2 Ink Sacs |
+| **Tamahagane** | 3 Iron Blocks, 6 Coal Blocks |
+| **Excellent Princess Cut Diamond** | 3 Diamond Blocks, 1 Crude Jewel, 2 Tamahagane, 3 Stone Bricks |
+| **Crude Jewel** (`crude_jewel_steel`) | 8 Deepslate Diamond Ore, 1 Diamond Block |
+| **Sacred Threads** | 1 String, 8 Gold Blocks |
+| **Ultra Conductive Material** | 4 Copper Blocks, 2 Gold Blocks, 2 Skystone, 1 Ancient Amber |
+| **Frozen Core** | 1 Cindering Core, 1 Skystone |
 
----
+## Drops
 
-## Controls
-
-| Weapon | Action |
-|--------|--------|
-| All | Hold right-click to charge, release to activate ability |
-| Saw Blade Axe | No special ability — wooden block mining passive |
+| Item | Drop |
+|------|------|
+| **Exalted Blossom** | 1/2500 from Cherry Blossom Leaves |
+| **Ancient Amber** | 1/300 when breaking/stripping a log with an axe |
+| **Deepwoken Relic** | 1/2000 from Zombies, Skeletons, Spiders, Creepers, Endermen |
+| **Sinners Ash** | 1/10 from Ender Dragon, Wither, Warden |
+| **Skystone** | 1/100 from Phantoms, Breeze |
+| **Cindering Core** | 1/100 from Ghast, Blaze |
+| **Archaic Crown** | (existing drop) |
 
 ---
 
-## Building
+## Coins (Crafting Table, shapeless / any order)
 
-```
-.\gradlew.bat build
-```
+Ingredients use vanilla materials (vanilla has no silver; **iron ingot** is used as “silver”):
 
-Output: `build/libs/senbonzakura-1.0.0-alpha.jar`
+- **Gold Coin**: 2 Gold Ingots + 1 Iron Ingot
+- **Shiny Coin**: 1 Gold Ingot + 1 Iron Ingot + 2 Copper Ingots
+- **Copper Coin**: 4 Copper Ingots **or** 3 Copper Ingots + 1 Iron Ingot
 
 ---
 

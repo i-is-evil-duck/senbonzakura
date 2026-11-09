@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "senbonzakura:yuki_no_ame"
+    },
+    {
+      "item": "senbonzakura:crescent_blade"
+    },
+    {
+      "item": "senbonzakura:crescent_blade"
+    },
+    {
+      "item": "senbonzakura:crypt_blade"
+    },
+    {
+      "item": "senbonzakura:rite_of_commandments"
+    },
+    {
+      "item": "senbonzakura:pyrerizer"
+    }
+  ],
+  "result": {
+    "id": "senbonzakura:god_rock",
+    "count": 1
+  }
+}

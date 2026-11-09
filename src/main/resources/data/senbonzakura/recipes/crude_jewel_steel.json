@@ -1,22 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "III",
-    "ICC",
-    "CCL",
-    "L  "
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:iron_block"
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:deepslate_diamond_ore"
     },
-    "C": {
-      "item": "minecraft:coal_block"
+    {
+      "item": "minecraft:deepslate_diamond_ore"
     },
-    "L": {
-      "item": "minecraft:clay"
+    {
+      "item": "minecraft:deepslate_diamond_ore"
+    },
+    {
+      "item": "minecraft:deepslate_diamond_ore"
+    },
+    {
+      "item": "minecraft:deepslate_diamond_ore"
+    },
+    {
+      "item": "minecraft:deepslate_diamond_ore"
+    },
+    {
+      "item": "minecraft:deepslate_diamond_ore"
+    },
+    {
+      "item": "minecraft:deepslate_diamond_ore"
+    },
+    {
+      "item": "minecraft:diamond_block"
     }
-  },
+  ],
   "result": {
     "id": "senbonzakura:crude_jewel_steel",
     "count": 1

@@ -1,18 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "DDD",
-    "DGD",
-    "DDD"
-  ],
-  "key": {
-    "D": {
-      "item": "minecraft:diamond"
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond_block"
     },
-    "G": {
-      "item": "minecraft:quartz"
+    {
+      "item": "minecraft:diamond_block"
+    },
+    {
+      "item": "minecraft:diamond_block"
+    },
+    {
+      "item": "senbonzakura:crude_jewel_steel"
+    },
+    {
+      "item": "senbonzakura:tamahagane"
+    },
+    {
+      "item": "senbonzakura:tamahagane"
+    },
+    {
+      "item": "minecraft:stone_bricks"
+    },
+    {
+      "item": "minecraft:stone_bricks"
+    },
+    {
+      "item": "minecraft:stone_bricks"
     }
-  },
+  ],
   "result": {
     "id": "senbonzakura:excellent_princess_diamond",
     "count": 1
