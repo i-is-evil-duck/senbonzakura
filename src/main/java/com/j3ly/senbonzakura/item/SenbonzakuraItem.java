@@ -1,14 +1,12 @@
 package com.j3ly.senbonzakura.item;
 
-import com.j3ly.senbonzakura.network.DashPacket;
+import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -28,7 +26,7 @@ import java.util.UUID;
 public class SenbonzakuraItem extends SwordItem {
 
     public SenbonzakuraItem(Properties properties) {
-        super(Tiers.NETHERITE, 4, -2.4f, properties);
+        super(Tiers.NETHERITE, properties.attributes(SwordItem.createAttributes(Tiers.NETHERITE, 4, -2.4f)));
     }
 
     private static final Map<UUID, Integer> chargeTicks = new HashMap<>();
@@ -43,7 +41,7 @@ public class SenbonzakuraItem extends SwordItem {
         if (!level.isClientSide) {
             UUID id = player.getUUID();
             Long lastUse = cooldowns.get(id);
-            if (lastUse != null && player.level().getGameTime() - lastUse < COOLDOWN_TIME) {
+            if (lastUse != null && level.getGameTime() - lastUse < COOLDOWN_TIME) {
                 return InteractionResultHolder.fail(stack);
             }
             isCharging.put(id, true);
@@ -54,7 +52,7 @@ public class SenbonzakuraItem extends SwordItem {
     }
 
     @Override
-    public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
+    public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int remainingUseDuration) {
         if (!(entity instanceof Player player)) return;
         if (level.isClientSide) return;
 
@@ -65,8 +63,7 @@ public class SenbonzakuraItem extends SwordItem {
         chargeTicks.put(id, ticks);
 
         // Visual feedback during charge
-        if (ticks % 5 == 0) {
-            ServerLevel serverLevel = (ServerLevel) level;
+        if (ticks % 5 == 0 && level instanceof ServerLevel serverLevel) {
             Vec3 pos = player.position().add(0, 1, 0);
             serverLevel.sendParticles(ParticleTypes.SWEEP_ATTACK,
                     pos.x, pos.y, pos.z, 1, 0.2, 0.2, 0.2, 0);
@@ -81,7 +78,7 @@ public class SenbonzakuraItem extends SwordItem {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (!(entity instanceof Player player)) return stack;
-        if (level.isClientSide) return stack;
+        if (!(level instanceof ServerLevel serverLevel)) return stack;
 
         UUID id = player.getUUID();
         int ticks = chargeTicks.getOrDefault(id, 0);
@@ -89,8 +86,11 @@ public class SenbonzakuraItem extends SwordItem {
         chargeTicks.put(id, 0);
 
         if (ticks >= CHARGE_TIME) {
+            if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
+                return stack;
+            }
             cooldowns.put(id, level.getGameTime());
-            performDash(player, (ServerLevel) level);
+            performDash(player, serverLevel);
         }
 
         return stack;
@@ -99,7 +99,7 @@ public class SenbonzakuraItem extends SwordItem {
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeCharged) {
         if (!(entity instanceof Player player)) return;
-        if (level.isClientSide) return;
+        if (!(level instanceof ServerLevel serverLevel)) return;
 
         UUID id = player.getUUID();
         int ticks = chargeTicks.getOrDefault(id, 0);
@@ -107,13 +107,16 @@ public class SenbonzakuraItem extends SwordItem {
         chargeTicks.put(id, 0);
 
         if (ticks >= CHARGE_TIME) {
+            if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
+                return;
+            }
             cooldowns.put(id, level.getGameTime());
-            performDash(player, (ServerLevel) level);
+            performDash(player, serverLevel);
         }
     }
 
     @Override
-    public int getUseDuration(ItemStack stack) {
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 72000; // Max charge time (like bow)
     }
 
@@ -157,16 +160,13 @@ public class SenbonzakuraItem extends SwordItem {
         Vec3 pos = player.position();
         Vec3 look = player.getLookAngle();
 
-        // Play sweep sound
         level.playSound(null, pos.x, pos.y, pos.z,
                 SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1.0f, 1.0f);
 
-        // Spawn sweep particle
         level.sendParticles(ParticleTypes.SWEEP_ATTACK,
                 pos.x + look.x * 2, pos.y + 1, pos.z + look.z * 2,
                 5, 2.0, 0.5, 2.0, 0.1);
 
-        // 180° sweep in front - hit all entities in a wide arc
         float attackDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
         AABB sweepBox = new AABB(
                 pos.x - 4, pos.y - 1, pos.z - 4,
@@ -178,22 +178,16 @@ public class SenbonzakuraItem extends SwordItem {
 
         for (Entity target : entities) {
             if (target instanceof LivingEntity living) {
-                // Check if entity is in front (180° cone)
                 Vec3 toTarget = target.position().subtract(pos).normalize();
                 double dot = look.dot(toTarget);
 
-                // dot > 0 means within 90° of look direction, but we want 180°
-                // For 180° sweep, we check if entity is in front hemisphere
-                if (dot > -0.1) { // roughly 180°
-                    // Apply knockback
+                if (dot > -0.1) {
                     Vec3 knockback = toTarget.scale(0.8);
                     target.setDeltaMovement(knockback.x, 0.3, knockback.z);
                     target.hurtMarked = true;
 
-                    // Full weapon damage
                     living.hurt(level.damageSources().playerAttack(player), attackDamage);
 
-                    // Spawn hit particles
                     level.sendParticles(ParticleTypes.DAMAGE_INDICATOR,
                             target.getX(), target.getY() + 1, target.getZ(),
                             3, 0.2, 0.2, 0.2, 0.1);
@@ -204,7 +198,6 @@ public class SenbonzakuraItem extends SwordItem {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
-        // Normal sword attack behavior
         return false;
     }
 }

@@ -1,14 +1,15 @@
 package com.j3ly.senbonzakura.item;
 
+import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -32,7 +33,7 @@ public class RiteOfCommandmentsItem extends SwordItem {
     private static final long COOLDOWN_TIME = 240L;
 
     public RiteOfCommandmentsItem(Properties properties) {
-        super(Tiers.DIAMOND, 3, -2.4f, properties);
+        super(Tiers.DIAMOND, properties.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 3, -2.4f)));
     }
 
     @Override
@@ -52,9 +53,9 @@ public class RiteOfCommandmentsItem extends SwordItem {
     }
 
     @Override
-    public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
+    public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int remainingUseDuration) {
         if (!(entity instanceof Player player)) return;
-        if (level.isClientSide) return;
+        if (!(level instanceof ServerLevel serverLevel)) return;
 
         UUID id = player.getUUID();
         if (!Boolean.TRUE.equals(isCharging.get(id))) return;
@@ -63,7 +64,6 @@ public class RiteOfCommandmentsItem extends SwordItem {
         chargeTicks.put(id, ticks);
 
         if (ticks % 3 == 0) {
-            ServerLevel serverLevel = (ServerLevel) level;
             Vec3 pos = player.position();
             serverLevel.sendParticles(ParticleTypes.WHITE_ASH, pos.x + (Math.random() - 0.5), pos.y + 1, pos.z + (Math.random() - 0.5), 1, 0.1, 0.1, 0.1, 0.02);
         }
@@ -76,7 +76,7 @@ public class RiteOfCommandmentsItem extends SwordItem {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (!(entity instanceof Player player)) return stack;
-        if (level.isClientSide) return stack;
+        if (!(level instanceof ServerLevel serverLevel)) return stack;
 
         UUID id = player.getUUID();
         int ticks = chargeTicks.getOrDefault(id, 0);
@@ -84,8 +84,11 @@ public class RiteOfCommandmentsItem extends SwordItem {
         chargeTicks.put(id, 0);
 
         if (ticks >= CHARGE_TIME) {
+            if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
+                return stack;
+            }
             cooldowns.put(id, level.getGameTime());
-            performLightningStrike(player, (ServerLevel) level);
+            performLightningStrike(player, serverLevel);
         }
 
         return stack;
@@ -94,7 +97,7 @@ public class RiteOfCommandmentsItem extends SwordItem {
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeCharged) {
         if (!(entity instanceof Player player)) return;
-        if (level.isClientSide) return;
+        if (!(level instanceof ServerLevel serverLevel)) return;
 
         UUID id = player.getUUID();
         int ticks = chargeTicks.getOrDefault(id, 0);
@@ -102,19 +105,17 @@ public class RiteOfCommandmentsItem extends SwordItem {
         chargeTicks.put(id, 0);
 
         if (ticks >= CHARGE_TIME) {
+            if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
+                return;
+            }
             cooldowns.put(id, level.getGameTime());
-            performLightningStrike(player, (ServerLevel) level);
+            performLightningStrike(player, serverLevel);
         }
     }
 
     @Override
-    public int getUseDuration(ItemStack stack) {
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 72000;
-    }
-
-    @Override
-    public float getDamage() {
-        return 8.0f;
     }
 
     private void performLightningStrike(Player player, ServerLevel level) {
@@ -128,9 +129,11 @@ public class RiteOfCommandmentsItem extends SwordItem {
 
         for (Entity target : entities) {
             for (int i = 0; i < boltCount; i++) {
-                net.minecraft.world.entity.LightningBolt bolt = new net.minecraft.world.entity.LightningBolt(net.minecraft.world.entity.EntityType.LIGHTNING_BOLT, level);
-                bolt.setPos(target.getX(), target.getY(), target.getZ());
-                level.addFreshEntity(bolt);
+                LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(level);
+                if (bolt != null) {
+                    bolt.moveTo(target.getX(), target.getY(), target.getZ());
+                    level.addFreshEntity(bolt);
+                }
             }
 
             if (target instanceof LivingEntity living) {

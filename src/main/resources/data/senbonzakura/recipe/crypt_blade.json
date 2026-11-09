@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AIA",
+    "ISI",
+    "SA "
+  ],
+  "key": {
+    "A": {
+      "item": "senbonzakura:archaic_crown"
+    },
+    "I": {
+      "item": "senbonzakura:inky_pearl"
+    },
+    "S": {
+      "item": "senbonzakura:supreme_alloy"
+    }
+  },
+  "result": {
+    "id": "senbonzakura:crypt_blade",
+    "count": 1
+  }
+}

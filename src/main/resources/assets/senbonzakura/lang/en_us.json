@@ -3,8 +3,39 @@
   "item.senbonzakura.crescent_blade": "Crescent Blade of Winds",
   "item.senbonzakura.crypt_blade": "Crypt Blade",
   "item.senbonzakura.saw_blade_axe": "Saw Blade Axe",
+  "item.senbonzakura.rite_of_commandments": "Rite of Commandments",
+  "item.senbonzakura.pyrerizer": "Pyrerizer",
+  "item.senbonzakura.yuki_no_ame": "Yuki no Ame",
+  "item.senbonzakura.the_finale": "The Finale",
+
+  "item.senbonzakura.archaic_crown": "Archaic Crown",
+  "item.senbonzakura.inky_pearl": "Inky Pearl",
+  "item.senbonzakura.exalted_blossom": "Exalted Blossom",
+  "item.senbonzakura.ancient_amber": "Ancient Amber",
+  "item.senbonzakura.deepwoken_relic": "Deepwoken Relic",
+  "item.senbonzakura.excellent_princess_diamond": "Excellent Princess Diamond",
+  "item.senbonzakura.sacred_threads": "Sacred Threads",
+  "item.senbonzakura.crude_jewel_steel": "Crude Jewel Steel",
+  "item.senbonzakura.tamahagane": "Tamahagane",
+  "item.senbonzakura.supreme_alloy": "Supreme Alloy",
+  "item.senbonzakura.cindering_core": "Cindering Core",
+  "item.senbonzakura.ultra_conductive_material": "Ultra Conductive Material",
+  "item.senbonzakura.skystone": "Skystone",
+  "item.senbonzakura.darkened_rubble": "Darkened Rubble",
+  "item.senbonzakura.sinners_ash": "Sinner's Ash",
+  "item.senbonzakura.frozen_core": "Frozen Core",
+
+  "item.senbonzakura.copper_coin": "Copper Coin",
+  "item.senbonzakura.gold_coin": "Gold Coin",
+  "item.senbonzakura.shiny_coin": "Shiny Coin",
+
   "item.senbonzakura.senbonzakura.tooltip": "Hold right-click to charge, then release to dash and sweep!",
   "item.senbonzakura.crescent_blade.tooltip": "Dual-wield to double damage! Hold right-click for 360° slash!",
-  "item.senbonzakura.crypt_blade.tooltip": "Hold right-click 5s to charge a devastating explosion. Immobile but resistant!",
-  "item.senbonzakura.saw_blade_axe.tooltip": "Mines wood as fast as a diamond axe!"
+  "item.senbonzakura.crypt_blade.tooltip": "Hold right-click to charge a devastating explosion. Immobile but resistant!",
+  "item.senbonzakura.saw_blade_axe.tooltip": "Mines wood as fast as a diamond axe!",
+
+  "message.senbonzakura.not_enough_xp": "Not enough XP levels to activate this ability (requires %s).",
+
+  "gamerule.senbonzakuraAbilityXpCostEnabled": "Senbonzakura: Ability XP cost enabled",
+  "gamerule.senbonzakuraAbilityXpCostLevels": "Senbonzakura: Ability XP cost (levels)"
 }

@@ -1,5 +1,6 @@
 package com.j3ly.senbonzakura.item;
 
+import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -33,7 +34,7 @@ public class TheFinaleItem extends SwordItem {
     private static final long COOLDOWN_TIME = 600L;
 
     public TheFinaleItem(Properties properties) {
-        super(Tiers.NETHERITE, 6, -2.4f, properties);
+        super(Tiers.NETHERITE, properties.attributes(SwordItem.createAttributes(Tiers.NETHERITE, 6, -2.4f)));
     }
 
     @Override
@@ -54,9 +55,9 @@ public class TheFinaleItem extends SwordItem {
     }
 
     @Override
-    public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
+    public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int remainingUseDuration) {
         if (!(entity instanceof Player player)) return;
-        if (level.isClientSide) return;
+        if (!(level instanceof ServerLevel serverLevel)) return;
 
         UUID id = player.getUUID();
         if (!Boolean.TRUE.equals(isCharging.get(id))) return;
@@ -64,7 +65,6 @@ public class TheFinaleItem extends SwordItem {
         int ticks = chargeTicks.getOrDefault(id, 0) + 1;
         chargeTicks.put(id, ticks);
 
-        ServerLevel serverLevel = (ServerLevel) level;
         Vec3 pos = player.position();
 
         for (int i = 0; i < 3; i++) {
@@ -87,7 +87,7 @@ public class TheFinaleItem extends SwordItem {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (!(entity instanceof Player player)) return stack;
-        if (level.isClientSide) return stack;
+        if (!(level instanceof ServerLevel serverLevel)) return stack;
 
         UUID id = player.getUUID();
         int ticks = chargeTicks.getOrDefault(id, 0);
@@ -96,8 +96,11 @@ public class TheFinaleItem extends SwordItem {
         chargeTicks.put(id, 0);
 
         if (ticks >= CHARGE_TIME) {
+            if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
+                return stack;
+            }
             cooldowns.put(id, level.getGameTime());
-            performUltimateAttack(player, (ServerLevel) level);
+            performUltimateAttack(player, serverLevel);
         }
 
         return stack;
@@ -106,7 +109,7 @@ public class TheFinaleItem extends SwordItem {
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeCharged) {
         if (!(entity instanceof Player player)) return;
-        if (level.isClientSide) return;
+        if (!(level instanceof ServerLevel serverLevel)) return;
 
         UUID id = player.getUUID();
         int ticks = chargeTicks.getOrDefault(id, 0);
@@ -115,19 +118,17 @@ public class TheFinaleItem extends SwordItem {
         chargeTicks.put(id, 0);
 
         if (ticks >= CHARGE_TIME) {
+            if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
+                return;
+            }
             cooldowns.put(id, level.getGameTime());
-            performUltimateAttack(player, (ServerLevel) level);
+            performUltimateAttack(player, serverLevel);
         }
     }
 
     @Override
-    public int getUseDuration(ItemStack stack) {
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 72000;
-    }
-
-    @Override
-    public float getDamage() {
-        return 19.0f;
     }
 
     private void performUltimateAttack(Player player, ServerLevel level) {
@@ -159,7 +160,7 @@ public class TheFinaleItem extends SwordItem {
             for (Entity target : projectileTargets) {
                 if (target instanceof LivingEntity living) {
                     living.hurt(level.damageSources().playerAttack(player), 50.0f);
-                    living.setRemainingFireTicks(100);
+                    living.igniteForSeconds(5);
                 }
             }
         }

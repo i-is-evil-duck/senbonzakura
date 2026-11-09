@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EAE",
+    "DSD",
+    " T ",
+    " T ",
+    " N "
+  ],
+  "key": {
+    "E": {
+      "item": "senbonzakura:exalted_blossom"
+    },
+    "A": {
+      "item": "senbonzakura:ancient_amber"
+    },
+    "S": {
+      "item": "senbonzakura:sacred_threads"
+    },
+    "D": {
+      "item": "senbonzakura:excellent_princess_diamond"
+    },
+    "T": {
+      "item": "senbonzakura:tamahagane"
+    },
+    "N": {
+      "item": "minecraft:netherite_sword"
+    }
+  },
+  "result": {
+    "id": "senbonzakura:senbonzakura",
+    "count": 1
+  }
+}

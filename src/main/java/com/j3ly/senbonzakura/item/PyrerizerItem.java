@@ -1,17 +1,17 @@
 package com.j3ly.senbonzakura.item;
 
+import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -31,7 +31,7 @@ public class PyrerizerItem extends AxeItem {
     private static final long COOLDOWN_TIME = 140L;
 
     public PyrerizerItem(Properties properties) {
-        super(Tiers.NETHERITE, 8, -3.0f, properties);
+        super(Tiers.NETHERITE, properties.attributes(AxeItem.createAttributes(Tiers.NETHERITE, 8, -3.0f)));
     }
 
     @Override
@@ -51,9 +51,9 @@ public class PyrerizerItem extends AxeItem {
     }
 
     @Override
-    public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
+    public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int remainingUseDuration) {
         if (!(entity instanceof Player player)) return;
-        if (level.isClientSide) return;
+        if (!(level instanceof ServerLevel serverLevel)) return;
 
         UUID id = player.getUUID();
         if (!Boolean.TRUE.equals(isCharging.get(id))) return;
@@ -62,7 +62,6 @@ public class PyrerizerItem extends AxeItem {
         chargeTicks.put(id, ticks);
 
         if (ticks % 2 == 0) {
-            ServerLevel serverLevel = (ServerLevel) level;
             Vec3 pos = player.position();
             for (int i = 0; i < 3; i++) {
                 double angle = Math.random() * Math.PI * 2;
@@ -81,7 +80,7 @@ public class PyrerizerItem extends AxeItem {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (!(entity instanceof Player player)) return stack;
-        if (level.isClientSide) return stack;
+        if (!(level instanceof ServerLevel serverLevel)) return stack;
 
         UUID id = player.getUUID();
         int ticks = chargeTicks.getOrDefault(id, 0);
@@ -89,8 +88,11 @@ public class PyrerizerItem extends AxeItem {
         chargeTicks.put(id, 0);
 
         if (ticks >= CHARGE_TIME) {
+            if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
+                return stack;
+            }
             cooldowns.put(id, level.getGameTime());
-            performFireLeap(player, (ServerLevel) level);
+            performFireLeap(player, serverLevel);
         }
 
         return stack;
@@ -99,7 +101,7 @@ public class PyrerizerItem extends AxeItem {
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeCharged) {
         if (!(entity instanceof Player player)) return;
-        if (level.isClientSide) return;
+        if (!(level instanceof ServerLevel serverLevel)) return;
 
         UUID id = player.getUUID();
         int ticks = chargeTicks.getOrDefault(id, 0);
@@ -107,13 +109,16 @@ public class PyrerizerItem extends AxeItem {
         chargeTicks.put(id, 0);
 
         if (ticks >= CHARGE_TIME) {
+            if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
+                return;
+            }
             cooldowns.put(id, level.getGameTime());
-            performFireLeap(player, (ServerLevel) level);
+            performFireLeap(player, serverLevel);
         }
     }
 
     @Override
-    public int getUseDuration(ItemStack stack) {
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 72000;
     }
 
@@ -131,9 +136,8 @@ public class PyrerizerItem extends AxeItem {
 
         for (Entity target : entities) {
             if (target instanceof LivingEntity living) {
-                float damage = 13.0f;
-                living.hurt(level.damageSources().playerAttack(player), damage);
-                living.setRemainingFireTicks(100);
+                living.hurt(level.damageSources().playerAttack(player), 13.0f);
+                living.igniteForSeconds(5);
             }
 
             Vec3 pushDir = target.position().subtract(end).normalize();

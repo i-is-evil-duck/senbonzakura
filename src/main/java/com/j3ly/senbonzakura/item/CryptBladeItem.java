@@ -1,13 +1,12 @@
 package com.j3ly.senbonzakura.item;
 
+import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -29,7 +28,7 @@ import java.util.UUID;
 public class CryptBladeItem extends AxeItem {
 
     public CryptBladeItem(Properties properties) {
-        super(Tiers.NETHERITE, 10, -3.0f, properties);
+        super(Tiers.NETHERITE, properties.attributes(AxeItem.createAttributes(Tiers.NETHERITE, 10, -3.0f)));
     }
 
     private static final Map<UUID, Integer> chargeTicks = new HashMap<>();
@@ -60,9 +59,9 @@ public class CryptBladeItem extends AxeItem {
     }
 
     @Override
-    public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
+    public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int remainingUseDuration) {
         if (!(entity instanceof Player player)) return;
-        if (level.isClientSide) return;
+        if (!(level instanceof ServerLevel serverLevel)) return;
 
         UUID id = player.getUUID();
         if (!Boolean.TRUE.equals(isCharging.get(id))) return;
@@ -70,26 +69,20 @@ public class CryptBladeItem extends AxeItem {
         int ticks = chargeTicks.getOrDefault(id, 0) + 1;
         chargeTicks.put(id, ticks);
 
-        // Freeze player in place - cannot be moved or knocked back
         Vec3 frozenPos = frozenPositions.get(id);
         if (frozenPos != null) {
-            // Force position every tick
             if (player.position().distanceToSqr(frozenPos) > 0.01) {
                 player.teleportTo(frozenPos.x, frozenPos.y, frozenPos.z);
             }
-            // Zero out velocity
             player.setDeltaMovement(0, 0, 0);
             player.hurtMarked = true;
         }
 
-        // Dark particle aura during charge
         if (ticks % 4 == 0) {
-            ServerLevel serverLevel = (ServerLevel) level;
             Vec3 pos = player.position().add(0, 1, 0);
             double angle = ticks * 0.15;
             double radius = 1.2 + Math.sin(ticks * 0.1) * 0.3;
 
-            // Dark swirling particles
             for (int i = 0; i < 4; i++) {
                 double a = angle + (Math.PI / 2) * i;
                 double px = pos.x + Math.cos(a) * radius;
@@ -98,20 +91,16 @@ public class CryptBladeItem extends AxeItem {
                 serverLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, px, py, pz, 1, 0, 0, 0, 0.01);
             }
 
-            // Smoke particles
-            serverLevel.sendParticles(ParticleTypes.LARGE_SMOKE, 
+            serverLevel.sendParticles(ParticleTypes.LARGE_SMOKE,
                 pos.x, pos.y - 0.5, pos.z, 2, 0.5, 0.2, 0.5, 0.02);
         }
 
-        // Intense particles in last second
-        if (ticks >= 80 && ticks % 2 == 0) {
-            ServerLevel serverLevel = (ServerLevel) level;
+        if (ticks >= 16 && ticks % 2 == 0) {
             Vec3 pos = player.position();
-            serverLevel.sendParticles(ParticleTypes.SOUL, 
+            serverLevel.sendParticles(ParticleTypes.SOUL,
                 pos.x, pos.y + 1, pos.z, 3, 1.0, 1.0, 1.0, 0.05);
         }
 
-        // Auto-release after full charge
         if (ticks >= CHARGE_TIME) {
             player.releaseUsingItem();
         }
@@ -120,7 +109,7 @@ public class CryptBladeItem extends AxeItem {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (!(entity instanceof Player player)) return stack;
-        if (level.isClientSide) return stack;
+        if (!(level instanceof ServerLevel serverLevel)) return stack;
 
         UUID id = player.getUUID();
         int ticks = chargeTicks.getOrDefault(id, 0);
@@ -131,8 +120,11 @@ public class CryptBladeItem extends AxeItem {
         player.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
 
         if (ticks >= CHARGE_TIME) {
+            if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
+                return stack;
+            }
             cooldowns.put(id, level.getGameTime());
-            performExplosion(player, (ServerLevel) level);
+            performExplosion(player, serverLevel);
         }
 
         return stack;
@@ -141,7 +133,7 @@ public class CryptBladeItem extends AxeItem {
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeCharged) {
         if (!(entity instanceof Player player)) return;
-        if (level.isClientSide) return;
+        if (!(level instanceof ServerLevel serverLevel)) return;
 
         UUID id = player.getUUID();
         int ticks = chargeTicks.getOrDefault(id, 0);
@@ -151,13 +143,16 @@ public class CryptBladeItem extends AxeItem {
         player.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
 
         if (ticks >= CHARGE_TIME) {
+            if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
+                return;
+            }
             cooldowns.put(id, level.getGameTime());
-            performExplosion(player, (ServerLevel) level);
+            performExplosion(player, serverLevel);
         }
     }
 
     @Override
-    public int getUseDuration(ItemStack stack) {
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 72000;
     }
 
@@ -204,15 +199,12 @@ public class CryptBladeItem extends AxeItem {
 
         for (Entity target : entities) {
             if (target instanceof LivingEntity living) {
-                // Calculate distance-based damage falloff
                 double dist = target.distanceTo(player);
                 float finalDamage = damage * (float)(1.0 - (dist / explosionRadius) * 0.5);
                 if (finalDamage < 1.0f) finalDamage = 1.0f;
 
-                // Apply damage
                 living.hurt(level.damageSources().playerAttack(player), finalDamage);
 
-                // Strong knockback away from explosion center
                 Vec3 toTarget = target.position().subtract(pos).normalize();
                 if (toTarget.lengthSqr() < 0.001) {
                     toTarget = new Vec3(1, 0, 0);
@@ -225,14 +217,12 @@ public class CryptBladeItem extends AxeItem {
                 );
                 target.hurtMarked = true;
 
-                // Dark hit particles
                 level.sendParticles(ParticleTypes.SOUL,
                     target.getX(), target.getY() + 1, target.getZ(),
                     5, 0.3, 0.3, 0.3, 0.05);
             }
         }
 
-        // Screen shake effect for player
         player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 20, 0, false, false, false));
     }
 }

@@ -3,7 +3,10 @@
   "ingredient": {
     "item": "senbonzakura:crude_jewel_steel"
   },
-  "result": "senbonzakura:tamahagane",
+  "result": {
+    "id": "senbonzakura:tamahagane",
+    "count": 1
+  },
   "experience": 1.0,
   "cookingtime": 200
 }
