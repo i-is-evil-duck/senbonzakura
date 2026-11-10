@@ -3,7 +3,7 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, and coins with custom abilities and progression.
 
 **Author**: j3ly  
-**Version**: 1.4.0 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.5.0 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 
@@ -18,16 +18,29 @@ Output jar: `build/libs/senbonzakura-<version>.jar`
 
 ## Admin Commands & Configuration
 
+### Global drop rate multiplier (operator level 2+)
+
+Sets a global multiplier for this mod’s custom item drop rates and displays the effective rates for all drops:
+
+```mcfunction
+/droprate                   # Show current multiplier and all drop rates
+/droprate <multiplier>      # Set multiplier (e.g. 0.3, 1, 2, 5) and show all drop rates
+/drop rate [multiplier]     # Alias
+```
+
+- Base rates: Exalted Blossom 1/7500 (cherry leaves), Ancient Amber 1/900 (logs/stripped logs with axe), Deepwoken Relic 1/6000 (zombies/skeletons/spiders/creepers/endermen), Sinners Ash 1/30 (Ender Dragon/Wither/Warden), Skystone 1/300 (phantoms/breeze), Cindering Core 1/300 (ghast/blaze), Inky Pearl 1/90 (elder guardian) & 1/900 (guardian/drowned), Darkened Rubble 1/450 (zombified piglin, Nether). Effective chance = `multiplier / base`.
+- Persists per world.
+
 ### Per-player mod drop control (operator level 2+)
 
-Controls this mod’s custom item drops (mob/block drops from Senbonzakura) for a specific player (e.g. when they are the killer/breaker):
+Controls this mod’s custom item drops for a specific player (e.g. when they are the killer/breaker):
 
 ```mcfunction
 /nodrop <player>            # Disable Senbonzakura drops for that player (0%)
 /drop <percent> <player>    # Set drop chance to 0-100% for that player (100 = normal)
 ```
 
-- `percent` is applied as a chance on top of base drop rolls (e.g. `50` = ~50% of normal mod drops for that player). Settings persist per world.
+- `percent` is applied on top of base rolls and global multiplier (e.g. `50` ≈ half of normal mod drops for that player). Settings persist per world.
 
 ### Ability XP Cost (game rules)
 

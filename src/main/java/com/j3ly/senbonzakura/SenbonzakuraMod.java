@@ -115,33 +115,30 @@ public class SenbonzakuraMod {
         if (!(event.getEntity().level() instanceof ServerLevel level)) return;
 
         Entity entity = event.getEntity();
-        Player killer = null;
+        java.util.UUID killerId = null;
         if (event.getSource().getEntity() instanceof Player p) {
-            killer = p;
+            killerId = p.getUUID();
         } else if (entity instanceof net.minecraft.world.entity.LivingEntity living && living.getKillCredit() instanceof Player p) {
-            killer = p;
-        }
-        if (killer != null && !ModDropData.canDropFor(level, killer.getUUID())) {
-            return;
+            killerId = p.getUUID();
         }
 
         // Inky Pearls - 1/90 Elder Guardian, 1/900 Guardian/Drowned (craftable alternative)
         if (entity instanceof net.minecraft.world.entity.monster.ElderGuardian) {
-            if (random.nextInt(90) == 0) {
+            if (ModDropData.rollDrop(level, killerId, 90)) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(INKY_PEARL.get()))
                 );
             }
         } else if (entity instanceof net.minecraft.world.entity.monster.Guardian) {
-            if (random.nextInt(900) == 0) {
+            if (ModDropData.rollDrop(level, killerId, 900)) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(INKY_PEARL.get()))
                 );
             }
         } else if (entity instanceof net.minecraft.world.entity.monster.Drowned) {
-            if (random.nextInt(900) == 0) {
+            if (ModDropData.rollDrop(level, killerId, 900)) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(INKY_PEARL.get()))
@@ -155,7 +152,7 @@ public class SenbonzakuraMod {
             entity instanceof net.minecraft.world.entity.monster.Creeper ||
             entity instanceof net.minecraft.world.entity.monster.Spider ||
             entity instanceof net.minecraft.world.entity.monster.EnderMan) {
-            if (random.nextInt(6000) == 0) {
+            if (ModDropData.rollDrop(level, killerId, 6000)) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(DEEPWOKEN_RELIC.get()))
@@ -166,7 +163,7 @@ public class SenbonzakuraMod {
         // Cindering Core - 1/300 from Ghast, Blaze
         if (entity instanceof net.minecraft.world.entity.monster.Blaze ||
             entity instanceof net.minecraft.world.entity.monster.Ghast) {
-            if (random.nextInt(300) == 0) {
+            if (ModDropData.rollDrop(level, killerId, 300)) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(CINDERING_CORE.get()))
@@ -177,7 +174,7 @@ public class SenbonzakuraMod {
         // Skystone - 1/300 from Phantoms, Breeze
         if (entity instanceof net.minecraft.world.entity.monster.Phantom ||
             entity instanceof net.minecraft.world.entity.monster.breeze.Breeze) {
-            if (random.nextInt(300) == 0) {
+            if (ModDropData.rollDrop(level, killerId, 300)) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(SKYSTONE.get()))
@@ -189,7 +186,7 @@ public class SenbonzakuraMod {
         if (entity instanceof net.minecraft.world.entity.boss.enderdragon.EnderDragon ||
             entity instanceof net.minecraft.world.entity.boss.wither.WitherBoss ||
             entity instanceof net.minecraft.world.entity.monster.warden.Warden) {
-            if (random.nextInt(30) == 0) {
+            if (ModDropData.rollDrop(level, killerId, 30)) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(SINNERS_ASH.get()))
@@ -202,7 +199,7 @@ public class SenbonzakuraMod {
         if (dim == net.minecraft.world.level.Level.NETHER) {
             // Darkened Rubble - 1/450 from Zombified Piglin (craftable alternative)
             if (entity instanceof net.minecraft.world.entity.monster.ZombifiedPiglin) {
-                if (random.nextInt(450) == 0) {
+                if (ModDropData.rollDrop(level, killerId, 450)) {
                     event.getDrops().add(new ItemEntity(
                             level, entity.getX(), entity.getY(), entity.getZ(),
                             new ItemStack(DARKENED_RUBBLE.get()))
@@ -217,14 +214,12 @@ public class SenbonzakuraMod {
         var state = event.getState();
         var block = state.getBlock();
         var player = event.getPlayer();
-        if (player != null && !ModDropData.canDropFor(level, player.getUUID())) {
-            return;
-        }
+        java.util.UUID playerId = player != null ? player.getUUID() : null;
 
         // Ancient Amber - 1/900 when breaking/stripping logs with an axe
         if (block.toString().contains("stripped") || block.toString().contains("log")) {
             if (player != null && player.getMainHandItem().getItem() instanceof net.minecraft.world.item.AxeItem) {
-                if (random.nextInt(900) == 0) {
+                if (ModDropData.rollDrop(level, playerId, 900)) {
                     level.addFreshEntity(new ItemEntity(
                             level, event.getPos().getX() + 0.5, event.getPos().getY() + 0.5, event.getPos().getZ() + 0.5,
                             new ItemStack(ANCIENT_AMBER.get()))
@@ -235,7 +230,7 @@ public class SenbonzakuraMod {
 
         // Exalted Blossom - 1/7500 from cherry blossom leaves
         if (block.toString().contains("cherry_leaves")) {
-            if (random.nextInt(7500) == 0) {
+            if (ModDropData.rollDrop(level, playerId, 7500)) {
                 level.addFreshEntity(new ItemEntity(
                         level, event.getPos().getX() + 0.5, event.getPos().getY() + 0.5, event.getPos().getZ() + 0.5,
                         new ItemStack(EXALTED_BLOSSOM.get()))

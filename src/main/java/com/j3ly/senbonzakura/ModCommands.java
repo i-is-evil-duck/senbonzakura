@@ -1,6 +1,7 @@
 package com.j3ly.senbonzakura;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
@@ -17,8 +18,18 @@ public class ModCommands {
                 .then(Commands.argument("player", EntityArgument.player())
                         .executes(ctx -> setDrop(ctx.getSource(), EntityArgument.getPlayer(ctx, "player"), 0))));
 
+        dispatcher.register(Commands.literal("droprate")
+                .requires(src -> src.hasPermission(2))
+                .executes(ctx -> showDropRates(ctx.getSource(), null))
+                .then(Commands.argument("multiplier", DoubleArgumentType.doubleArg(0.0001, 1000.0))
+                        .executes(ctx -> showDropRates(ctx.getSource(), DoubleArgumentType.getDouble(ctx, "multiplier")))));
+
         dispatcher.register(Commands.literal("drop")
                 .requires(src -> src.hasPermission(2))
+                .then(Commands.literal("rate")
+                        .executes(ctx -> showDropRates(ctx.getSource(), null))
+                        .then(Commands.argument("multiplier", DoubleArgumentType.doubleArg(0.0001, 1000.0))
+                                .executes(ctx -> showDropRates(ctx.getSource(), DoubleArgumentType.getDouble(ctx, "multiplier")))))
                 .then(Commands.argument("percent", IntegerArgumentType.integer(0, 100))
                         .then(Commands.argument("player", EntityArgument.player())
                                 .executes(ctx -> setDrop(ctx.getSource(),
@@ -37,5 +48,23 @@ public class ModCommands {
             source.sendSuccess(() -> Component.literal("Set Senbonzakura drops to " + percent + "% for " + target.getGameProfile().getName()), true);
         }
         return 1;
+    }
+
+    private static int showDropRates(CommandSourceStack source, Double multiplier) {
+        ServerLevel level = source.getLevel();
+        if (multiplier != null) {
+            ModDropData.get(level).setGlobalMultiplier(multiplier);
+            final double m = multiplier;
+            source.sendSuccess(() -> Component.literal("Set global Senbonzakura drop rate multiplier to " + trimDouble(m) + "x"), true);
+        }
+        for (String line : ModDropData.describeRates(level)) {
+            source.sendSuccess(() -> Component.literal(line), false);
+        }
+        return 1;
+    }
+
+    private static String trimDouble(double v) {
+        if (v == (long) v) return String.format("%d", (long) v);
+        return String.format("%s", v);
     }
 }
