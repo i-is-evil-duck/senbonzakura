@@ -1,129 +1,102 @@
 # Senbonzakura
 
-A **Minecraft NeoForge 1.21.1** mod adding a collection of legendary weapons with unique abilities, particle effects, crafting progression, and coins.
+A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, and coins with custom abilities and progression.
 
-**Author**: j3ly
+**Author**: j3ly  
+**Version**: 1.3.0 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 
-## Requirements / Building
-
-- Minecraft **1.21.1**
-- **NeoForge** (21.1.x)
-- Java **21**
+## Building
 
 ```bash
 ./gradlew build
 ```
+Output jar: `build/libs/senbonzakura-<version>.jar`
 
 ---
 
 ## Admin Configuration (Ability XP Cost)
 
-Ability activation XP cost is configurable via **game rules** (admin/operator):
+Weapon ability activations can optionally cost XP (admin-configurable via game rules):
 
 ```mcfunction
 /gamerule senbonzakuraAbilityXpCostEnabled true|false   # default: false
 /gamerule senbonzakuraAbilityXpCostLevels <levels>       # default: 1
 ```
 
-When enabled, fully charged ability activations consume XP levels (Creative players bypass the cost).
+- Applies on **fully charged ability activation** (before cooldown/ability fires).
+- If enabled and the player lacks enough levels, activation is blocked with an actionbar message.
+- **Creative** players bypass the XP cost.
 
 ---
 
-## Weapons
+## Obtaining Items (Summary)
 
-> Hold right-click to charge and release to activate abilities (unless noted).
+- **Weapons**: obtained by **crafting only** (direct weapon drops from mobs are **disabled**).
+- **Materials**: obtained by **drops** and/or **crafting** (see tables below).
+- **Coins**: obtained by **crafting** (shapeless, any order).
+- All crafting recipes listed are **Crafting Table** recipes with **1 output** unless noted. Recipes are shapeless (ingredients can be placed in any order) unless your pack/client shows otherwise.
 
-### Senbonzakura
-- **Type**: Netherite Sword (8 ATK, 2031 durability)
-- **Ability**: Hold right-click to charge, release to dash 12 blocks forward, pushing enemies back (50% dmg) with a 180° sweep (100% dmg) — 5s cooldown
-- **Passive**: every 4 hits, gain Swiftness II for 5 seconds
-- **Particles**: Cherry blossom petals
-- **Crafting** (crafting table, 1 output): 1 Netherite Sword, 1 Exalted Blossom, 2 Sacred Threads, 1 Ancient Amber, 2 Excellent Princess Cut Diamond, 2 Tamahagane
+### Material Drops (item drop rates shown are 3× rarer than previous values)
 
-### Crescent Blade of Winds
-- **Type**: Diamond Sword (7 ATK, 1561 durability)
-- **Ability**: Hold right-click for a 360° slash with knockback — 7s cooldown
-- **Passive**: every 4 hits, instantly recharge ability; dual-wielding doubles damage
-- **Particles**: Green wind swirls
-- **Crafting**: 2 Diamond Swords, 1 Deepwoken Relic, 2 Supreme Alloy, 4 Skystone
+| Item | How to obtain (drops) | How to obtain (crafting) |
+|------|------------------------|--------------------------|
+| **Exalted Blossom** | 1/7500 from Cherry Blossom Leaves | — |
+| **Ancient Amber** | 1/900 when breaking/stripping a log with an axe | — |
+| **Deepwoken Relic** | 1/6000 from Zombies, Skeletons, Spiders, Creepers, Endermen | — |
+| **Sinners Ash** | 1/30 from Ender Dragon, Wither, Warden | 3 Wither Skeleton Skulls + 1 Netherite Ingot + 2 Darkened Rubble |
+| **Skystone** | 1/300 from Phantoms, Breeze | — |
+| **Cindering Core** | 1/300 from Ghast, Blaze | — |
+| **Inky Pearl** | 1/90 from Elder Guardian; 1/900 from Guardian or Drowned | 1 Eye of Ender + 6 Netherite Ingots + 2 Ink Sacs |
+| **Darkened Rubble** | 1/450 from Zombified Piglin (Nether) | 4 Netherite Ingots + 4 Gilded Blackstone + 1 Nether Star |
 
-### Crypt Blade
-- **Type**: Netherite Axe (10 ATK, 2031 durability)
-- **Ability**: Hold right-click 5s to charge a devastating explosion (6-block radius, no block damage). Immobile with Resistance II during charge — 15s cooldown
-- **Passive**: every 8 hits, apply Withering and Darkness to opponent for 3 seconds
-- **Particles**: Dark soul particles
-- **Crafting**: 1 Netherite Axe, 2 Deepwoken Relic, 1 Inky Pearl, 2 Sinners Ash, 3 Supreme Alloy
-
-### Rite of Commandments
-- **Type**: Netherite Sword (8 ATK, 2031 durability)
-- **Ability**: Hold right-click for 2 seconds to summon a ring of lightning bolts around you and gain Absorption for 5 seconds — 8s cooldown
-- **Passive**: every 5 hits, summon a lightning bolt on your target
-- **Particles**: White divine particles
-- **Crafting**: 1 Netherite Sword, 2 Ultra Conductive Material, 1 Deepwoken Relic, 1 Supreme Alloy, 2 Skystone, 2 Sacred Threads
-
-### Pyrerizer
-- **Type**: Netherite Sword (8 ATK, 2031 durability)
-- **Ability**: Hold right-click to charge, release to shoot a volley of 4 fire projectiles dealing 6 dmg each with fire effect — 7s cooldown
-- **Passive**: every hit, set your opponent on fire and heal yourself by 0.5 hearts
-- **Particles**: Grey smoke and fire particles
-- **Crafting**: 1 Netherite Sword, 3 Sinners Ash, 3 Cindering Core, 1 Deepwoken Relic, 1 Supreme Alloy
-
-### Yuki no Ame
-- **Type**: Netherite Sword (8 ATK, 2031 durability) — upgraded Senbonzakura
-- **Ability**: Hold right-click to charge, release to dash 12 blocks forward, pushing enemies back (50% dmg) with a 180° sweep (100% dmg) — 5s cooldown
-- **Passive**: every 4 hits, gain Swiftness II and Regeneration for 5 seconds and apply Slowness II and Weakness II to your opponent for 3 seconds
-- **Particles**: Snowflakes
-- **Crafting**: 1 Senbonzakura, 4 Frozen Core, 4 Excellent Princess Cut Diamond
-
-### God Rock (NEW)
-- **Type**: Cobblestone-style item (19.5 ATK, infinite durability)
-- **Passive**: While holding, gain Resistance II
-- **Particles**: Yellow sparkles
-- **Crafting**: 1 Yuki no Ame, 2 Crescent Blade of Winds, 1 Crypt Blade, 1 Rite of Commandments, 1 Pyrerizer
-
-### Saw Blade Axe
-- **Type**: Axe
-- **Passive**: Mines wood blocks very fast
-- **Crafting**: (existing mod recipe)
+> *Notes:* "Netherite Bars" in recipes are **Netherite Ingots**. The in-game item `Crude Jewel` uses item ID `senbonzakura:crude_jewel_steel`.
 
 ---
 
-## Crafting Items & Recipes (Crafting Table, 1 output)
+## Crafting Materials
 
-| Item | Recipe / Source |
-|------|------------------|
-| **Supreme Alloy** | 1 Netherite Block, 2 Diamond Blocks, 3 Gold Blocks, 3 Darkened Rubble |
-| **Darkened Rubble** | 4 Netherite Ingots, 4 Gilded Blackstone, 1 Nether Star (also drops from Zombified Piglin 1/150) |
-| **Inky Pearl** | 1 Eye of Ender, 6 Netherite Ingots, 2 Ink Sacs |
-| **Tamahagane** | 3 Iron Blocks, 6 Coal Blocks |
-| **Excellent Princess Cut Diamond** | 3 Diamond Blocks, 1 Crude Jewel, 2 Tamahagane, 3 Stone Bricks |
-| **Crude Jewel** (`crude_jewel_steel`) | 8 Deepslate Diamond Ore, 1 Diamond Block |
-| **Sacred Threads** | 1 String, 8 Gold Blocks |
-| **Ultra Conductive Material** | 4 Copper Blocks, 2 Gold Blocks, 2 Skystone, 1 Ancient Amber |
-| **Frozen Core** | 1 Cindering Core, 1 Skystone |
+| Item | Crafting recipe | Used to craft |
+|------|------------------|---------------|
+| **Crude Jewel** (`crude_jewel_steel`) | 8 Deepslate Diamond Ore + 1 Diamond Block | Excellent Princess Cut Diamond |
+| **Tamahagane** | 3 Iron Blocks + 6 Coal Blocks | Excellent Princess Cut Diamond, Senbonzakura |
+| **Excellent Princess Cut Diamond** | 3 Diamond Blocks + 1 Crude Jewel + 2 Tamahagane + 3 Stone Bricks | Senbonzakura, Yuki no Ame |
+| **Sacred Threads** | 1 String + 8 Gold Blocks | Senbonzakura, Rite of Commandments |
+| **Ultra Conductive Material** | 4 Copper Blocks + 2 Gold Blocks + 2 Skystone + 1 Ancient Amber | Rite of Commandments |
+| **Supreme Alloy** | 1 Netherite Block + 2 Diamond Blocks + 3 Gold Blocks + 3 Darkened Rubble | Crescent Blade of Winds, Crypt Blade, Rite of Commandments, Pyrerizer |
+| **Frozen Core** | 1 Cindering Core + 1 Skystone | Yuki no Ame |
 
-## Drops
+---
 
-| Item | Drop |
-|------|------|
-| **Exalted Blossom** | 1/2500 from Cherry Blossom Leaves |
-| **Ancient Amber** | 1/300 when breaking/stripping a log with an axe |
-| **Deepwoken Relic** | 1/2000 from Zombies, Skeletons, Spiders, Creepers, Endermen |
-| **Sinners Ash** | 1/10 from Ender Dragon, Wither, Warden |
-| **Skystone** | 1/100 from Phantoms, Breeze |
-| **Cindering Core** | 1/100 from Ghast, Blaze |
+## Weapons & God Rock
+
+> Hold right-click to charge and release to activate abilities (unless noted). **No weapons drop directly from mobs** — craft them.
+
+| Item | Crafting recipe | Notes |
+|------|------------------|-------|
+| **Senbonzakura** | 1 Netherite Sword + 1 Exalted Blossom + 2 Sacred Threads + 1 Ancient Amber + 2 Excellent Princess Cut Diamond + 2 Tamahagane | Netherite sword; charge-dash + sweep ability (5s CD), cherry blossom particles |
+| **Crescent Blade of Winds** | 2 Diamond Swords + 1 Deepwoken Relic + 2 Supreme Alloy + 4 Skystone | Diamond sword; 360° slash (7s CD), wind particles; dual-wield doubles damage |
+| **Crypt Blade** | 1 Netherite Axe + 2 Deepwoken Relic + 1 Inky Pearl + 2 Sinners Ash + 3 Supreme Alloy | Netherite axe; charged explosion ability (15s CD), dark soul particles |
+| **Rite of Commandments** | 1 Netherite Sword + 2 Ultra Conductive Material + 1 Deepwoken Relic + 1 Supreme Alloy + 2 Skystone + 2 Sacred Threads | Netherite sword; lightning ability (cooldown per implementation), white particles |
+| **Pyrerizer** | 1 Netherite Sword + 3 Sinners Ash + 3 Cindering Core + 1 Deepwoken Relic + 1 Supreme Alloy | Netherite axe-weapon; fire leap ability (7s CD), flame/smoke particles |
+| **Yuki no Ame** | 1 Senbonzakura + 4 Frozen Core + 4 Excellent Princess Cut Diamond | Upgraded Senbonzakura; dash/sweep with slow/weakness effects (5s CD), cherry/snowy particles |
+| **God Rock** | 1 Yuki no Ame + 2 Crescent Blade of Winds + 1 Crypt Blade + 1 Rite of Commandments + 1 Pyrerizer | 19.5 ATK, unbreakable; grants Resistance II while held; yellow sparkles |
+| **Saw Blade Axe** | 3 Iron Ingots + 2 Sticks (shaped) | Mines wood very fast (no special charged ability) |
+
+*Ability/passive details and exact timings follow the current in-mod implementation; see in-game/tooltips and item behavior for specifics.*
 
 ---
 
 ## Coins (Crafting Table, shapeless / any order)
 
-Ingredients use vanilla materials (vanilla has no silver; **iron ingot** is used as “silver”):
+Vanilla materials only (no vanilla silver; **Iron Ingot** is used as “silver”):
 
-- **Gold Coin**: 2 Gold Ingots + 1 Iron Ingot
-- **Shiny Coin**: 1 Gold Ingot + 1 Iron Ingot + 2 Copper Ingots
-- **Copper Coin**: 4 Copper Ingots **or** 3 Copper Ingots + 1 Iron Ingot
+| Coin | Recipe |
+|------|--------|
+| **Gold Coin** | 2 Gold Ingots + 1 Iron Ingot |
+| **Shiny Coin** | 1 Gold Ingot + 1 Iron Ingot + 2 Copper Ingots |
+| **Copper Coin** | 4 Copper Ingots **or** 3 Copper Ingots + 1 Iron Ingot |
 
 ---
 

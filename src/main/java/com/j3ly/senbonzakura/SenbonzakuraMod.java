@@ -111,23 +111,23 @@ public class SenbonzakuraMod {
         Entity entity = event.getEntity();
         var level = entity.level();
 
-        // Inky Pearls - 1/30 Elder Guardian, 1/300 Guardian/Drowned
+        // Inky Pearls - 1/90 Elder Guardian, 1/900 Guardian/Drowned (craftable alternative)
         if (entity instanceof net.minecraft.world.entity.monster.ElderGuardian) {
-            if (random.nextInt(30) == 0) {
+            if (random.nextInt(90) == 0) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(INKY_PEARL.get()))
                 );
             }
         } else if (entity instanceof net.minecraft.world.entity.monster.Guardian) {
-            if (random.nextInt(300) == 0) {
+            if (random.nextInt(900) == 0) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(INKY_PEARL.get()))
                 );
             }
         } else if (entity instanceof net.minecraft.world.entity.monster.Drowned) {
-            if (random.nextInt(300) == 0) {
+            if (random.nextInt(900) == 0) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(INKY_PEARL.get()))
@@ -135,13 +135,13 @@ public class SenbonzakuraMod {
             }
         }
 
-        // Deepwoken Relic - 1/2000 from Zombies, Skeletons, Creepers, Spiders, Endermen
+        // Deepwoken Relic - 1/6000 from Zombies, Skeletons, Creepers, Spiders, Endermen
         if (entity instanceof net.minecraft.world.entity.monster.Zombie ||
             entity instanceof net.minecraft.world.entity.monster.AbstractSkeleton ||
             entity instanceof net.minecraft.world.entity.monster.Creeper ||
             entity instanceof net.minecraft.world.entity.monster.Spider ||
             entity instanceof net.minecraft.world.entity.monster.EnderMan) {
-            if (random.nextInt(2000) == 0) {
+            if (random.nextInt(6000) == 0) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(DEEPWOKEN_RELIC.get()))
@@ -149,10 +149,10 @@ public class SenbonzakuraMod {
             }
         }
 
-        // Cindering Core - 1/100 from Ghast, Blaze
+        // Cindering Core - 1/300 from Ghast, Blaze
         if (entity instanceof net.minecraft.world.entity.monster.Blaze ||
             entity instanceof net.minecraft.world.entity.monster.Ghast) {
-            if (random.nextInt(100) == 0) {
+            if (random.nextInt(300) == 0) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(CINDERING_CORE.get()))
@@ -160,10 +160,10 @@ public class SenbonzakuraMod {
             }
         }
 
-        // Skystone - 1/100 from Phantoms, Breeze
+        // Skystone - 1/300 from Phantoms, Breeze
         if (entity instanceof net.minecraft.world.entity.monster.Phantom ||
             entity instanceof net.minecraft.world.entity.monster.breeze.Breeze) {
-            if (random.nextInt(100) == 0) {
+            if (random.nextInt(300) == 0) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(SKYSTONE.get()))
@@ -171,11 +171,11 @@ public class SenbonzakuraMod {
             }
         }
 
-        // Sinners Ash - 1/10 from Ender Dragon, Wither, Warden
+        // Sinners Ash - 1/30 from Ender Dragon, Wither, Warden
         if (entity instanceof net.minecraft.world.entity.boss.enderdragon.EnderDragon ||
             entity instanceof net.minecraft.world.entity.boss.wither.WitherBoss ||
             entity instanceof net.minecraft.world.entity.monster.warden.Warden) {
-            if (random.nextInt(10) == 0) {
+            if (random.nextInt(30) == 0) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
                         new ItemStack(SINNERS_ASH.get()))
@@ -186,35 +186,15 @@ public class SenbonzakuraMod {
         // Nether-only drops
         var dim = level.dimension();
         if (dim == net.minecraft.world.level.Level.NETHER) {
-            // Darkened Rubble - from ZombifiedPiglin only (1/150)
+            // Darkened Rubble - 1/450 from Zombified Piglin (craftable alternative)
             if (entity instanceof net.minecraft.world.entity.monster.ZombifiedPiglin) {
-                if (random.nextInt(150) == 0) {
+                if (random.nextInt(450) == 0) {
                     event.getDrops().add(new ItemEntity(
                             level, entity.getX(), entity.getY(), entity.getZ(),
                             new ItemStack(DARKENED_RUBBLE.get()))
                     );
                 }
             }
-        }
-
-        // Weapon drops - 1/1000
-        if (random.nextInt(1000) != 0) return;
-
-        if (entity instanceof net.minecraft.world.entity.monster.EnderMan) {
-            event.getDrops().add(new ItemEntity(
-                    level, entity.getX(), entity.getY(), entity.getZ(),
-                    new ItemStack(SENBONZAKURA.get()))
-            );
-        } else if (entity instanceof net.minecraft.world.entity.monster.Zombie) {
-            event.getDrops().add(new ItemEntity(
-                    level, entity.getX(), entity.getY(), entity.getZ(),
-                    new ItemStack(CRYPT_BLADE.get()))
-            );
-        } else if (entity instanceof net.minecraft.world.entity.monster.AbstractSkeleton) {
-            event.getDrops().add(new ItemEntity(
-                    level, entity.getX(), entity.getY(), entity.getZ(),
-                    new ItemStack(CRESCENT_BLADE.get()))
-            );
         }
     }
 
@@ -225,10 +205,10 @@ public class SenbonzakuraMod {
         var block = state.getBlock();
         var player = event.getPlayer();
 
-        // Ancient Amber - 1/300 when breaking/stripping logs with an axe
+        // Ancient Amber - 1/900 when breaking/stripping logs with an axe
         if (block.toString().contains("stripped") || block.toString().contains("log")) {
             if (player != null && player.getMainHandItem().getItem() instanceof net.minecraft.world.item.AxeItem) {
-                if (random.nextInt(300) == 0) {
+                if (random.nextInt(900) == 0) {
                     level.addFreshEntity(new ItemEntity(
                             level, event.getPos().getX() + 0.5, event.getPos().getY() + 0.5, event.getPos().getZ() + 0.5,
                             new ItemStack(ANCIENT_AMBER.get()))
@@ -237,9 +217,9 @@ public class SenbonzakuraMod {
             }
         }
 
-        // Exalted Blossom - 1/2500 from cherry blossom leaves
+        // Exalted Blossom - 1/7500 from cherry blossom leaves
         if (block.toString().contains("cherry_leaves")) {
-            if (random.nextInt(2500) == 0) {
+            if (random.nextInt(7500) == 0) {
                 level.addFreshEntity(new ItemEntity(
                         level, event.getPos().getX() + 0.5, event.getPos().getY() + 0.5, event.getPos().getZ() + 0.5,
                         new ItemStack(EXALTED_BLOSSOM.get()))
