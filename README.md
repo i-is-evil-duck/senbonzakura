@@ -3,7 +3,7 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, and coins with custom abilities and progression.
 
 **Author**: j3ly  
-**Version**: 1.3.0 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.4.0 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 
@@ -16,7 +16,20 @@ Output jar: `build/libs/senbonzakura-<version>.jar`
 
 ---
 
-## Admin Configuration (Ability XP Cost)
+## Admin Commands & Configuration
+
+### Per-player mod drop control (operator level 2+)
+
+Controls this mod’s custom item drops (mob/block drops from Senbonzakura) for a specific player (e.g. when they are the killer/breaker):
+
+```mcfunction
+/nodrop <player>            # Disable Senbonzakura drops for that player (0%)
+/drop <percent> <player>    # Set drop chance to 0-100% for that player (100 = normal)
+```
+
+- `percent` is applied as a chance on top of base drop rolls (e.g. `50` = ~50% of normal mod drops for that player). Settings persist per world.
+
+### Ability XP Cost (game rules)
 
 Weapon ability activations can optionally cost XP (admin-configurable via game rules):
 

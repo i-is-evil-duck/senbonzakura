@@ -15,6 +15,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -79,6 +80,11 @@ public class SenbonzakuraMod {
         NeoForge.EVENT_BUS.addListener(this::onLivingDeath);
         NeoForge.EVENT_BUS.addListener(this::onLivingDrops);
         NeoForge.EVENT_BUS.addListener(this::onBlockBreak);
+        NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);
+    }
+
+    public void onRegisterCommands(RegisterCommandsEvent event) {
+        ModCommands.register(event.getDispatcher());
     }
 
     public void onPlayerTick(PlayerTickEvent.Post event) {
@@ -106,10 +112,18 @@ public class SenbonzakuraMod {
     }
 
     public void onLivingDrops(LivingDropsEvent event) {
-        if (event.getEntity().level().isClientSide()) return;
+        if (!(event.getEntity().level() instanceof ServerLevel level)) return;
 
         Entity entity = event.getEntity();
-        var level = entity.level();
+        Player killer = null;
+        if (event.getSource().getEntity() instanceof Player p) {
+            killer = p;
+        } else if (entity instanceof net.minecraft.world.entity.LivingEntity living && living.getKillCredit() instanceof Player p) {
+            killer = p;
+        }
+        if (killer != null && !ModDropData.canDropFor(level, killer.getUUID())) {
+            return;
+        }
 
         // Inky Pearls - 1/90 Elder Guardian, 1/900 Guardian/Drowned (craftable alternative)
         if (entity instanceof net.minecraft.world.entity.monster.ElderGuardian) {
@@ -199,11 +213,13 @@ public class SenbonzakuraMod {
     }
 
     public void onBlockBreak(BlockEvent.BreakEvent event) {
-        if (event.getLevel().isClientSide()) return;
-        if (!(event.getLevel() instanceof net.minecraft.world.level.Level level)) return;
+        if (!(event.getLevel() instanceof ServerLevel level)) return;
         var state = event.getState();
         var block = state.getBlock();
         var player = event.getPlayer();
+        if (player != null && !ModDropData.canDropFor(level, player.getUUID())) {
+            return;
+        }
 
         // Ancient Amber - 1/900 when breaking/stripping logs with an axe
         if (block.toString().contains("stripped") || block.toString().contains("log")) {
