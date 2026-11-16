@@ -34,5 +34,6 @@
   "gamerule.senbonzakuraAbilityXpCostLevels": "Senbonzakura: Ability XP cost (levels)",
   "item.senbonzakura.razor_shark": "Razor Shark",
   "item.senbonzakura.sentence": "Sentence",
-  "item.senbonzakura.wendigo": "Wendigo"
+  "item.senbonzakura.wendigo": "Wendigo",
+  "enchantment.senbonzakura.increased_arrows": "Increased Arrows"
 }

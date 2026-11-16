@@ -1,5 +1,6 @@
 package com.j3ly.senbonzakura.item;
 
+import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -99,6 +100,7 @@ public class RazorSharkItem extends AxeItem {
         if (ticks < CHARGE_TIME) return;
         if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) return;
         cooldowns.put(id, level.getGameTime());
+        AbilityCooldown.set(stack, serverLevel, COOLDOWN_TIME);
 
         Vec3 start = player.getEyePosition();
         Vec3 look = player.getLookAngle().normalize();
@@ -142,4 +144,21 @@ public class RazorSharkItem extends AxeItem {
         player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false, true));
         player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 220, 0, false, false, true));
     }
+
+
+    @Override
+    public boolean isBarVisible(ItemStack stack) {
+        return AbilityCooldown.isVisible(stack);
+    }
+
+    @Override
+    public int getBarWidth(ItemStack stack) {
+        return AbilityCooldown.getBarWidth(stack);
+    }
+
+    @Override
+    public int getBarColor(ItemStack stack) {
+        return AbilityCooldown.getBarColor(stack);
+    }
+
 }

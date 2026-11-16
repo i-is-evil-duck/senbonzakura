@@ -1,5 +1,6 @@
 package com.j3ly.senbonzakura.item;
 
+import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -96,6 +97,7 @@ public class SentenceItem extends AxeItem {
         if (ticks < CHARGE_TIME) return;
         if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) return;
         cooldowns.put(id, level.getGameTime());
+        AbilityCooldown.set(stack, serverLevel, COOLDOWN_TIME);
 
         Vec3 pos = player.position();
         Vec3 look = player.getLookAngle();
@@ -139,4 +141,21 @@ public class SentenceItem extends AxeItem {
     public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 72000;
     }
+
+
+    @Override
+    public boolean isBarVisible(ItemStack stack) {
+        return AbilityCooldown.isVisible(stack);
+    }
+
+    @Override
+    public int getBarWidth(ItemStack stack) {
+        return AbilityCooldown.getBarWidth(stack);
+    }
+
+    @Override
+    public int getBarColor(ItemStack stack) {
+        return AbilityCooldown.getBarColor(stack);
+    }
+
 }

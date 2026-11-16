@@ -1,5 +1,6 @@
 package com.j3ly.senbonzakura.item;
 
+import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -88,6 +89,7 @@ public class RiteOfCommandmentsItem extends SwordItem {
                 return stack;
             }
             cooldowns.put(id, level.getGameTime());
+            AbilityCooldown.set(stack, level, COOLDOWN_TIME);
             performLightningStrike(player, serverLevel);
         }
 
@@ -109,6 +111,7 @@ public class RiteOfCommandmentsItem extends SwordItem {
                 return;
             }
             cooldowns.put(id, level.getGameTime());
+            AbilityCooldown.set(stack, level, COOLDOWN_TIME);
             performLightningStrike(player, serverLevel);
         }
     }
@@ -149,4 +152,21 @@ public class RiteOfCommandmentsItem extends SwordItem {
             level.sendParticles(ParticleTypes.WHITE_ASH, px, pos.y + 0.5, pz, 1, 0.05, 0.1, 0.05, 0.01);
         }
     }
+
+
+    @Override
+    public boolean isBarVisible(ItemStack stack) {
+        return AbilityCooldown.isVisible(stack);
+    }
+
+    @Override
+    public int getBarWidth(ItemStack stack) {
+        return AbilityCooldown.getBarWidth(stack);
+    }
+
+    @Override
+    public int getBarColor(ItemStack stack) {
+        return AbilityCooldown.getBarColor(stack);
+    }
+
 }

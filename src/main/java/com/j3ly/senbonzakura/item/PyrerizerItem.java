@@ -1,5 +1,6 @@
 package com.j3ly.senbonzakura.item;
 
+import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -92,6 +93,7 @@ public class PyrerizerItem extends AxeItem {
                 return stack;
             }
             cooldowns.put(id, level.getGameTime());
+            AbilityCooldown.set(stack, level, COOLDOWN_TIME);
             performFireLeap(player, serverLevel);
         }
 
@@ -113,6 +115,7 @@ public class PyrerizerItem extends AxeItem {
                 return;
             }
             cooldowns.put(id, level.getGameTime());
+            AbilityCooldown.set(stack, level, COOLDOWN_TIME);
             performFireLeap(player, serverLevel);
         }
     }
@@ -155,4 +158,21 @@ public class PyrerizerItem extends AxeItem {
             level.sendParticles(ParticleTypes.LARGE_SMOKE, px, end.y + 0.5, pz, 1, 0.1, 0.1, 0.1, 0.02);
         }
     }
+
+
+    @Override
+    public boolean isBarVisible(ItemStack stack) {
+        return AbilityCooldown.isVisible(stack);
+    }
+
+    @Override
+    public int getBarWidth(ItemStack stack) {
+        return AbilityCooldown.getBarWidth(stack);
+    }
+
+    @Override
+    public int getBarColor(ItemStack stack) {
+        return AbilityCooldown.getBarColor(stack);
+    }
+
 }

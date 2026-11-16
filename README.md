@@ -3,7 +3,7 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, and coins with custom abilities and progression.
 
 **Author**: j3ly  
-**Version**: 1.6.0 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.7.0 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 
@@ -97,7 +97,7 @@ Weapon ability activations can optionally cost XP (admin-configurable via game r
 
 ## Weapons & God Rock
 
-> Hold right-click to charge and release to activate abilities (unless noted). Most weapons are **crafting-only**; **Razor Shark, Sentence, and Wendigo** are direct mob drops.
+> Hold right-click to charge and release to activate abilities (unless noted). **Ability cooldowns are shown on the item durability bar** (fills as the ability recharges). Most weapons are **crafting-only**; **Razor Shark, Sentence, and Wendigo** are direct mob drops.
 
 | Item | How to obtain | Notes |
 |------|----------------|-------|
@@ -109,7 +109,7 @@ Weapon ability activations can optionally cost XP (admin-configurable via game r
 | **Yuki no Ame** | Craft: 1 Senbonzakura + 4 Frozen Core + 4 Excellent Princess Cut Diamond | Upgraded Senbonzakura (12 ATK); dash/sweep with slow/weakness effects (5s CD), cherry/snowy particles |
 | **Razor Shark** | Direct drop: Elder Guardian 1/35, Guardian 1/350, Drowned 1/1250 | Netherite axe (13 ATK); hold right-click 1.5s to fire a bubble beam (35 blocks, damage + knockback) — 9s CD. Passive: Night Vision & Water Breathing while in inventory. Bubble particles |
 | **Sentence** | Direct drop: Warden 1/44, Wither 1/44, Ender Dragon 1/44 | Netherite axe (13 ATK); hold right-click 1.5s for a massive 180° swing (6-block range) with knockback — 9s CD. Passive (ability): applies Darkness & Wither (5s) to affected targets. Red particles |
-| **Wendigo** | Direct drop: Skeletons 1/1250, Stray 1/1250, Wither Skeleton 1/1250 | Netherite sword (15 ATK); right-click fires a shotgun burst of 32 arrows (crossbow speed) — 10s CD. Passive: hits apply Slowness (2s). Bubble particles |
+| **Wendigo** | Direct drop: Skeletons 1/1250, Stray 1/1250, Wither Skeleton 1/1250 | Netherite sword (15 ATK); right-click fires a shotgun burst of **64 arrows** (crossbow speed) — 10s CD. Passive: hits apply Slowness (2s). Bubble particles. Supports bow-style enchants (e.g. Power, Punch, Flame) and **Increased Arrows** |
 | **God Rock** | Craft: 1 Yuki no Ame + 2 Crescent Blade of Winds + 1 Crypt Blade + 1 Rite of Commandments + 1 Pyrerizer | 19.5 ATK, unbreakable; grants Resistance II while held; yellow sparkles |
 | **Saw Blade Axe** | Craft: 3 Iron Ingots + 2 Sticks (shaped) | Mines wood very fast (no special charged ability) |
 
@@ -126,6 +126,14 @@ Vanilla materials only (no vanilla silver; **Iron Ingot** is used as “silver�
 | **Gold Coin** | 2 Gold Ingots + 1 Iron Ingot |
 | **Shiny Coin** | 1 Gold Ingot + 1 Iron Ingot + 2 Copper Ingots |
 | **Copper Coin** | 4 Copper Ingots **or** 3 Copper Ingots + 1 Iron Ingot |
+
+---
+
+## Enchantments
+
+| Enchantment | Max level | Effect | Applies to |
+|-------------|-----------|--------|------------|
+| **Increased Arrows** (`senbonzakura:increased_arrows`) | IX | +32 arrows per level to Wendigo’s burst (base 64) | Wendigo (enchanting table / anvil / enchanted books) |
 
 ---
 

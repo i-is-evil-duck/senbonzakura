@@ -1,6 +1,11 @@
 package com.j3ly.senbonzakura.item;
 
+import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -13,8 +18,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -46,6 +53,14 @@ public class WendigoItem extends SwordItem {
             return InteractionResultHolder.fail(stack);
         }
         cooldowns.put(id, level.getGameTime());
+        AbilityCooldown.set(stack, serverLevel, COOLDOWN_TIME);
+
+        int extraLevels = getEnchantmentLevel(serverLevel, stack, "senbonzakura", "increased_arrows");
+        int power = getEnchantmentLevel(serverLevel, stack, "minecraft", "power");
+        int punch = getEnchantmentLevel(serverLevel, stack, "minecraft", "punch");
+        int flame = getEnchantmentLevel(serverLevel, stack, "minecraft", "flame");
+
+        int arrowCount = 64 + (extraLevels * 32);
 
         Vec3 look = player.getLookAngle().normalize();
         Vec3 up = new Vec3(0, 1, 0);
@@ -61,23 +76,54 @@ public class WendigoItem extends SwordItem {
         level.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.CROSSBOW_SHOOT, SoundSource.PLAYERS, 1.2f, 1.0f);
 
-        for (int i = 0; i < 32; i++) {
-            double spreadH = (player.getRandom().nextDouble() - 0.5) * 0.35; // horizontal spread
-            double spreadV = (player.getRandom().nextDouble() - 0.5) * 0.25; // vertical spread
+        for (int i = 0; i < arrowCount; i++) {
+            double spreadH = (player.getRandom().nextDouble() - 0.5) * 0.35;
+            double spreadV = (player.getRandom().nextDouble() - 0.5) * 0.25;
             Vec3 dir = look.add(right.scale(spreadH)).add(realUp.scale(spreadV)).normalize();
-            Arrow arrow = new Arrow(level, player, new ItemStack(net.minecraft.world.item.Items.ARROW), stack);
+            Arrow arrow = new Arrow(level, player, new ItemStack(Items.ARROW), stack);
             arrow.setPos(eye.x + dir.x * 0.5, eye.y + dir.y * 0.5, eye.z + dir.z * 0.5);
-            arrow.shoot(dir.x, dir.y, dir.z, 3.15f, 1.0f); // crossbow-like speed
+            arrow.shoot(dir.x, dir.y, dir.z, 3.15f, 1.0f);
             arrow.pickup = AbstractArrow.Pickup.DISALLOWED;
+
+            if (power > 0) {
+                arrow.setBaseDamage(arrow.getBaseDamage() + 0.5D * (double) power + 0.5D);
+            }
+            // Punch knockback API varies by mappings; skipped for compatibility.
+            if (flame > 0) {
+                arrow.igniteForSeconds(100);
+            }
+
             level.addFreshEntity(arrow);
         }
 
         return InteractionResultHolder.consume(stack);
     }
 
+    private static int getEnchantmentLevel(ServerLevel level, ItemStack stack, String namespace, String path) {
+        return level.registryAccess().lookup(Registries.ENCHANTMENT)
+                .flatMap(reg -> reg.get(ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(namespace, path))))
+                .map(holder -> stack.getEnchantmentLevel(holder))
+                .orElse(0);
+    }
+
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 0)); // 2 seconds slowness
         return super.hurtEnemy(stack, target, attacker);
+    }
+
+    @Override
+    public boolean isBarVisible(ItemStack stack) {
+        return AbilityCooldown.isVisible(stack);
+    }
+
+    @Override
+    public int getBarWidth(ItemStack stack) {
+        return AbilityCooldown.getBarWidth(stack);
+    }
+
+    @Override
+    public int getBarColor(ItemStack stack) {
+        return AbilityCooldown.getBarColor(stack);
     }
 }

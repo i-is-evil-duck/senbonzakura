@@ -1,5 +1,6 @@
 package com.j3ly.senbonzakura.item;
 
+import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -124,6 +125,7 @@ public class CryptBladeItem extends AxeItem {
                 return stack;
             }
             cooldowns.put(id, level.getGameTime());
+            AbilityCooldown.set(stack, level, COOLDOWN_TIME);
             performExplosion(player, serverLevel);
         }
 
@@ -147,6 +149,7 @@ public class CryptBladeItem extends AxeItem {
                 return;
             }
             cooldowns.put(id, level.getGameTime());
+            AbilityCooldown.set(stack, level, COOLDOWN_TIME);
             performExplosion(player, serverLevel);
         }
     }
@@ -225,4 +228,21 @@ public class CryptBladeItem extends AxeItem {
 
         player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 20, 0, false, false, false));
     }
+
+
+    @Override
+    public boolean isBarVisible(ItemStack stack) {
+        return AbilityCooldown.isVisible(stack);
+    }
+
+    @Override
+    public int getBarWidth(ItemStack stack) {
+        return AbilityCooldown.getBarWidth(stack);
+    }
+
+    @Override
+    public int getBarColor(ItemStack stack) {
+        return AbilityCooldown.getBarColor(stack);
+    }
+
 }

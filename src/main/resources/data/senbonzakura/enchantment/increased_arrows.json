@@ -1,0 +1,22 @@
+{
+  "description": {
+    "translate": "enchantment.senbonzakura.increased_arrows"
+  },
+  "supported_items": "senbonzakura:wendigo",
+  "primary_items": "senbonzakura:wendigo",
+  "weight": 5,
+  "max_level": 9,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 8
+  },
+  "max_cost": {
+    "base": 25,
+    "per_level_above_first": 8
+  },
+  "anvil_cost": 2,
+  "slots": [
+    "mainhand"
+  ],
+  "effects": {}
+}
