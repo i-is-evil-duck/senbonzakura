@@ -3,7 +3,9 @@ package com.j3ly.senbonzakura.item;
 import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -22,6 +24,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -35,6 +40,7 @@ import java.util.UUID;
 public class WendigoItem extends SwordItem {
 
     private static final long COOLDOWN_TIME = 200L; // 10 seconds
+    private static final String ARROW_MARKER = "senbonzakura_wendigo_arrow";
 
     private static final Map<UUID, SpawnBatch> activeArrows = new HashMap<>();
 
@@ -94,15 +100,27 @@ public class WendigoItem extends SwordItem {
             double spreadH = (player.getRandom().nextDouble() - 0.5) * 0.35;
             double spreadV = (player.getRandom().nextDouble() - 0.5) * 0.25;
             Vec3 dir = look.add(right.scale(spreadH)).add(realUp.scale(spreadV)).normalize();
-            Arrow arrow = new Arrow(level, player, new ItemStack(Items.ARROW), stack);
+
+            // Use a tipped-arrow pickup stack with permanent marker data; pickup remains DISALLOWED,
+            // but if obtained by any means it can be identified and removed.
+            ItemStack pickupStack = new ItemStack(Items.TIPPED_ARROW);
+            pickupStack.set(DataComponents.POTION_CONTENTS, new PotionContents(Potions.WATER));
+            CustomData.update(DataComponents.CUSTOM_DATA, pickupStack, tag -> {
+                tag.putBoolean(ARROW_MARKER, true);
+                tag.putUUID("senbonzakura_wendigo_owner", id);
+                tag.putLong("senbonzakura_wendigo_expire", expireAt);
+                tag.putString("senbonzakura_wendigo_id", UUID.randomUUID().toString());
+            });
+
+            Arrow arrow = new Arrow(level, player, pickupStack, stack);
             arrow.setOwner(player);
             arrow.setPos(eye.x + dir.x * 0.8, eye.y + dir.y * 0.8, eye.z + dir.z * 0.8);
             arrow.shoot(dir.x, dir.y, dir.z, 3.15f, 1.0f); // crossbow-like speed
             arrow.setCritArrow(true); // fully charged
             arrow.pickup = AbstractArrow.Pickup.DISALLOWED;
 
-            // Tag for robust cleanup (works even if batch tracking is missed/dimension changes)
-            arrow.addTag("senbonzakura_wendigo_arrow");
+            // Tag entity for robust cleanup (works even if batch tracking is missed/dimension changes)
+            arrow.addTag(ARROW_MARKER);
             arrow.getPersistentData().putLong("senbonzakura_wendigo_expire", expireAt);
             arrow.getPersistentData().putUUID("senbonzakura_wendigo_owner", id);
 
@@ -156,11 +174,29 @@ public class WendigoItem extends SwordItem {
     public static void cleanupExpiredTagged(ServerLevel level, long gameTime) {
         for (Entity e : level.getAllEntities()) {
             if (!(e instanceof AbstractArrow arrow)) continue;
-            if (!arrow.getTags().contains("senbonzakura_wendigo_arrow")) continue;
+            if (!arrow.getTags().contains(ARROW_MARKER)) continue;
             if (!arrow.getPersistentData().contains("senbonzakura_wendigo_expire")) continue;
             long expire = arrow.getPersistentData().getLong("senbonzakura_wendigo_expire");
             if (gameTime >= expire) {
                 arrow.discard();
+            }
+        }
+    }
+
+    public static boolean isAbilityArrowStack(ItemStack stack) {
+        if (stack == null || stack.isEmpty()) return false;
+        CustomData data = stack.get(DataComponents.CUSTOM_DATA);
+        if (data == null) return false;
+        CompoundTag tag = data.copyTag();
+        return tag.getBoolean(ARROW_MARKER);
+    }
+
+    public static void removeAbilityArrowsFromInventory(Player player) {
+        var inv = player.getInventory();
+        for (int i = 0; i < inv.getContainerSize(); i++) {
+            ItemStack stack = inv.getItem(i);
+            if (isAbilityArrowStack(stack)) {
+                inv.setItem(i, ItemStack.EMPTY);
             }
         }
     }

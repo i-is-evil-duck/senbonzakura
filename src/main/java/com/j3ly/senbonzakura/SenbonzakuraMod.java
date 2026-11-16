@@ -109,6 +109,7 @@ public class SenbonzakuraMod {
         ServerLevel level = (ServerLevel) player.level();
 
         WendigoItem.tickCleanup(level, player.getUUID(), level.getGameTime());
+        WendigoItem.removeAbilityArrowsFromInventory(player);
 
         if (mainHand.getItem() instanceof SenbonzakuraItem || mainHand.getItem() instanceof YukiNoAmeItem) {
             spawnSakuraParticles(level, player);
