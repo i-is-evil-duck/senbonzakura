@@ -1,9 +1,9 @@
 # Senbonzakura
 
-A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, and coins with custom abilities and progression.
+A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 1.7.0 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.6.1 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 
@@ -13,6 +13,44 @@ A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials
 ./gradlew build
 ```
 Output jar: `build/libs/senbonzakura-<version>.jar`
+
+---
+
+## All Items
+
+| Item | Type | How to obtain | Short description |
+|------|------|---------------|-------------------|
+| **Senbonzakura** | Weapon (Sword) | Craft: 1 Netherite Sword + 1 Exalted Blossom + 2 Sacred Threads + 1 Ancient Amber + 2 Excellent Princess Cut Diamond + 2 Tamahagane | 11 ATK. Charge-dash and sweep ability (5s CD) with cherry blossom particles. |
+| **Crescent Blade of Winds** | Weapon (Sword) | Craft: 2 Diamond Swords + 1 Sigil of Doom + 2 Supreme Alloy + 4 Skystone | 10 ATK. 360° slash ability (7s CD), wind particles; dual-wielding doubles damage. |
+| **Crypt Blade** | Weapon (Axe) | Craft: 1 Netherite Axe + 2 Sigil of Doom + 1 Inky Pearl + 2 Sinners Ash + 3 Supreme Alloy | 16 ATK. Charged explosion ability (15s CD) with dark soul particles. |
+| **Saw Blade Axe** | Weapon (Axe) | Craft (shaped): 3 Iron Ingots + 2 Sticks | Utility axe that mines wood very fast; no special charged ability. |
+| **Rite of Commandments** | Weapon (Sword) | Craft: 1 Netherite Sword + 2 Ultra Conductive Material + 1 Sigil of Doom + 1 Supreme Alloy + 2 Skystone + 2 Sacred Threads | 14 ATK. Lightning-themed ability with white particles. |
+| **Pyrerizer** | Weapon (Axe) | Craft: 1 Netherite Sword + 3 Sinner's Ash + 3 Cindering Core + 1 Sigil of Doom + 1 Supreme Alloy | 14 ATK. Fire ability (7s CD) with flame/smoke particles. |
+| **Yuki no Ame** | Weapon (Sword) | Craft: 1 Senbonzakura + 4 Frozen Core + 4 Excellent Princess Cut Diamond | 12 ATK. Upgraded Senbonzakura dash/sweep with slow/weakness effects (5s CD). |
+| **Razor Shark** | Weapon (Axe) | Drop: Elder Guardian 1/35, Guardian 1/350, Drowned 1/1250 | 13 ATK. Hold right-click 1.5s to fire a bubble beam (35 blocks, knockback) — 9s CD; grants Night Vision & Water Breathing in inventory. |
+| **Sentence** | Weapon (Axe) | Drop: Warden/Wither/Ender Dragon 1/44 | 13 ATK. Hold right-click 1.5s for a 180° swing (6-block range) — 9s CD; applies Darkness & Wither (5s) to targets. |
+| **Wendigo** | Weapon (Sword) | Drop: Skeletons/Stray/Wither Skeleton 1/1250 | 15 ATK. Right-click fires 64 arrows (10s CD); hits apply Slowness (2s). Supports bow enchants and Increased Arrows. |
+| **God Rock** | Weapon/Special | Craft: 1 Yuki no Ame + 2 Crescent Blade of Winds + 1 Crypt Blade + 1 Rite of Commandments + 1 Pyrerizer | 19.5 ATK, unbreakable; grants Resistance II while held with yellow sparkles. |
+| **Inky Pearl** | Material | Drop: Elder Guardian 1/90, Guardian/Drowned 1/900. Craft: 1 Eye of Ender + 6 Netherite Ingots + 2 Ink Sacs | Dark aquatic pearl used in weapon crafting. |
+| **Exalted Blossom** | Material | Drop: Cherry Blossom Leaves 1/7500 | Rare cherry blossom essence used to craft Senbonzakura. |
+| **Ancient Amber** | Material | Drop: Breaking/stripping logs with an axe 1/900 | Ancient resin used in advanced crafting. |
+| **Sigil of Doom** (`deepwoken_relic`) | Material | Drop: All hostile mobs 1/6000 | Ominous relic used in multiple high-tier weapon recipes. |
+| **Excellent Princess Cut Diamond** | Material | Craft: 3 Diamond Blocks + 1 Crude Jewel + 2 Tamahagane + 3 Stone Bricks | Refined diamond component for elite weapons. |
+| **Sacred Threads** | Material | Craft: 1 String + 8 Gold Blocks | Blessed threads used in weapon crafting. |
+| **Crude Jewel** (`crude_jewel_steel`) | Material | Craft: 8 Deepslate Diamond Ore + 1 Diamond Block | Rough jewel refined into Excellent Princess Cut Diamond. |
+| **Tamahagane** | Material | Craft: 3 Iron Blocks + 6 Coal Blocks | High-quality steel used in weapon forging. |
+| **Supreme Alloy** | Material | Craft: 1 Netherite Block + 2 Diamond Blocks + 3 Gold Blocks + 3 Darkened Rubble | Powerful alloy for late-game weapons. |
+| **Cindering Core** | Material | Drop: Ghast/Blaze 1/300 | Fiery core used in Pyrerizer and Frozen Core. |
+| **Ultra Conductive Material** | Material | Craft: 4 Copper Blocks + 2 Gold Blocks + 2 Skystone + 1 Ancient Amber | Conductive component used in Rite of Commandments. |
+| **Skystone** | Material | Drop: Phantoms/Breeze 1/300 | Sky-forged stone used in several recipes. |
+| **Darkened Rubble** | Material | Drop: Zombified Piglin (Nether) 1/450. Craft: 4 Netherite Ingots + 4 Gilded Blackstone + 1 Nether Star | Nether debris material used in powerful alloys and ash. |
+| **Sinner's Ash** | Material | Drop: Ender Dragon/Wither/Warden 1/30. Craft: 3 Wither Skeleton Skulls + 1 Netherite Ingot + 2 Darkened Rubble | Remains of mighty foes used in dark weapon crafting. |
+| **Frozen Core** | Material | Craft: 1 Cindering Core + 1 Skystone | Chilled core used to craft Yuki no Ame. |
+| **Copper Coin** | Coin | Craft (shapeless): 4 Copper Ingots **or** 3 Copper Ingots + 1 Iron Ingot | Basic currency/collectible coin. |
+| **Gold Coin** | Coin | Craft (shapeless): 2 Gold Ingots + 1 Iron Ingot | Valuable currency/collectible coin. |
+| **Shiny Coin** | Coin | Craft (shapeless): 1 Gold Ingot + 1 Iron Ingot + 2 Copper Ingots | Premium currency/collectible coin. |
+
+> *Notes:* Direct weapon/material drop rates above are base rates; effective chance is scaled by `/droprate` (global) and per-player `/drop`/`/nodrop`. "Iron Ingot" is used as silver in coin recipes.
 
 ---
 
@@ -28,8 +66,7 @@ Sets a global multiplier for this mod’s custom item drop rates and displays th
 /drop rate [multiplier]     # Alias
 ```
 
-- Base rates (materials & direct-drop weapons): Exalted Blossom 1/7500 (cherry leaves), Ancient Amber 1/900 (logs/stripped logs with axe), Sigil of Doom 1/6000 (all hostile mobs), Sinners Ash 1/30 (Ender Dragon/Wither/Warden), Skystone 1/300 (phantoms/breeze), Cindering Core 1/300 (ghast/blaze), Inky Pearl 1/90 (elder guardian) & 1/900 (guardian/drowned), Darkened Rubble 1/450 (zombified piglin, Nether), Razor Shark 1/35 (elder guardian) / 1/350 (guardian) / 1/1250 (drowned), Sentence 1/44 (warden/wither/ender dragon), Wendigo 1/1250 (skeletons/stray/wither skeleton). Effective chance = `multiplier / base`.
-- Persists per world.
+- Persists per world. Effective chance = `multiplier / base`.
 
 ### Per-player mod drop control (operator level 2+)
 
@@ -40,7 +77,7 @@ Controls this mod’s custom item drops for a specific player (e.g. when they ar
 /drop <percent> <player>    # Set drop chance to 0-100% for that player (100 = normal)
 ```
 
-- `percent` is applied on top of base rolls and global multiplier (e.g. `50` ≈ half of normal mod drops for that player). Settings persist per world.
+- `percent` is applied on top of base rolls and global multiplier. Settings persist per world.
 
 ### Ability XP Cost (game rules)
 
@@ -57,83 +94,13 @@ Weapon ability activations can optionally cost XP (admin-configurable via game r
 
 ---
 
-## Obtaining Items (Summary)
-
-- **Weapons**: most are **crafting-only** (general direct weapon mob drops are disabled). **Razor Shark, Sentence, and Wendigo** are special direct mob drops (see below).
-- **Materials**: obtained by **drops** and/or **crafting** (see tables below).
-- **Coins**: obtained by **crafting** (shapeless, any order).
-- All crafting recipes listed are **Crafting Table** recipes with **1 output** unless noted. Recipes are shapeless (ingredients can be placed in any order) unless your pack/client shows otherwise.
-
-### Material Drops (item drop rates shown are 3× rarer than previous values)
-
-| Item | How to obtain (drops) | How to obtain (crafting) |
-|------|------------------------|--------------------------|
-| **Exalted Blossom** | 1/7500 from Cherry Blossom Leaves | — |
-| **Ancient Amber** | 1/900 when breaking/stripping a log with an axe | — |
-| **Sigil of Doom** (`deepwoken_relic`) | 1/6000 from all hostile mobs | — |
-| **Sinners Ash** | 1/30 from Ender Dragon, Wither, Warden | 3 Wither Skeleton Skulls + 1 Netherite Ingot + 2 Darkened Rubble |
-| **Skystone** | 1/300 from Phantoms, Breeze | — |
-| **Cindering Core** | 1/300 from Ghast, Blaze | — |
-| **Inky Pearl** | 1/90 from Elder Guardian; 1/900 from Guardian or Drowned | 1 Eye of Ender + 6 Netherite Ingots + 2 Ink Sacs |
-| **Darkened Rubble** | 1/450 from Zombified Piglin (Nether) | 4 Netherite Ingots + 4 Gilded Blackstone + 1 Nether Star |
-
-> *Notes:* "Netherite Bars" in recipes are **Netherite Ingots**. The in-game item `Crude Jewel` uses item ID `senbonzakura:crude_jewel_steel`. `Sigil of Doom` uses item ID `senbonzakura:deepwoken_relic`.
-
----
-
-## Crafting Materials
-
-| Item | Crafting recipe | Used to craft |
-|------|------------------|---------------|
-| **Crude Jewel** (`crude_jewel_steel`) | 8 Deepslate Diamond Ore + 1 Diamond Block | Excellent Princess Cut Diamond |
-| **Tamahagane** | 3 Iron Blocks + 6 Coal Blocks | Excellent Princess Cut Diamond, Senbonzakura |
-| **Excellent Princess Cut Diamond** | 3 Diamond Blocks + 1 Crude Jewel + 2 Tamahagane + 3 Stone Bricks | Senbonzakura, Yuki no Ame |
-| **Sacred Threads** | 1 String + 8 Gold Blocks | Senbonzakura, Rite of Commandments |
-| **Ultra Conductive Material** | 4 Copper Blocks + 2 Gold Blocks + 2 Skystone + 1 Ancient Amber | Rite of Commandments |
-| **Supreme Alloy** | 1 Netherite Block + 2 Diamond Blocks + 3 Gold Blocks + 3 Darkened Rubble | Crescent Blade of Winds, Crypt Blade, Rite of Commandments, Pyrerizer |
-| **Frozen Core** | 1 Cindering Core + 1 Skystone | Yuki no Ame |
-
----
-
-## Weapons & God Rock
-
-> Hold right-click to charge and release to activate abilities (unless noted). **Ability cooldowns are shown on the item durability bar** (fills as the ability recharges). Most weapons are **crafting-only**; **Razor Shark, Sentence, and Wendigo** are direct mob drops.
-
-| Item | How to obtain | Notes |
-|------|----------------|-------|
-| **Senbonzakura** | Craft: 1 Netherite Sword + 1 Exalted Blossom + 2 Sacred Threads + 1 Ancient Amber + 2 Excellent Princess Cut Diamond + 2 Tamahagane | Netherite sword (11 ATK); charge-dash + sweep ability (5s CD), cherry blossom particles |
-| **Crescent Blade of Winds** | Craft: 2 Diamond Swords + 1 Sigil of Doom + 2 Supreme Alloy + 4 Skystone | Diamond sword (10 ATK); 360° slash (7s CD), wind particles; dual-wield doubles damage |
-| **Crypt Blade** | Craft: 1 Netherite Axe + 2 Sigil of Doom + 1 Inky Pearl + 2 Sinners Ash + 3 Supreme Alloy | Netherite axe (16 ATK); charged explosion ability (15s CD), dark soul particles |
-| **Rite of Commandments** | Craft: 1 Netherite Sword + 2 Ultra Conductive Material + 1 Sigil of Doom + 1 Supreme Alloy + 2 Skystone + 2 Sacred Threads | Netherite sword (14 ATK); lightning ability, white particles |
-| **Pyrerizer** | Craft: 1 Netherite Sword + 3 Sinners Ash + 3 Cindering Core + 1 Sigil of Doom + 1 Supreme Alloy | Netherite axe-weapon (14 ATK); fire ability (7s CD), flame/smoke particles |
-| **Yuki no Ame** | Craft: 1 Senbonzakura + 4 Frozen Core + 4 Excellent Princess Cut Diamond | Upgraded Senbonzakura (12 ATK); dash/sweep with slow/weakness effects (5s CD), cherry/snowy particles |
-| **Razor Shark** | Direct drop: Elder Guardian 1/35, Guardian 1/350, Drowned 1/1250 | Netherite axe (13 ATK); hold right-click 1.5s to fire a bubble beam (35 blocks, damage + knockback) — 9s CD. Passive: Night Vision & Water Breathing while in inventory. Bubble particles |
-| **Sentence** | Direct drop: Warden 1/44, Wither 1/44, Ender Dragon 1/44 | Netherite axe (13 ATK); hold right-click 1.5s for a massive 180° swing (6-block range) with knockback — 9s CD. Passive (ability): applies Darkness & Wither (5s) to affected targets. Red particles |
-| **Wendigo** | Direct drop: Skeletons 1/1250, Stray 1/1250, Wither Skeleton 1/1250 | Netherite sword (15 ATK); right-click fires a shotgun burst of **64 arrows** (crossbow speed) — 10s CD. Passive: hits apply Slowness (2s). Bubble particles. Supports bow-style enchants (e.g. Power, Punch, Flame) and **Increased Arrows** |
-| **God Rock** | Craft: 1 Yuki no Ame + 2 Crescent Blade of Winds + 1 Crypt Blade + 1 Rite of Commandments + 1 Pyrerizer | 19.5 ATK, unbreakable; grants Resistance II while held; yellow sparkles |
-| **Saw Blade Axe** | Craft: 3 Iron Ingots + 2 Sticks (shaped) | Mines wood very fast (no special charged ability) |
-
-*Direct weapon drop rates are affected by the global `/droprate` multiplier and per-player `/drop`/`/nodrop` settings. Ability/passive details follow the current in-mod implementation; see in-game behavior for specifics.*
-
----
-
-## Coins (Crafting Table, shapeless / any order)
-
-Vanilla materials only (no vanilla silver; **Iron Ingot** is used as “silver”):
-
-| Coin | Recipe |
-|------|--------|
-| **Gold Coin** | 2 Gold Ingots + 1 Iron Ingot |
-| **Shiny Coin** | 1 Gold Ingot + 1 Iron Ingot + 2 Copper Ingots |
-| **Copper Coin** | 4 Copper Ingots **or** 3 Copper Ingots + 1 Iron Ingot |
-
----
-
 ## Enchantments
 
 | Enchantment | Max level | Effect | Applies to |
 |-------------|-----------|--------|------------|
 | **Increased Arrows** (`senbonzakura:increased_arrows`) | IX | +32 arrows per level to Wendigo’s burst (base 64) | Wendigo (enchanting table / anvil / enchanted books) |
+
+> **Ability cooldowns** for weapons are shown on the item durability bar (fills as the ability recharges).
 
 ---
 
