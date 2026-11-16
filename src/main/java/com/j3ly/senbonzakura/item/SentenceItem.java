@@ -29,7 +29,6 @@ public class SentenceItem extends AxeItem {
 
     private static final Map<UUID, Integer> chargeTicks = new HashMap<>();
     private static final Map<UUID, Boolean> isCharging = new HashMap<>();
-    private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final int CHARGE_TIME = 30; // 1.5 seconds
     private static final long COOLDOWN_TIME = 180L; // 9 seconds
 
@@ -42,8 +41,7 @@ public class SentenceItem extends AxeItem {
         ItemStack stack = player.getItemInHand(hand);
         if (!level.isClientSide) {
             UUID id = player.getUUID();
-            Long lastUse = cooldowns.get(id);
-            if (lastUse != null && level.getGameTime() - lastUse < COOLDOWN_TIME) {
+            if (!AbilityCooldown.isReady(stack, level)) {
                 return InteractionResultHolder.fail(stack);
             }
             isCharging.put(id, true);
@@ -96,8 +94,7 @@ public class SentenceItem extends AxeItem {
 
         if (ticks < CHARGE_TIME) return;
         if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) return;
-        cooldowns.put(id, level.getGameTime());
-        AbilityCooldown.set(stack, serverLevel, COOLDOWN_TIME);
+        AbilityCooldown.start(stack, serverLevel, COOLDOWN_TIME);
 
         Vec3 pos = player.position();
         Vec3 look = player.getLookAngle();

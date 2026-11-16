@@ -34,7 +34,6 @@ import java.util.UUID;
 
 public class WendigoItem extends SwordItem {
 
-    private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 200L; // 10 seconds
 
     private static final Map<UUID, SpawnBatch> activeArrows = new HashMap<>();
@@ -60,15 +59,13 @@ public class WendigoItem extends SwordItem {
         if (!(level instanceof ServerLevel serverLevel)) return InteractionResultHolder.pass(stack);
 
         UUID id = player.getUUID();
-        Long lastUse = cooldowns.get(id);
-        if (lastUse != null && level.getGameTime() - lastUse < COOLDOWN_TIME) {
+        if (!AbilityCooldown.isReady(stack, serverLevel)) {
             return InteractionResultHolder.fail(stack);
         }
         if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
             return InteractionResultHolder.fail(stack);
         }
-        cooldowns.put(id, level.getGameTime());
-        AbilityCooldown.set(stack, serverLevel, COOLDOWN_TIME);
+        AbilityCooldown.start(stack, serverLevel, COOLDOWN_TIME);
 
         int extraLevels = getEnchantmentLevel(serverLevel, stack, "senbonzakura", "increased_arrows");
         int power = getEnchantmentLevel(serverLevel, stack, "minecraft", "power");

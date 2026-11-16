@@ -29,7 +29,6 @@ public class RiteOfCommandmentsItem extends SwordItem {
 
     private static final Map<UUID, Integer> chargeTicks = new HashMap<>();
     private static final Map<UUID, Boolean> isCharging = new HashMap<>();
-    private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final int CHARGE_TIME = 10;
     private static final long COOLDOWN_TIME = 240L;
 
@@ -42,8 +41,7 @@ public class RiteOfCommandmentsItem extends SwordItem {
         ItemStack stack = player.getItemInHand(hand);
         if (!level.isClientSide) {
             UUID id = player.getUUID();
-            Long lastUse = cooldowns.get(id);
-            if (lastUse != null && level.getGameTime() - lastUse < COOLDOWN_TIME) {
+            if (!AbilityCooldown.isReady(stack, level)) {
                 return InteractionResultHolder.fail(stack);
             }
             isCharging.put(id, true);
@@ -88,8 +86,7 @@ public class RiteOfCommandmentsItem extends SwordItem {
             if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
                 return stack;
             }
-            cooldowns.put(id, level.getGameTime());
-            AbilityCooldown.set(stack, level, COOLDOWN_TIME);
+            AbilityCooldown.start(stack, level, COOLDOWN_TIME);
             performLightningStrike(player, serverLevel);
         }
 
@@ -110,8 +107,7 @@ public class RiteOfCommandmentsItem extends SwordItem {
             if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
                 return;
             }
-            cooldowns.put(id, level.getGameTime());
-            AbilityCooldown.set(stack, level, COOLDOWN_TIME);
+            AbilityCooldown.start(stack, level, COOLDOWN_TIME);
             performLightningStrike(player, serverLevel);
         }
     }

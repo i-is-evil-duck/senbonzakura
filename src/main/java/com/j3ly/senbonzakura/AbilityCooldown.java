@@ -15,19 +15,33 @@ public final class AbilityCooldown {
     private AbilityCooldown() {}
 
     public static void set(ItemStack stack, Level level, long cooldownTicks) {
+        start(stack, level, cooldownTicks);
+    }
+
+    public static void start(ItemStack stack, Level level, long cooldownTicks) {
         if (cooldownTicks <= 0) return;
+        long now = level.getGameTime();
         CustomData.update(DataComponents.CUSTOM_DATA, stack, tag -> {
-            tag.putLong(END, level.getGameTime() + cooldownTicks);
+            tag.putLong(END, now + cooldownTicks);
             tag.putLong(TOTAL, cooldownTicks);
         });
     }
 
+    public static boolean isReady(ItemStack stack, Level level) {
+        return remainingTicks(stack, level) <= 0;
+    }
+
+    public static long remainingTicks(ItemStack stack, Level level) {
+        long now = level != null ? level.getGameTime() : currentGameTime();
+        return remainingTicksAt(stack, now);
+    }
+
     public static boolean isVisible(ItemStack stack) {
-        return remainingTicks(stack) > 0;
+        return remainingTicks(stack, null) > 0;
     }
 
     public static int getBarWidth(ItemStack stack) {
-        long remaining = remainingTicks(stack);
+        long remaining = remainingTicks(stack, null);
         long total = totalTicks(stack);
         if (remaining <= 0 || total <= 0) return 0;
         // Full bar means ready (no cooldown shown); as cooldown progresses, bar fills up.
@@ -39,7 +53,7 @@ public final class AbilityCooldown {
     }
 
     public static int getBarColor(ItemStack stack) {
-        long remaining = remainingTicks(stack);
+        long remaining = remainingTicks(stack, null);
         long total = totalTicks(stack);
         if (remaining <= 0 || total <= 0) return 0x00FF00;
         float progress = (float) (total - remaining) / (float) total; // 0 -> 1
@@ -48,8 +62,7 @@ public final class AbilityCooldown {
         return 0x55FF55; // almost ready
     }
 
-    private static long remainingTicks(ItemStack stack) {
-        long now = currentGameTime();
+    private static long remainingTicksAt(ItemStack stack, long now) {
         if (now < 0) return 0;
         CustomData data = stack.get(DataComponents.CUSTOM_DATA);
         if (data == null) return 0;

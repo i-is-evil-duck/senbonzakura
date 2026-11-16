@@ -32,7 +32,6 @@ public class SenbonzakuraItem extends SwordItem {
 
     private static final Map<UUID, Integer> chargeTicks = new HashMap<>();
     private static final Map<UUID, Boolean> isCharging = new HashMap<>();
-    private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final int CHARGE_TIME = 10; // 0.5 seconds
     private static final long COOLDOWN_TIME = 100L; // 5 seconds in ticks
 
@@ -41,8 +40,7 @@ public class SenbonzakuraItem extends SwordItem {
         ItemStack stack = player.getItemInHand(hand);
         if (!level.isClientSide) {
             UUID id = player.getUUID();
-            Long lastUse = cooldowns.get(id);
-            if (lastUse != null && level.getGameTime() - lastUse < COOLDOWN_TIME) {
+            if (!AbilityCooldown.isReady(stack, level)) {
                 return InteractionResultHolder.fail(stack);
             }
             isCharging.put(id, true);
@@ -90,8 +88,7 @@ public class SenbonzakuraItem extends SwordItem {
             if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
                 return stack;
             }
-            cooldowns.put(id, level.getGameTime());
-            AbilityCooldown.set(stack, level, COOLDOWN_TIME);
+            AbilityCooldown.start(stack, level, COOLDOWN_TIME);
             performDash(player, serverLevel);
         }
 
@@ -112,8 +109,7 @@ public class SenbonzakuraItem extends SwordItem {
             if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
                 return;
             }
-            cooldowns.put(id, level.getGameTime());
-            AbilityCooldown.set(stack, level, COOLDOWN_TIME);
+            AbilityCooldown.start(stack, level, COOLDOWN_TIME);
             performDash(player, serverLevel);
         }
     }

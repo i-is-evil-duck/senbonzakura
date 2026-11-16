@@ -35,7 +35,6 @@ public class CryptBladeItem extends AxeItem {
     private static final Map<UUID, Integer> chargeTicks = new HashMap<>();
     private static final Map<UUID, Boolean> isCharging = new HashMap<>();
     private static final Map<UUID, Vec3> frozenPositions = new HashMap<>();
-    private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final int CHARGE_TIME = 20; // 1 second
     private static final long COOLDOWN_TIME = 300L; // 15 seconds
 
@@ -44,8 +43,7 @@ public class CryptBladeItem extends AxeItem {
         ItemStack stack = player.getItemInHand(hand);
         if (!level.isClientSide) {
             UUID id = player.getUUID();
-            Long lastUse = cooldowns.get(id);
-            if (lastUse != null && level.getGameTime() - lastUse < COOLDOWN_TIME) {
+            if (!AbilityCooldown.isReady(stack, level)) {
                 return InteractionResultHolder.fail(stack);
             }
             isCharging.put(id, true);
@@ -124,8 +122,7 @@ public class CryptBladeItem extends AxeItem {
             if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
                 return stack;
             }
-            cooldowns.put(id, level.getGameTime());
-            AbilityCooldown.set(stack, level, COOLDOWN_TIME);
+            AbilityCooldown.start(stack, level, COOLDOWN_TIME);
             performExplosion(player, serverLevel);
         }
 
@@ -148,8 +145,7 @@ public class CryptBladeItem extends AxeItem {
             if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
                 return;
             }
-            cooldowns.put(id, level.getGameTime());
-            AbilityCooldown.set(stack, level, COOLDOWN_TIME);
+            AbilityCooldown.start(stack, level, COOLDOWN_TIME);
             performExplosion(player, serverLevel);
         }
     }
