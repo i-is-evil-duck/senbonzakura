@@ -5,7 +5,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 1.6.6
+- **Version:** 1.6.7
 
 ## All Items
 
@@ -47,7 +47,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 
 - **Ability cooldown bars:** weapon ability cooldowns display on the item durability bar.
 - **Admin controls:** global `/droprate` multiplier, per-player `/drop` and `/nodrop`, and gamerules for optional ability XP costs.
-- **Wendigo support:** compatible with bow-style enchants (e.g. Power, Flame) plus the custom **Increased Arrows (I–IX)** enchantment.
+- **Wendigo support:** compatible with bow-style enchants (e.g. Power, Flame) plus the custom **Increased Arrows (I–V)** enchantment.
 
 ## Commands & Gamerules
 

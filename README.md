@@ -3,7 +3,7 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 1.6.6 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.6.7 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 
@@ -98,7 +98,7 @@ Weapon ability activations can optionally cost XP (admin-configurable via game r
 
 | Enchantment | Max level | Effect | Applies to |
 |-------------|-----------|--------|------------|
-| **Increased Arrows** (`senbonzakura:increased_arrows`) | IX | +32 arrows per level to Wendigo’s burst (base 64) | Wendigo (enchanting table / anvil / enchanted books) |
+| **Increased Arrows** (`senbonzakura:increased_arrows`) | V | +32 arrows per level to Wendigo’s burst (base 64) | Wendigo (enchanting table / anvil / enchanted books) |
 
 > **Ability cooldowns** for weapons are shown on the item durability bar (fills as the ability recharges).
 

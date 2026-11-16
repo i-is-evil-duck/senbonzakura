@@ -172,12 +172,18 @@ public class WendigoItem extends SwordItem {
     }
 
     public static void cleanupExpiredTagged(ServerLevel level, long gameTime) {
+        List<AbstractArrow> toDiscard = new ArrayList<>();
         for (Entity e : level.getAllEntities()) {
             if (!(e instanceof AbstractArrow arrow)) continue;
             if (!arrow.getTags().contains(ARROW_MARKER)) continue;
             if (!arrow.getPersistentData().contains("senbonzakura_wendigo_expire")) continue;
             long expire = arrow.getPersistentData().getLong("senbonzakura_wendigo_expire");
             if (gameTime >= expire) {
+                toDiscard.add(arrow);
+            }
+        }
+        for (AbstractArrow arrow : toDiscard) {
+            if (arrow.isAlive()) {
                 arrow.discard();
             }
         }
