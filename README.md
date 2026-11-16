@@ -3,7 +3,7 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 1.6.7 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.6.8 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 
@@ -21,7 +21,7 @@ Output jar: `build/libs/senbonzakura-<version>.jar`
 | Item | Type | How to obtain | Short description |
 |------|------|---------------|-------------------|
 | **Senbonzakura** | Weapon (Sword) | Craft: 1 Netherite Sword + 1 Exalted Blossom + 2 Sacred Threads + 1 Ancient Amber + 2 Excellent Princess Cut Diamond + 2 Tamahagane | 11 ATK. Charge-dash and sweep ability (5s CD) with cherry blossom particles. |
-| **Crescent Blade of Winds** | Weapon (Sword) | Craft: 2 Diamond Swords + 1 Sigil of Doom + 2 Supreme Alloy + 4 Skystone | 10 ATK. 360° slash ability (7s CD), wind particles; dual-wielding doubles damage. |
+| **Crescent Blade of Winds** | Weapon (Sword) | Craft: 2 Diamond Swords + 1 Sigil of Doom + 2 Supreme Alloy + 4 Skystone | 10 ATK. 360° slash ability (7s CD; 3.5s when dual-wielding). While dual-wielding two Crescent Blades, the main blade deals double damage and recharges faster. Wind particles. |
 | **Crypt Blade** | Weapon (Axe) | Craft: 1 Netherite Axe + 2 Sigil of Doom + 1 Inky Pearl + 2 Sinners Ash + 3 Supreme Alloy | 16 ATK. Charged explosion ability (15s CD) with dark soul particles. |
 | **Saw Blade Axe** | Weapon (Axe) | Craft (shaped): 3 Iron Ingots + 2 Sticks | Utility axe that mines wood very fast; no special charged ability. |
 | **Rite of Commandments** | Weapon (Sword) | Craft: 1 Netherite Sword + 2 Ultra Conductive Material + 1 Sigil of Doom + 1 Supreme Alloy + 2 Skystone + 2 Sacred Threads | 14 ATK. Lightning-themed ability with white particles. |

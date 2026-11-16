@@ -32,8 +32,10 @@ public class CrescentBladeItem extends SwordItem {
 
     private static final Map<UUID, Integer> chargeTicks = new HashMap<>();
     private static final Map<UUID, Boolean> isCharging = new HashMap<>();
+    private static final java.util.Set<UUID> abilityDamageContext = java.util.Collections.newSetFromMap(new java.util.concurrent.ConcurrentHashMap<>());
     private static final int CHARGE_TIME = 10;
     private static final long COOLDOWN_TIME = 140L;
+    private static final long DUAL_WIELD_COOLDOWN_TIME = 70L; // faster recharge when dual-wielding
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -89,7 +91,8 @@ public class CrescentBladeItem extends SwordItem {
             if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
                 return stack;
             }
-            AbilityCooldown.start(stack, level, COOLDOWN_TIME);
+            long cooldown = isDualWielding(player) ? DUAL_WIELD_COOLDOWN_TIME : COOLDOWN_TIME;
+            AbilityCooldown.start(stack, level, cooldown);
             performSlash(player, serverLevel);
         }
 
@@ -110,7 +113,8 @@ public class CrescentBladeItem extends SwordItem {
             if (!ModGameRules.tryConsumeAbilityXp(player, serverLevel)) {
                 return;
             }
-            AbilityCooldown.start(stack, level, COOLDOWN_TIME);
+            long cooldown = isDualWielding(player) ? DUAL_WIELD_COOLDOWN_TIME : COOLDOWN_TIME;
+            AbilityCooldown.start(stack, level, cooldown);
             performSlash(player, serverLevel);
         }
     }
@@ -125,6 +129,10 @@ public class CrescentBladeItem extends SwordItem {
             && player.getOffhandItem().getItem() instanceof CrescentBladeItem;
     }
 
+    public static boolean isInAbilityDamageContext(UUID playerId) {
+        return abilityDamageContext.contains(playerId);
+    }
+
     private void performSlash(Player player, ServerLevel level) {
         boolean dualWield = isDualWielding(player);
         int slashCount = dualWield ? 2 : 1;
@@ -135,6 +143,9 @@ public class CrescentBladeItem extends SwordItem {
         if (dualWield) {
             damage *= 2.0f;
         }
+
+        abilityDamageContext.add(player.getUUID());
+        try {
 
         for (int slash = 0; slash < slashCount; slash++) {
             if (slash == 1) {
@@ -179,6 +190,9 @@ public class CrescentBladeItem extends SwordItem {
 
         if (dualWield) {
             level.sendParticles(ParticleTypes.EXPLOSION, pos.x, pos.y + 1, pos.z, 1, 0, 0, 0, 0);
+        }
+        } finally {
+            abilityDamageContext.remove(player.getUUID());
         }
     }
 

@@ -16,6 +16,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -85,6 +86,7 @@ public class SenbonzakuraMod {
         modEventBus.addListener(this::addCreative);
         NeoForge.EVENT_BUS.addListener(this::onPlayerTick);
         NeoForge.EVENT_BUS.addListener(this::onLevelTick);
+        NeoForge.EVENT_BUS.addListener(this::onLivingDamage);
         NeoForge.EVENT_BUS.addListener(this::onLivingDeath);
         NeoForge.EVENT_BUS.addListener(this::onLivingDrops);
         NeoForge.EVENT_BUS.addListener(this::onBlockBreak);
@@ -99,6 +101,15 @@ public class SenbonzakuraMod {
         if (!(event.getLevel() instanceof ServerLevel level)) return;
         // Ensure tagged Wendigo arrows are cleaned up even if player is offline/dimension-changed
         WendigoItem.cleanupExpiredTagged(level, level.getGameTime());
+    }
+
+    public void onLivingDamage(LivingDamageEvent.Pre event) {
+        if (!(event.getSource().getEntity() instanceof Player player)) return;
+        if (!CrescentBladeItem.isDualWielding(player)) return;
+        if (!(player.getMainHandItem().getItem() instanceof CrescentBladeItem)) return;
+        if (CrescentBladeItem.isInAbilityDamageContext(player.getUUID())) return;
+        // Double main Crescent Blade damage while dual-wielding two Crescent Blades
+        event.setNewDamage(event.getNewDamage() * 2.0f);
     }
 
     public void onPlayerTick(PlayerTickEvent.Post event) {
