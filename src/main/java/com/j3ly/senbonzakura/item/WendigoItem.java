@@ -88,17 +88,23 @@ public class WendigoItem extends SwordItem {
         level.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.CROSSBOW_SHOOT, SoundSource.PLAYERS, 1.2f, 1.0f);
 
+        long expireAt = level.getGameTime() + COOLDOWN_TIME;
         List<UUID> spawned = new ArrayList<>(arrowCount);
         for (int i = 0; i < arrowCount; i++) {
             double spreadH = (player.getRandom().nextDouble() - 0.5) * 0.35;
             double spreadV = (player.getRandom().nextDouble() - 0.5) * 0.25;
             Vec3 dir = look.add(right.scale(spreadH)).add(realUp.scale(spreadV)).normalize();
             Arrow arrow = new Arrow(level, player, new ItemStack(Items.ARROW), stack);
-            arrow.setPos(eye.x + dir.x * 0.5, eye.y + dir.y * 0.5, eye.z + dir.z * 0.5);
+            arrow.setOwner(player);
+            arrow.setPos(eye.x + dir.x * 0.8, eye.y + dir.y * 0.8, eye.z + dir.z * 0.8);
             arrow.shoot(dir.x, dir.y, dir.z, 3.15f, 1.0f); // crossbow-like speed
             arrow.setCritArrow(true); // fully charged
             arrow.pickup = AbstractArrow.Pickup.DISALLOWED;
-            arrow.setNoGravity(false);
+
+            // Tag for robust cleanup (works even if batch tracking is missed/dimension changes)
+            arrow.addTag("senbonzakura_wendigo_arrow");
+            arrow.getPersistentData().putLong("senbonzakura_wendigo_expire", expireAt);
+            arrow.getPersistentData().putUUID("senbonzakura_wendigo_owner", id);
 
             if (power > 0) {
                 arrow.setBaseDamage(arrow.getBaseDamage() + 0.5D * (double) power + 0.5D);
@@ -112,7 +118,7 @@ public class WendigoItem extends SwordItem {
             spawned.add(arrow.getUUID());
         }
 
-        activeArrows.put(id, new SpawnBatch(level.getGameTime() + COOLDOWN_TIME, spawned));
+        activeArrows.put(id, new SpawnBatch(expireAt, spawned));
 
         return InteractionResultHolder.consume(stack);
     }
@@ -131,17 +137,32 @@ public class WendigoItem extends SwordItem {
     }
 
     public static void tickCleanup(ServerLevel level, UUID playerId, long gameTime) {
+        // Fast path: cleanup known batch for this player in this level
         SpawnBatch batch = activeArrows.get(playerId);
-        if (batch == null) return;
-        if (gameTime < batch.expiresAt) return;
+        if (batch != null && gameTime >= batch.expiresAt) {
+            for (UUID arrowId : batch.arrowIds) {
+                Entity e = level.getEntity(arrowId);
+                if (e instanceof AbstractArrow arrow && arrow.isAlive()) {
+                    arrow.discard();
+                }
+            }
+            activeArrows.remove(playerId);
+        }
 
-        for (UUID arrowId : batch.arrowIds) {
-            Entity e = level.getEntity(arrowId);
-            if (e instanceof AbstractArrow arrow && arrow.isAlive()) {
+        // Robust fallback: remove any expired tagged Wendigo arrows in this level
+        cleanupExpiredTagged(level, gameTime);
+    }
+
+    public static void cleanupExpiredTagged(ServerLevel level, long gameTime) {
+        for (Entity e : level.getAllEntities()) {
+            if (!(e instanceof AbstractArrow arrow)) continue;
+            if (!arrow.getTags().contains("senbonzakura_wendigo_arrow")) continue;
+            if (!arrow.getPersistentData().contains("senbonzakura_wendigo_expire")) continue;
+            long expire = arrow.getPersistentData().getLong("senbonzakura_wendigo_expire");
+            if (gameTime >= expire) {
                 arrow.discard();
             }
         }
-        activeArrows.remove(playerId);
     }
 
     @Override

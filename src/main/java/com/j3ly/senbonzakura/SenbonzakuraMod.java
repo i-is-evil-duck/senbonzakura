@@ -19,6 +19,7 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -83,6 +84,7 @@ public class SenbonzakuraMod {
         ITEMS.register(modEventBus);
         modEventBus.addListener(this::addCreative);
         NeoForge.EVENT_BUS.addListener(this::onPlayerTick);
+        NeoForge.EVENT_BUS.addListener(this::onLevelTick);
         NeoForge.EVENT_BUS.addListener(this::onLivingDeath);
         NeoForge.EVENT_BUS.addListener(this::onLivingDrops);
         NeoForge.EVENT_BUS.addListener(this::onBlockBreak);
@@ -91,6 +93,12 @@ public class SenbonzakuraMod {
 
     public void onRegisterCommands(RegisterCommandsEvent event) {
         ModCommands.register(event.getDispatcher());
+    }
+
+    public void onLevelTick(LevelTickEvent.Post event) {
+        if (!(event.getLevel() instanceof ServerLevel level)) return;
+        // Ensure tagged Wendigo arrows are cleaned up even if player is offline/dimension-changed
+        WendigoItem.cleanupExpiredTagged(level, level.getGameTime());
     }
 
     public void onPlayerTick(PlayerTickEvent.Post event) {
