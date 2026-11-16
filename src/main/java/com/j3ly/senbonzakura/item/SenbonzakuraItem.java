@@ -26,7 +26,7 @@ import java.util.UUID;
 public class SenbonzakuraItem extends SwordItem {
 
     public SenbonzakuraItem(Properties properties) {
-        super(Tiers.NETHERITE, properties.attributes(SwordItem.createAttributes(Tiers.NETHERITE, 4, -2.4f)));
+        super(Tiers.NETHERITE, properties.attributes(SwordItem.createAttributes(Tiers.NETHERITE, 6, -2.4f)));
     }
 
     private static final Map<UUID, Integer> chargeTicks = new HashMap<>();

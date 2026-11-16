@@ -26,7 +26,7 @@ import java.util.UUID;
 public class CrescentBladeItem extends SwordItem {
 
     public CrescentBladeItem(Properties properties) {
-        super(Tiers.DIAMOND, properties.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 3, -2.4f)));
+        super(Tiers.DIAMOND, properties.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 6, -2.4f)));
     }
 
     private static final Map<UUID, Integer> chargeTicks = new HashMap<>();

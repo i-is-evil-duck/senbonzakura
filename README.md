@@ -3,7 +3,7 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, and coins with custom abilities and progression.
 
 **Author**: j3ly  
-**Version**: 1.5.0 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.6.0 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 
@@ -28,7 +28,7 @@ Sets a global multiplier for this mod’s custom item drop rates and displays th
 /drop rate [multiplier]     # Alias
 ```
 
-- Base rates: Exalted Blossom 1/7500 (cherry leaves), Ancient Amber 1/900 (logs/stripped logs with axe), Deepwoken Relic 1/6000 (zombies/skeletons/spiders/creepers/endermen), Sinners Ash 1/30 (Ender Dragon/Wither/Warden), Skystone 1/300 (phantoms/breeze), Cindering Core 1/300 (ghast/blaze), Inky Pearl 1/90 (elder guardian) & 1/900 (guardian/drowned), Darkened Rubble 1/450 (zombified piglin, Nether). Effective chance = `multiplier / base`.
+- Base rates (materials & direct-drop weapons): Exalted Blossom 1/7500 (cherry leaves), Ancient Amber 1/900 (logs/stripped logs with axe), Sigil of Doom 1/6000 (all hostile mobs), Sinners Ash 1/30 (Ender Dragon/Wither/Warden), Skystone 1/300 (phantoms/breeze), Cindering Core 1/300 (ghast/blaze), Inky Pearl 1/90 (elder guardian) & 1/900 (guardian/drowned), Darkened Rubble 1/450 (zombified piglin, Nether), Razor Shark 1/35 (elder guardian) / 1/350 (guardian) / 1/1250 (drowned), Sentence 1/44 (warden/wither/ender dragon), Wendigo 1/1250 (skeletons/stray/wither skeleton). Effective chance = `multiplier / base`.
 - Persists per world.
 
 ### Per-player mod drop control (operator level 2+)
@@ -59,7 +59,7 @@ Weapon ability activations can optionally cost XP (admin-configurable via game r
 
 ## Obtaining Items (Summary)
 
-- **Weapons**: obtained by **crafting only** (direct weapon drops from mobs are **disabled**).
+- **Weapons**: most are **crafting-only** (general direct weapon mob drops are disabled). **Razor Shark, Sentence, and Wendigo** are special direct mob drops (see below).
 - **Materials**: obtained by **drops** and/or **crafting** (see tables below).
 - **Coins**: obtained by **crafting** (shapeless, any order).
 - All crafting recipes listed are **Crafting Table** recipes with **1 output** unless noted. Recipes are shapeless (ingredients can be placed in any order) unless your pack/client shows otherwise.
@@ -70,14 +70,14 @@ Weapon ability activations can optionally cost XP (admin-configurable via game r
 |------|------------------------|--------------------------|
 | **Exalted Blossom** | 1/7500 from Cherry Blossom Leaves | — |
 | **Ancient Amber** | 1/900 when breaking/stripping a log with an axe | — |
-| **Deepwoken Relic** | 1/6000 from Zombies, Skeletons, Spiders, Creepers, Endermen | — |
+| **Sigil of Doom** (`deepwoken_relic`) | 1/6000 from all hostile mobs | — |
 | **Sinners Ash** | 1/30 from Ender Dragon, Wither, Warden | 3 Wither Skeleton Skulls + 1 Netherite Ingot + 2 Darkened Rubble |
 | **Skystone** | 1/300 from Phantoms, Breeze | — |
 | **Cindering Core** | 1/300 from Ghast, Blaze | — |
 | **Inky Pearl** | 1/90 from Elder Guardian; 1/900 from Guardian or Drowned | 1 Eye of Ender + 6 Netherite Ingots + 2 Ink Sacs |
 | **Darkened Rubble** | 1/450 from Zombified Piglin (Nether) | 4 Netherite Ingots + 4 Gilded Blackstone + 1 Nether Star |
 
-> *Notes:* "Netherite Bars" in recipes are **Netherite Ingots**. The in-game item `Crude Jewel` uses item ID `senbonzakura:crude_jewel_steel`.
+> *Notes:* "Netherite Bars" in recipes are **Netherite Ingots**. The in-game item `Crude Jewel` uses item ID `senbonzakura:crude_jewel_steel`. `Sigil of Doom` uses item ID `senbonzakura:deepwoken_relic`.
 
 ---
 
@@ -97,20 +97,23 @@ Weapon ability activations can optionally cost XP (admin-configurable via game r
 
 ## Weapons & God Rock
 
-> Hold right-click to charge and release to activate abilities (unless noted). **No weapons drop directly from mobs** — craft them.
+> Hold right-click to charge and release to activate abilities (unless noted). Most weapons are **crafting-only**; **Razor Shark, Sentence, and Wendigo** are direct mob drops.
 
-| Item | Crafting recipe | Notes |
-|------|------------------|-------|
-| **Senbonzakura** | 1 Netherite Sword + 1 Exalted Blossom + 2 Sacred Threads + 1 Ancient Amber + 2 Excellent Princess Cut Diamond + 2 Tamahagane | Netherite sword; charge-dash + sweep ability (5s CD), cherry blossom particles |
-| **Crescent Blade of Winds** | 2 Diamond Swords + 1 Deepwoken Relic + 2 Supreme Alloy + 4 Skystone | Diamond sword; 360° slash (7s CD), wind particles; dual-wield doubles damage |
-| **Crypt Blade** | 1 Netherite Axe + 2 Deepwoken Relic + 1 Inky Pearl + 2 Sinners Ash + 3 Supreme Alloy | Netherite axe; charged explosion ability (15s CD), dark soul particles |
-| **Rite of Commandments** | 1 Netherite Sword + 2 Ultra Conductive Material + 1 Deepwoken Relic + 1 Supreme Alloy + 2 Skystone + 2 Sacred Threads | Netherite sword; lightning ability (cooldown per implementation), white particles |
-| **Pyrerizer** | 1 Netherite Sword + 3 Sinners Ash + 3 Cindering Core + 1 Deepwoken Relic + 1 Supreme Alloy | Netherite axe-weapon; fire leap ability (7s CD), flame/smoke particles |
-| **Yuki no Ame** | 1 Senbonzakura + 4 Frozen Core + 4 Excellent Princess Cut Diamond | Upgraded Senbonzakura; dash/sweep with slow/weakness effects (5s CD), cherry/snowy particles |
-| **God Rock** | 1 Yuki no Ame + 2 Crescent Blade of Winds + 1 Crypt Blade + 1 Rite of Commandments + 1 Pyrerizer | 19.5 ATK, unbreakable; grants Resistance II while held; yellow sparkles |
-| **Saw Blade Axe** | 3 Iron Ingots + 2 Sticks (shaped) | Mines wood very fast (no special charged ability) |
+| Item | How to obtain | Notes |
+|------|----------------|-------|
+| **Senbonzakura** | Craft: 1 Netherite Sword + 1 Exalted Blossom + 2 Sacred Threads + 1 Ancient Amber + 2 Excellent Princess Cut Diamond + 2 Tamahagane | Netherite sword (11 ATK); charge-dash + sweep ability (5s CD), cherry blossom particles |
+| **Crescent Blade of Winds** | Craft: 2 Diamond Swords + 1 Sigil of Doom + 2 Supreme Alloy + 4 Skystone | Diamond sword (10 ATK); 360° slash (7s CD), wind particles; dual-wield doubles damage |
+| **Crypt Blade** | Craft: 1 Netherite Axe + 2 Sigil of Doom + 1 Inky Pearl + 2 Sinners Ash + 3 Supreme Alloy | Netherite axe (16 ATK); charged explosion ability (15s CD), dark soul particles |
+| **Rite of Commandments** | Craft: 1 Netherite Sword + 2 Ultra Conductive Material + 1 Sigil of Doom + 1 Supreme Alloy + 2 Skystone + 2 Sacred Threads | Netherite sword (14 ATK); lightning ability, white particles |
+| **Pyrerizer** | Craft: 1 Netherite Sword + 3 Sinners Ash + 3 Cindering Core + 1 Sigil of Doom + 1 Supreme Alloy | Netherite axe-weapon (14 ATK); fire ability (7s CD), flame/smoke particles |
+| **Yuki no Ame** | Craft: 1 Senbonzakura + 4 Frozen Core + 4 Excellent Princess Cut Diamond | Upgraded Senbonzakura (12 ATK); dash/sweep with slow/weakness effects (5s CD), cherry/snowy particles |
+| **Razor Shark** | Direct drop: Elder Guardian 1/35, Guardian 1/350, Drowned 1/1250 | Netherite axe (13 ATK); hold right-click 1.5s to fire a bubble beam (35 blocks, damage + knockback) — 9s CD. Passive: Night Vision & Water Breathing while in inventory. Bubble particles |
+| **Sentence** | Direct drop: Warden 1/44, Wither 1/44, Ender Dragon 1/44 | Netherite axe (13 ATK); hold right-click 1.5s for a massive 180° swing (6-block range) with knockback — 9s CD. Passive (ability): applies Darkness & Wither (5s) to affected targets. Red particles |
+| **Wendigo** | Direct drop: Skeletons 1/1250, Stray 1/1250, Wither Skeleton 1/1250 | Netherite sword (15 ATK); right-click fires a shotgun burst of 32 arrows (crossbow speed) — 10s CD. Passive: hits apply Slowness (2s). Bubble particles |
+| **God Rock** | Craft: 1 Yuki no Ame + 2 Crescent Blade of Winds + 1 Crypt Blade + 1 Rite of Commandments + 1 Pyrerizer | 19.5 ATK, unbreakable; grants Resistance II while held; yellow sparkles |
+| **Saw Blade Axe** | Craft: 3 Iron Ingots + 2 Sticks (shaped) | Mines wood very fast (no special charged ability) |
 
-*Ability/passive details and exact timings follow the current in-mod implementation; see in-game/tooltips and item behavior for specifics.*
+*Direct weapon drop rates are affected by the global `/droprate` multiplier and per-player `/drop`/`/nodrop` settings. Ability/passive details follow the current in-mod implementation; see in-game behavior for specifics.*
 
 ---
 

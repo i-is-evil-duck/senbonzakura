@@ -10,7 +10,7 @@
   "item.senbonzakura.inky_pearl": "Inky Pearl",
   "item.senbonzakura.exalted_blossom": "Exalted Blossom",
   "item.senbonzakura.ancient_amber": "Ancient Amber",
-  "item.senbonzakura.deepwoken_relic": "Deepwoken Relic",
+  "item.senbonzakura.deepwoken_relic": "Sigil of Doom",
   "item.senbonzakura.excellent_princess_diamond": "Excellent Princess Cut Diamond",
   "item.senbonzakura.sacred_threads": "Sacred Threads",
   "item.senbonzakura.crude_jewel_steel": "Crude Jewel",
@@ -31,5 +31,8 @@
   "item.senbonzakura.saw_blade_axe.tooltip": "Mines wood as fast as a diamond axe!",
   "message.senbonzakura.not_enough_xp": "Not enough XP levels to activate this ability (requires %s).",
   "gamerule.senbonzakuraAbilityXpCostEnabled": "Senbonzakura: Ability XP cost enabled",
-  "gamerule.senbonzakuraAbilityXpCostLevels": "Senbonzakura: Ability XP cost (levels)"
+  "gamerule.senbonzakuraAbilityXpCostLevels": "Senbonzakura: Ability XP cost (levels)",
+  "item.senbonzakura.razor_shark": "Razor Shark",
+  "item.senbonzakura.sentence": "Sentence",
+  "item.senbonzakura.wendigo": "Wendigo"
 }

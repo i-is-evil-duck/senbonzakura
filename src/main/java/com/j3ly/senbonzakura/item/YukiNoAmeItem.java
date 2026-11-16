@@ -34,7 +34,7 @@ public class YukiNoAmeItem extends SwordItem {
     private static final long COOLDOWN_TIME = 100L;
 
     public YukiNoAmeItem(Properties properties) {
-        super(Tiers.NETHERITE, properties.attributes(SwordItem.createAttributes(Tiers.NETHERITE, 5, -2.4f)));
+        super(Tiers.NETHERITE, properties.attributes(SwordItem.createAttributes(Tiers.NETHERITE, 7, -2.4f)));
     }
 
     @Override

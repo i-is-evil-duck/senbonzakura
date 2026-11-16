@@ -33,7 +33,7 @@ public class RiteOfCommandmentsItem extends SwordItem {
     private static final long COOLDOWN_TIME = 240L;
 
     public RiteOfCommandmentsItem(Properties properties) {
-        super(Tiers.DIAMOND, properties.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 3, -2.4f)));
+        super(Tiers.NETHERITE, properties.attributes(SwordItem.createAttributes(Tiers.NETHERITE, 9, -2.4f)));
     }
 
     @Override

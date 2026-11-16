@@ -28,7 +28,7 @@ import java.util.UUID;
 public class CryptBladeItem extends AxeItem {
 
     public CryptBladeItem(Properties properties) {
-        super(Tiers.NETHERITE, properties.attributes(AxeItem.createAttributes(Tiers.NETHERITE, 10, -3.0f)));
+        super(Tiers.NETHERITE, properties.attributes(AxeItem.createAttributes(Tiers.NETHERITE, 11, -3.0f)));
     }
 
     private static final Map<UUID, Integer> chargeTicks = new HashMap<>();

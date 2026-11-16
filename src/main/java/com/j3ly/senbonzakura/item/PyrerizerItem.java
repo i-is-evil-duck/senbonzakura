@@ -31,7 +31,7 @@ public class PyrerizerItem extends AxeItem {
     private static final long COOLDOWN_TIME = 140L;
 
     public PyrerizerItem(Properties properties) {
-        super(Tiers.NETHERITE, properties.attributes(AxeItem.createAttributes(Tiers.NETHERITE, 8, -3.0f)));
+        super(Tiers.NETHERITE, properties.attributes(AxeItem.createAttributes(Tiers.NETHERITE, 9, -3.0f)));
     }
 
     @Override

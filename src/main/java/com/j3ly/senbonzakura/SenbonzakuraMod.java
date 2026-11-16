@@ -47,6 +47,12 @@ public class SenbonzakuraMod {
             () -> new PyrerizerItem(new Item.Properties().fireResistant()));
     public static final DeferredHolder<Item, YukiNoAmeItem> YUKI_NO_AME = ITEMS.register("yuki_no_ame",
             () -> new YukiNoAmeItem(new Item.Properties().fireResistant()));
+    public static final DeferredHolder<Item, RazorSharkItem> RAZOR_SHARK = ITEMS.register("razor_shark",
+            () -> new RazorSharkItem(new Item.Properties().fireResistant()));
+    public static final DeferredHolder<Item, SentenceItem> SENTENCE = ITEMS.register("sentence",
+            () -> new SentenceItem(new Item.Properties().fireResistant()));
+    public static final DeferredHolder<Item, WendigoItem> WENDIGO = ITEMS.register("wendigo",
+            () -> new WendigoItem(new Item.Properties().fireResistant()));
     public static final DeferredHolder<Item, GodRockItem> GOD_ROCK = ITEMS.register("god_rock",
             () -> new GodRockItem(new Item.Properties()));
 
@@ -104,6 +110,10 @@ public class SenbonzakuraMod {
             spawnWhiteParticles(level, player);
         } else if (mainHand.getItem() instanceof PyrerizerItem) {
             spawnGreyParticles(level, player);
+        } else if (mainHand.getItem() instanceof RazorSharkItem || mainHand.getItem() instanceof WendigoItem) {
+            spawnBubbleParticles(level, player);
+        } else if (mainHand.getItem() instanceof SentenceItem) {
+            spawnRedSwordParticles(level, player);
         }
     }
 
@@ -146,12 +156,8 @@ public class SenbonzakuraMod {
             }
         }
 
-        // Deepwoken Relic - 1/6000 from Zombies, Skeletons, Creepers, Spiders, Endermen
-        if (entity instanceof net.minecraft.world.entity.monster.Zombie ||
-            entity instanceof net.minecraft.world.entity.monster.AbstractSkeleton ||
-            entity instanceof net.minecraft.world.entity.monster.Creeper ||
-            entity instanceof net.minecraft.world.entity.monster.Spider ||
-            entity instanceof net.minecraft.world.entity.monster.EnderMan) {
+        // Sigil of Doom (deepwoken_relic) - 1/6000 from all hostile mobs
+        if (entity instanceof net.minecraft.world.entity.monster.Monster) {
             if (ModDropData.rollDrop(level, killerId, 6000)) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
@@ -205,6 +211,39 @@ public class SenbonzakuraMod {
                             new ItemStack(DARKENED_RUBBLE.get()))
                     );
                 }
+            }
+        }
+
+        // Direct weapon drops (specific weapons)
+        if (entity instanceof net.minecraft.world.entity.monster.ElderGuardian) {
+            if (ModDropData.rollDrop(level, killerId, 35)) {
+                event.getDrops().add(new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(RAZOR_SHARK.get())));
+            }
+        } else if (entity instanceof net.minecraft.world.entity.monster.Guardian) {
+            if (ModDropData.rollDrop(level, killerId, 350)) {
+                event.getDrops().add(new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(RAZOR_SHARK.get())));
+            }
+        }
+        if (entity instanceof net.minecraft.world.entity.monster.Drowned) {
+            if (ModDropData.rollDrop(level, killerId, 1250)) {
+                event.getDrops().add(new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(RAZOR_SHARK.get())));
+            }
+        }
+
+        if (entity instanceof net.minecraft.world.entity.monster.warden.Warden ||
+            entity instanceof net.minecraft.world.entity.boss.wither.WitherBoss ||
+            entity instanceof net.minecraft.world.entity.boss.enderdragon.EnderDragon) {
+            if (ModDropData.rollDrop(level, killerId, 44)) {
+                event.getDrops().add(new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(SENTENCE.get())));
+            }
+        }
+
+        boolean normalSkeleton = entity instanceof net.minecraft.world.entity.monster.Skeleton
+                && !(entity instanceof net.minecraft.world.entity.monster.Stray)
+                && !(entity instanceof net.minecraft.world.entity.monster.WitherSkeleton);
+        if (normalSkeleton || entity instanceof net.minecraft.world.entity.monster.Stray || entity instanceof net.minecraft.world.entity.monster.WitherSkeleton) {
+            if (ModDropData.rollDrop(level, killerId, 1250)) {
+                event.getDrops().add(new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(WENDIGO.get())));
             }
         }
     }
@@ -307,6 +346,24 @@ public class SenbonzakuraMod {
         level.sendParticles(ParticleTypes.EXPLOSION, px, py, pz, 1, 0.02, 0.05, 0.02, 0.01);
     }
 
+    private void spawnBubbleParticles(ServerLevel level, Player player) {
+        if (random.nextInt(2) != 0) return;
+        Vec3 pos = player.position();
+        double px = pos.x + (random.nextDouble() - 0.5) * 1.2;
+        double py = pos.y + 0.4 + random.nextDouble() * 1.2;
+        double pz = pos.z + (random.nextDouble() - 0.5) * 1.2;
+        level.sendParticles(ParticleTypes.BUBBLE, px, py, pz, 1, 0.02, 0.05, 0.02, 0.01);
+    }
+
+    private void spawnRedSwordParticles(ServerLevel level, Player player) {
+        if (random.nextInt(2) != 0) return;
+        Vec3 pos = player.position();
+        double px = pos.x + (random.nextDouble() - 0.5) * 1.2;
+        double py = pos.y + 0.4 + random.nextDouble() * 1.2;
+        double pz = pos.z + (random.nextDouble() - 0.5) * 1.2;
+        level.sendParticles(ParticleTypes.DAMAGE_INDICATOR, px, py, pz, 1, 0.02, 0.05, 0.02, 0.01);
+    }
+
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(SENBONZAKURA.get());
@@ -316,6 +373,9 @@ public class SenbonzakuraMod {
             event.accept(RITE_OF_COMMANDMENTS.get());
             event.accept(PYRERIZER.get());
             event.accept(YUKI_NO_AME.get());
+            event.accept(RAZOR_SHARK.get());
+            event.accept(SENTENCE.get());
+            event.accept(WENDIGO.get());
             event.accept(GOD_ROCK.get());
         }
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
