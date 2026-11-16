@@ -3,7 +3,7 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 1.6.1 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.6.2 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 

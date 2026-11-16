@@ -100,6 +100,8 @@ public class SenbonzakuraMod {
         ItemStack mainHand = player.getMainHandItem();
         ServerLevel level = (ServerLevel) player.level();
 
+        WendigoItem.tickCleanup(level, player.getUUID(), level.getGameTime());
+
         if (mainHand.getItem() instanceof SenbonzakuraItem || mainHand.getItem() instanceof YukiNoAmeItem) {
             spawnSakuraParticles(level, player);
         } else if (mainHand.getItem() instanceof CrescentBladeItem) {

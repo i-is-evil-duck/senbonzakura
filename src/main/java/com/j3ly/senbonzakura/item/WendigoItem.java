@@ -13,6 +13,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -25,7 +26,9 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -33,6 +36,18 @@ public class WendigoItem extends SwordItem {
 
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 200L; // 10 seconds
+
+    private static final Map<UUID, SpawnBatch> activeArrows = new HashMap<>();
+
+    private static class SpawnBatch {
+        final long expiresAt;
+        final List<UUID> arrowIds;
+
+        SpawnBatch(long expiresAt, List<UUID> arrowIds) {
+            this.expiresAt = expiresAt;
+            this.arrowIds = arrowIds;
+        }
+    }
 
     public WendigoItem(Properties properties) {
         super(Tiers.NETHERITE, properties.attributes(SwordItem.createAttributes(Tiers.NETHERITE, 10, -2.4f))); // 15 ATK
@@ -76,14 +91,17 @@ public class WendigoItem extends SwordItem {
         level.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.CROSSBOW_SHOOT, SoundSource.PLAYERS, 1.2f, 1.0f);
 
+        List<UUID> spawned = new ArrayList<>(arrowCount);
         for (int i = 0; i < arrowCount; i++) {
             double spreadH = (player.getRandom().nextDouble() - 0.5) * 0.35;
             double spreadV = (player.getRandom().nextDouble() - 0.5) * 0.25;
             Vec3 dir = look.add(right.scale(spreadH)).add(realUp.scale(spreadV)).normalize();
             Arrow arrow = new Arrow(level, player, new ItemStack(Items.ARROW), stack);
             arrow.setPos(eye.x + dir.x * 0.5, eye.y + dir.y * 0.5, eye.z + dir.z * 0.5);
-            arrow.shoot(dir.x, dir.y, dir.z, 3.15f, 1.0f);
+            arrow.shoot(dir.x, dir.y, dir.z, 3.15f, 1.0f); // crossbow-like speed
+            arrow.setCritArrow(true); // fully charged
             arrow.pickup = AbstractArrow.Pickup.DISALLOWED;
+            arrow.setNoGravity(false);
 
             if (power > 0) {
                 arrow.setBaseDamage(arrow.getBaseDamage() + 0.5D * (double) power + 0.5D);
@@ -94,7 +112,10 @@ public class WendigoItem extends SwordItem {
             }
 
             level.addFreshEntity(arrow);
+            spawned.add(arrow.getUUID());
         }
+
+        activeArrows.put(id, new SpawnBatch(level.getGameTime() + COOLDOWN_TIME, spawned));
 
         return InteractionResultHolder.consume(stack);
     }
@@ -110,6 +131,20 @@ public class WendigoItem extends SwordItem {
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 0)); // 2 seconds slowness
         return super.hurtEnemy(stack, target, attacker);
+    }
+
+    public static void tickCleanup(ServerLevel level, UUID playerId, long gameTime) {
+        SpawnBatch batch = activeArrows.get(playerId);
+        if (batch == null) return;
+        if (gameTime < batch.expiresAt) return;
+
+        for (UUID arrowId : batch.arrowIds) {
+            Entity e = level.getEntity(arrowId);
+            if (e instanceof AbstractArrow arrow && arrow.isAlive()) {
+                arrow.discard();
+            }
+        }
+        activeArrows.remove(playerId);
     }
 
     @Override
