@@ -125,8 +125,10 @@ public class SenbonzakuraMod {
         WendigoItem.tickCleanup(level, player.getUUID(), level.getGameTime());
         WendigoItem.removeAbilityArrowsFromInventory(player);
 
-        if (mainHand.getItem() instanceof SenbonzakuraItem || mainHand.getItem() instanceof YukiNoAmeItem) {
+        if (mainHand.getItem() instanceof SenbonzakuraItem) {
             spawnSakuraParticles(level, player);
+        } else if (mainHand.getItem() instanceof YukiNoAmeItem) {
+            spawnSnowflakeParticles(level, player);
         } else if (mainHand.getItem() instanceof CrescentBladeItem) {
             spawnGreenParticles(level, player);
         } else if (mainHand.getItem() instanceof CryptBladeItem) {
@@ -310,6 +312,15 @@ public class SenbonzakuraMod {
         double py = pos.y + 0.5 + random.nextDouble() * 1.5;
         double pz = pos.z + (random.nextDouble() - 0.5) * 1.5;
         level.sendParticles(ParticleTypes.CHERRY_LEAVES, px, py, pz, 1, 0.02, 0.05, 0.02, 0.01);
+    }
+
+    private void spawnSnowflakeParticles(ServerLevel level, Player player) {
+        if (random.nextInt(3) != 0) return;
+        Vec3 pos = player.position();
+        double px = pos.x + (random.nextDouble() - 0.5) * 1.5;
+        double py = pos.y + 0.5 + random.nextDouble() * 1.5;
+        double pz = pos.z + (random.nextDouble() - 0.5) * 1.5;
+        level.sendParticles(ParticleTypes.SNOWFLAKE, px, py, pz, 1, 0.02, 0.05, 0.02, 0.01);
     }
 
     private void spawnGreenParticles(ServerLevel level, Player player) {

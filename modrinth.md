@@ -5,7 +5,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 1.7.0
+- **Version:** 1.7.1
 
 ## All Items
 
@@ -17,7 +17,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 | **Saw Blade Axe** | Weapon (Axe) | Craft (shaped): 3 Iron Ingots + 2 Sticks | Utility axe that mines wood very fast; no special charged ability. |
 | **Rite of Commandments** | Weapon (Sword) | Craft: 1 Netherite Sword + 2 Ultra Conductive Material + 1 Sigil of Doom + 1 Supreme Alloy + 2 Skystone + 2 Sacred Threads | 14 ATK. Lightning-themed ability with white particles. |
 | **Pyrerizer** | Weapon (Axe) | Craft: 1 Netherite Sword + 3 Sinner's Ash + 3 Cindering Core + 1 Sigil of Doom + 1 Supreme Alloy | 14 ATK. Fire ability (7s CD) with flame/smoke particles. |
-| **Yuki no Ame** | Weapon (Sword) | Craft: 1 Senbonzakura + 4 Frozen Core + 4 Excellent Princess Cut Diamond | 12 ATK. Upgraded Senbonzakura dash/sweep with slow/weakness effects (5s CD). |
+| **Yuki no Ame** | Weapon (Sword) | Craft: 1 Senbonzakura + 4 Frozen Core + 4 Excellent Princess Cut Diamond | 12 ATK. Upgraded Senbonzakura dash/sweep (5s CD) with snowflake particles. Fully charged hits have a 25% chance to apply Slowness II + Weakness for 5s. Right-click grants Swiftness II for 7s. |
 | **Razor Shark** | Weapon (Axe) | Drop: Elder Guardian 1/35, Guardian 1/350, Drowned 1/1250 | 13 ATK. Hold right-click 1.5s to fire a bubble beam (35 blocks, knockback) — 9s CD; grants Night Vision & Water Breathing in inventory. |
 | **Sentence** | Weapon (Axe) | Drop: Warden/Wither/Ender Dragon 1/44 | 13 ATK. Hold right-click 1.5s for a 180° swing (6-block range) — 9s CD; applies Darkness & Wither (5s) to targets. |
 | **Wendigo** | Weapon (Sword) | Drop: Skeletons/Stray/Wither Skeleton 1/1250 | 15 ATK. Right-click fires 64 arrows (10s CD); hits apply Slowness (2s). Supports bow enchants and Increased Arrows. |

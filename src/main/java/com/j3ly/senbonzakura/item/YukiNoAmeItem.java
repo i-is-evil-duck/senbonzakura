@@ -65,7 +65,7 @@ public class YukiNoAmeItem extends SwordItem {
 
         if (ticks % 3 == 0) {
             Vec3 pos = player.position().add(0, 1, 0);
-            serverLevel.sendParticles(ParticleTypes.CHERRY_LEAVES, pos.x + (Math.random() - 0.5), pos.y + (Math.random() - 0.5), pos.z + (Math.random() - 0.5), 1, 0.1, 0.1, 0.1, 0.02);
+            serverLevel.sendParticles(ParticleTypes.SNOWFLAKE, pos.x + (Math.random() - 0.5), pos.y + (Math.random() - 0.5), pos.z + (Math.random() - 0.5), 1, 0.1, 0.1, 0.1, 0.02);
         }
 
         if (ticks >= CHARGE_TIME) {
@@ -88,6 +88,7 @@ public class YukiNoAmeItem extends SwordItem {
                 return stack;
             }
             AbilityCooldown.start(stack, level, COOLDOWN_TIME);
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 140, 1, false, true, true)); // Swiftness II, 7s
             performDash(player, serverLevel);
         }
 
@@ -109,6 +110,7 @@ public class YukiNoAmeItem extends SwordItem {
                 return;
             }
             AbilityCooldown.start(stack, level, COOLDOWN_TIME);
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 140, 1, false, true, true)); // Swiftness II, 7s
             performDash(player, serverLevel);
         }
     }
@@ -150,7 +152,7 @@ public class YukiNoAmeItem extends SwordItem {
                 }
             }
 
-            level.sendParticles(ParticleTypes.CHERRY_LEAVES, pos.x, pos.y + 1, pos.z, 1, 0.1, 0.1, 0.1, 0.02);
+            level.sendParticles(ParticleTypes.SNOWFLAKE, pos.x, pos.y + 1, pos.z, 1, 0.1, 0.1, 0.1, 0.02);
         }
 
         performSweepAttack(player, level);
@@ -162,7 +164,7 @@ public class YukiNoAmeItem extends SwordItem {
 
         level.playSound(null, pos.x, pos.y, pos.z, SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1.0f, 1.0f);
 
-        level.sendParticles(ParticleTypes.CHERRY_LEAVES, pos.x + look.x * 2, pos.y + 1, pos.z + look.z * 2, 5, 2.0, 0.5, 2.0, 0.1);
+        level.sendParticles(ParticleTypes.SNOWFLAKE, pos.x + look.x * 2, pos.y + 1, pos.z + look.z * 2, 5, 2.0, 0.5, 2.0, 0.1);
 
         AABB sweepBox = new AABB(pos.x - 4, pos.y - 1, pos.z - 4, pos.x + 4, pos.y + 3, pos.z + 4);
 
@@ -181,12 +183,24 @@ public class YukiNoAmeItem extends SwordItem {
                     float damage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
                     living.hurt(level.damageSources().playerAttack(player), damage);
 
-                    level.sendParticles(ParticleTypes.CHERRY_LEAVES, target.getX(), target.getY() + 1, target.getZ(), 3, 0.2, 0.2, 0.2, 0.1);
+                    level.sendParticles(ParticleTypes.SNOWFLAKE, target.getX(), target.getY() + 1, target.getZ(), 3, 0.2, 0.2, 0.2, 0.1);
                 }
             }
         }
     }
 
+
+    @Override
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (attacker instanceof Player player && player.getAttackStrengthScale(0.5f) >= 0.9f) {
+            // Fully charged hit: 25% chance to apply Slowness II + Weakness for 5 seconds
+            if (player.getRandom().nextFloat() < 0.25f) {
+                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 1));
+                target.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100, 1));
+            }
+        }
+        return super.hurtEnemy(stack, target, attacker);
+    }
 
     @Override
     public boolean isBarVisible(ItemStack stack) {
