@@ -5,7 +5,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 1.8.0
+- **Version:** 1.8.1
 
 ## All Items
 
@@ -56,6 +56,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Third-person tweak:** the left arm keeps its grip pose while the right arm angles a little further toward the centre. The Sentence's held-item scale has been reduced so it no longer renders oversized.
 - **Two-handed holds:** the Crypt Blade, Senbonzakura, and Yuki no Ame are gripped with both hands in first person and third person (F5 / other players). In third person both arms rotate inward so the hands meet on the grip slightly right of centre. Holding an item in the offhand returns to a one-handed hold.
 - **Visible sweep animations:** the Crypt Blade and Crescent Blade's 360° slashes and the Sentence's 180° swing spin the player model (and held weapon) so nearby players can see the attack.
+- **Textures:** refreshed item textures; the Ancient Amber icon is temporarily absent.
 
 ## Potion Effects
 
