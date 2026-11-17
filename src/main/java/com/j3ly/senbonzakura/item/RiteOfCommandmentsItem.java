@@ -4,7 +4,7 @@ import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
+import com.j3ly.senbonzakura.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -119,7 +119,7 @@ public class RiteOfCommandmentsItem extends SwordItem {
 
     private void performLightningStrike(Player player, ServerLevel level) {
         Vec3 pos = player.position();
-        level.playSound(null, pos.x, pos.y, pos.z, SoundEvents.TRIDENT_THUNDER, SoundSource.PLAYERS, 1.0f, 1.0f);
+        level.playSound(null, pos.x, pos.y, pos.z, ModSounds.RITE_OF_COMMANDMENTS_THUNDER.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
 
         AABB area = new AABB(pos.x - 10, pos.y - 5, pos.z - 10, pos.x + 10, pos.y + 10, pos.z + 10);
         List<Entity> entities = level.getEntities(player, area, e -> e instanceof LivingEntity && e != player && !(e instanceof net.minecraft.world.entity.monster.Creeper));

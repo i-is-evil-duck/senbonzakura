@@ -5,7 +5,7 @@ import com.j3ly.senbonzakura.ModGameRules;
 import com.j3ly.senbonzakura.network.ModNetworking;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
+import com.j3ly.senbonzakura.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -103,7 +103,7 @@ public class SentenceItem extends AxeItem {
         Vec3 pos = player.position();
         Vec3 look = player.getLookAngle();
 
-        level.playSound(null, pos.x, pos.y, pos.z, SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1.3f, 0.7f);
+        level.playSound(null, pos.x, pos.y, pos.z, ModSounds.SENTENCE_SWING.get(), SoundSource.PLAYERS, 1.3f, 0.7f);
 
         double range = 6.0;
         AABB box = new AABB(pos.x - range, pos.y - 1, pos.z - range, pos.x + range, pos.y + 3, pos.z + range);

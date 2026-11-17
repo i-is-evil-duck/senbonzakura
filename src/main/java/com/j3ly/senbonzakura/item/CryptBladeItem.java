@@ -5,7 +5,7 @@ import com.j3ly.senbonzakura.ModGameRules;
 import com.j3ly.senbonzakura.network.ModNetworking;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
+import com.j3ly.senbonzakura.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -169,10 +169,10 @@ public class CryptBladeItem extends AxeItem {
         double explosionRadius = 8.0;
 
         level.playSound(null, pos.x, pos.y, pos.z,
-                SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 2.0f, 0.8f);
+                ModSounds.CRYPT_BLADE_BLAST.get(), SoundSource.PLAYERS, 2.0f, 0.8f);
 
         level.playSound(null, pos.x, pos.y, pos.z,
-                SoundEvents.WITHER_SPAWN, SoundSource.PLAYERS, 0.5f, 1.2f);
+                ModSounds.CRYPT_BLADE_BLAST.get(), SoundSource.PLAYERS, 0.5f, 1.2f);
 
         level.sendParticles(ParticleTypes.EXPLOSION,
             pos.x, pos.y + 1, pos.z, 5, 0.5, 0.5, 0.5, 0.1);

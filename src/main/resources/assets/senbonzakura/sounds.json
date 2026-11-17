@@ -1,0 +1,54 @@
+{
+  "senbonzakura_swing": {
+    "subtitle": "subtitle.senbonzakura.senbonzakura_swing",
+    "sounds": ["senbonzakura:senbonzakura_swing"]
+  },
+  "crescent_blade_slash": {
+    "subtitle": "subtitle.senbonzakura.crescent_blade_slash",
+    "sounds": ["senbonzakura:crescent_blade_slash"]
+  },
+  "crypt_blade_blast": {
+    "subtitle": "subtitle.senbonzakura.crypt_blade_blast",
+    "sounds": ["senbonzakura:crypt_blade_blast"]
+  },
+  "saw_blade_axe_spin": {
+    "subtitle": "subtitle.senbonzakura.saw_blade_axe_spin",
+    "sounds": ["senbonzakura:saw_blade_axe_spin"]
+  },
+  "rite_of_commandments_thunder": {
+    "subtitle": "subtitle.senbonzakura.rite_of_commandments_thunder",
+    "sounds": ["senbonzakura:rite_of_commandments_thunder"]
+  },
+  "pyrerizer_flame": {
+    "subtitle": "subtitle.senbonzakura.pyrerizer_flame",
+    "sounds": ["senbonzakura:pyrerizer_flame"]
+  },
+  "yuki_no_ame_swing": {
+    "subtitle": "subtitle.senbonzakura.yuki_no_ame_swing",
+    "sounds": ["senbonzakura:yuki_no_ame_swing"]
+  },
+  "razor_shark_laser": {
+    "subtitle": "subtitle.senbonzakura.razor_shark_laser",
+    "sounds": ["senbonzakura:razor_shark_laser"]
+  },
+  "sentence_swing": {
+    "subtitle": "subtitle.senbonzakura.sentence_swing",
+    "sounds": ["senbonzakura:sentence_swing"]
+  },
+  "wendigo_arrows": {
+    "subtitle": "subtitle.senbonzakura.wendigo_arrows",
+    "sounds": ["senbonzakura:wendigo_arrows"]
+  },
+  "empire_staff_cast": {
+    "subtitle": "subtitle.senbonzakura.empire_staff_cast",
+    "sounds": ["senbonzakura:empire_staff_cast"]
+  },
+  "god_rock_pulse": {
+    "subtitle": "subtitle.senbonzakura.god_rock_pulse",
+    "sounds": ["senbonzakura:god_rock_pulse"]
+  },
+  "matthias_curseblade_burst": {
+    "subtitle": "subtitle.senbonzakura.matthias_curseblade_burst",
+    "sounds": ["senbonzakura:matthias_curseblade_burst"]
+  }
+}

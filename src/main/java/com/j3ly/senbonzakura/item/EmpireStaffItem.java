@@ -5,7 +5,7 @@ import com.j3ly.senbonzakura.ModGameRules;
 import com.j3ly.senbonzakura.SenbonzakuraMod;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
+import com.j3ly.senbonzakura.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -140,7 +140,7 @@ public class EmpireStaffItem extends SwordItem {
         AbilityCooldown.start(stack, serverLevel, COOLDOWN_TIME);
 
         Vec3 pos = player.position();
-        level.playSound(null, pos.x, pos.y, pos.z, SoundEvents.EVOKER_CAST_SPELL, SoundSource.PLAYERS, 1.3f, 1.1f);
+        level.playSound(null, pos.x, pos.y, pos.z, ModSounds.EMPIRE_STAFF_CAST.get(), SoundSource.PLAYERS, 1.3f, 1.1f);
         serverLevel.sendParticles(ParticleTypes.FIREWORK, pos.x, pos.y + 1.2, pos.z, 40, 1.5, 0.8, 1.5, 0.05);
 
         List<LivingEntity> nearby = serverLevel.getEntitiesOfClass(

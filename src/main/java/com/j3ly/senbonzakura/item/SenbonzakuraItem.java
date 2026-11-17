@@ -4,7 +4,7 @@ import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
+import com.j3ly.senbonzakura.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -125,7 +125,7 @@ public class SenbonzakuraItem extends SwordItem {
         Vec3 end = start.add(look.x * 12, look.y * 12, look.z * 12);
 
         level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1.0f, 1.0f);
+                ModSounds.SENBONZAKURA_SWING.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
 
         player.teleportTo(end.x, end.y, end.z);
         player.fallDistance = 0;
@@ -160,7 +160,7 @@ public class SenbonzakuraItem extends SwordItem {
         Vec3 look = player.getLookAngle();
 
         level.playSound(null, pos.x, pos.y, pos.z,
-                SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1.0f, 1.0f);
+                ModSounds.SENBONZAKURA_SWING.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
 
         level.sendParticles(ParticleTypes.SWEEP_ATTACK,
                 pos.x + look.x * 2, pos.y + 1, pos.z + look.z * 2,

@@ -22,18 +22,20 @@ public class ModDropData extends SavedData {
     public static final List<DropRate> DROP_RATES = List.of(
             new DropRate("Exalted Blossom", "Cherry Blossom Leaves", 7500),
             new DropRate("Ancient Amber", "Breaking/stripping logs with an axe", 900),
-            new DropRate("Sigil of Doom", "All hostile mobs", 6000),
+            new DropRate("Sigil of Doom", "All hostile mobs except Silverfish", 6000),
+            new DropRate("Sigil of Doom", "Silverfish", 1000),
             new DropRate("Sinners Ash", "Ender Dragon, Wither, Warden", 30),
-            new DropRate("Skystone", "Phantoms, Breeze", 300),
+            new DropRate("Skystone", "Phantoms, Breeze, Stray", 300),
             new DropRate("Cindering Core", "Ghast, Blaze", 300),
             new DropRate("Inky Pearl", "Elder Guardian", 90),
             new DropRate("Inky Pearl", "Guardian, Drowned", 900),
-            new DropRate("Darkened Rubble", "Zombified Piglin (Nether)", 450),
+            new DropRate("Darkened Rubble", "Wither Skeleton, Magma Cube, Blaze, Piglin, Zombified Piglin, Ghast (Nether)", 1500),
             new DropRate("Razor Shark", "Elder Guardian", 35),
             new DropRate("Razor Shark", "Guardian", 350),
             new DropRate("Razor Shark", "Drowned", 1250),
             new DropRate("Sentence", "Warden, Wither, Ender Dragon", 44),
-            new DropRate("Wendigo", "Skeletons, Stray, Wither Skeleton", 1250)
+            new DropRate("Wendigo", "Skeletons, Stray, Wither Skeleton", 1250),
+            new DropRate("Wendigo", "Silverfish", 500)
     );
 
     private final Map<UUID, Integer> dropPercents = new HashMap<>();

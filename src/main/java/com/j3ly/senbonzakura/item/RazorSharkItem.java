@@ -4,7 +4,7 @@ import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
+import com.j3ly.senbonzakura.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -109,7 +109,7 @@ public class RazorSharkItem extends AxeItem {
         double range = 35.0;
 
         level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                SoundEvents.BUBBLE_COLUMN_WHIRLPOOL_INSIDE, SoundSource.PLAYERS, 1.2f, 1.2f);
+                ModSounds.RAZOR_SHARK_LASER.get(), SoundSource.PLAYERS, 1.2f, 1.2f);
 
         Set<Integer> hitIds = new HashSet<>();
         for (double d = 0; d <= range; d += 0.5) {

@@ -4,7 +4,7 @@ import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
+import com.j3ly.senbonzakura.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -128,7 +128,7 @@ public class PyrerizerItem extends AxeItem {
         player.teleportTo(end.x, end.y, end.z);
         player.fallDistance = 0;
 
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.GHAST_SHOOT, SoundSource.PLAYERS, 1.0f, 1.0f);
+        level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.PYRERIZER_FLAME.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
 
         AABB explosionBox = new AABB(end.x - 5, end.y - 2, end.z - 5, end.x + 5, end.y + 4, end.z + 5);
         List<Entity> entities = level.getEntities(player, explosionBox, e -> e instanceof LivingEntity && e != player);

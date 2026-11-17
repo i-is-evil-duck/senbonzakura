@@ -5,7 +5,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 1.9.0
+- **Version:** 1.9.1
 
 ## All Items
 
@@ -20,14 +20,14 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 | **Yuki no Ame** | Weapon (Sword) | Craft: 1 Senbonzakura + 4 Frozen Core + 4 Excellent Princess Cut Diamond | 12 ATK. Upgraded Senbonzakura dash/sweep (5s CD) with snowflake particles. Fully charged hits have a 25% chance to apply Slowness II + Weakness for 5s. Right-click grants Swiftness II for 7s. |
 | **Razor Shark** | Weapon (Axe) | Drop: Elder Guardian 1/35, Guardian 1/350, Drowned 1/1250 | 13 ATK. Hold right-click 1.5s to aim a bubble stream, then fire a thick bubble laser (35 blocks, knockback, grey smoke flecks) — 9s CD; grants Night Vision & Water Breathing in inventory. |
 | **Sentence** | Weapon (Axe) | Drop: Warden/Wither/Ender Dragon 1/44 | 13 ATK. Hold right-click 1.5s for a 180° swing (6-block range) — 9s CD; applies Darkness & Wither (5s) to targets. |
-| **Wendigo** | Weapon (Sword) | Drop: Skeletons/Stray/Wither Skeleton 1/1250 | 15 ATK. Right-click fires 64 arrows (10s CD); hits apply Slowness (2s). Supports bow enchants and Increased Arrows. |
+| **Wendigo** | Weapon (Sword) | Drop: Skeletons/Stray/Wither Skeleton 1/1250, Silverfish 1/500 | 15 ATK. Right-click fires 64 arrows (10s CD); hits apply Slowness (2s). Supports bow enchants and Increased Arrows. |
 | **Empire Staff** | Weapon (Staff) | Craft: 1 Perfect Radiant Cut Diamond + 1 Blaze Rod + 1 Breeze Rod | 12 ATK, 1.6 swing speed. Hold right-click 2s to drop 6 random splash potions (good/bad, 7s duration) around you and nearby enemies — 15s CD. White divine particles. |
 | **God Rock** | Weapon/Special | Craft: 1 Yuki no Ame + 2 Crescent Blade of Winds + 1 Crypt Blade + 1 Rite of Commandments + 1 Pyrerizer | 19.5 ATK, unbreakable; grants Resistance II while held with yellow sparkles. |
 | **Matthias' Curseblade** | Weapon (Sword) | Craft (shapeless): 1 Netherite Sword + 1 Sinner's Ash + 1 Tamahagane | 9 ATK, 1.6 swing speed. Passive: defeated enemies explode with purple particles — only mobs take damage, players are immune, and blocks are untouched. |
 | **Inky Pearl** | Material | Drop: Elder Guardian 1/90, Guardian/Drowned 1/900. Craft: 1 Eye of Ender + 6 Netherite Ingots + 2 Ink Sacs | Dark aquatic pearl used in weapon crafting. |
 | **Exalted Blossom** | Material | Drop: Cherry Blossom Leaves 1/7500 | Rare cherry blossom essence used to craft Senbonzakura. |
 | **Ancient Amber** | Material | Drop: Breaking/stripping logs with an axe 1/900 | Ancient resin used in advanced crafting. |
-| **Sigil of Doom** (`deepwoken_relic`) | Material | Drop: All hostile mobs 1/6000 | Ominous relic used in multiple high-tier weapon recipes. |
+| **Sigil of Doom** (`deepwoken_relic`) | Material | Drop: All hostile mobs 1/6000, Silverfish 1/1000 | Ominous relic used in multiple high-tier weapon recipes. |
 | **Excellent Princess Cut Diamond** | Material | Craft: 3 Diamond Blocks + 1 Crude Jewel + 2 Tamahagane + 3 Stone Bricks | Refined diamond component for elite weapons. |
 | **Perfect Radiant Cut Diamond** | Material | Craft (shapeless): 9 Excellent Princess Cut Diamond | Pinnacle diamond component used to craft the Empire Staff. |
 | **Sacred Threads** | Material | Craft: 1 String + 8 Gold Blocks | Blessed threads used in weapon crafting. |
@@ -36,8 +36,8 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 | **Supreme Alloy** | Material | Craft: 1 Netherite Block + 2 Diamond Blocks + 3 Gold Blocks + 3 Darkened Rubble | Powerful alloy for late-game weapons. |
 | **Cindering Core** | Material | Drop: Ghast/Blaze 1/300 | Fiery core used in Pyrerizer and Frozen Core. |
 | **Ultra Conductive Material** | Material | Craft: 4 Copper Blocks + 2 Gold Blocks + 2 Skystone + 1 Ancient Amber | Conductive component used in Rite of Commandments. |
-| **Skystone** | Material | Drop: Phantoms/Breeze 1/300 | Sky-forged stone used in several recipes. |
-| **Darkened Rubble** | Material | Drop: Zombified Piglin (Nether) 1/450. Craft: 4 Netherite Ingots + 4 Gilded Blackstone + 1 Nether Star | Nether debris material used in powerful alloys and ash. |
+| **Skystone** | Material | Drop: Phantoms/Breeze/Stray 1/300 | Sky-forged stone used in several recipes. |
+| **Darkened Rubble** | Material | Drop: Wither Skeleton/Magma Cube/Blaze/Piglin/Zombified Piglin/Ghast (Nether) 1/1500. Craft: 4 Netherite Ingots + 4 Gilded Blackstone + 1 Nether Star | Nether debris material used in powerful alloys and ash. |
 | **Sinner's Ash** | Material | Drop: Ender Dragon/Wither/Warden 1/30. Craft: 3 Wither Skeleton Skulls + 1 Netherite Ingot + 2 Darkened Rubble | Remains of mighty foes used in dark weapon crafting. |
 | **Frozen Core** | Material | Craft: 1 Cindering Core + 1 Skystone | Chilled core used to craft Yuki no Ame. |
 | **Copper Coin** | Coin | Craft (shapeless): 4 Copper Ingots **or** 3 Copper Ingots + 1 Iron Ingot | Basic currency/collectible coin. |
@@ -58,6 +58,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Two-handed holds:** the Crypt Blade, Senbonzakura, and Yuki no Ame are gripped with both hands in first person and third person (F5 / other players). In third person both arms rotate inward so the hands meet on the grip slightly right of centre. Holding an item in the offhand returns to a one-handed hold.
 - **Visible sweep animations:** the Crypt Blade and Crescent Blade's 360° slashes and the Sentence's 180° swing spin the player model (and held weapon) so nearby players can see the attack.
 - **Matthias' Curseblade passive:** each defeated mob bursts into purple particles and damages nearby mobs. Players are never hurt and blocks are never broken.
+- **Custom ability sounds:** every weapon has its own placeholder sound; replacing the matching `.ogg` under `assets/senbonzakura/sounds/` is all it takes to add your own audio.
 - **Textures:** refreshed item textures; the Ancient Amber icon is temporarily absent.
 
 ## Potion Effects

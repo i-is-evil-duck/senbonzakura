@@ -5,7 +5,7 @@ import com.j3ly.senbonzakura.ModGameRules;
 import com.j3ly.senbonzakura.network.ModNetworking;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
+import com.j3ly.senbonzakura.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -166,7 +166,7 @@ public class CrescentBladeItem extends SwordItem {
                     e -> e instanceof LivingEntity && e != player);
 
             level.playSound(null, pos.x, pos.y, pos.z,
-                    SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1.0f, 0.8f + slash * 0.2f);
+                    ModSounds.CRESCENT_BLADE_SLASH.get(), SoundSource.PLAYERS, 1.0f, 0.8f + slash * 0.2f);
 
             for (int i = 0; i < 36; i++) {
                 double angle = Math.toRadians(i * 10 + slash * 5);

@@ -111,6 +111,9 @@ public class SenbonzakuraMod {
         ITEMS.register(modEventBus);
         PARTICLE_TYPES.register(modEventBus);
         MOB_EFFECTS.register(modEventBus);
+        //? if neoforge {
+        ModSounds.SOUND_EVENTS.register(modEventBus);
+        //?}
         modEventBus.addListener(this::addCreative);
         //? if neoforge {
         NeoForge.EVENT_BUS.addListener(this::onPlayerTick);
@@ -229,8 +232,15 @@ public class SenbonzakuraMod {
             }
         }
 
-        // Sigil of Doom (deepwoken_relic) - 1/6000 from all hostile mobs
-        if (entity instanceof net.minecraft.world.entity.monster.Monster) {
+        // Sigil of Doom (deepwoken_relic) - 1/1000 from Silverfish, 1/6000 from other hostile mobs
+        if (entity instanceof net.minecraft.world.entity.monster.Silverfish) {
+            if (ModDropData.rollDrop(level, killerId, 1000)) {
+                event.getDrops().add(new ItemEntity(
+                        level, entity.getX(), entity.getY(), entity.getZ(),
+                        new ItemStack(DEEPWOKEN_RELIC.get()))
+                );
+            }
+        } else if (entity instanceof net.minecraft.world.entity.monster.Monster) {
             if (ModDropData.rollDrop(level, killerId, 6000)) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
@@ -250,9 +260,10 @@ public class SenbonzakuraMod {
             }
         }
 
-        // Skystone - 1/300 from Phantoms, Breeze
+        // Skystone - 1/300 from Phantoms, Breeze, Stray
         if (entity instanceof net.minecraft.world.entity.monster.Phantom ||
-            entity instanceof net.minecraft.world.entity.monster.breeze.Breeze) {
+            entity instanceof net.minecraft.world.entity.monster.breeze.Breeze ||
+            entity instanceof net.minecraft.world.entity.monster.Stray) {
             if (ModDropData.rollDrop(level, killerId, 300)) {
                 event.getDrops().add(new ItemEntity(
                         level, entity.getX(), entity.getY(), entity.getZ(),
@@ -276,9 +287,15 @@ public class SenbonzakuraMod {
         // Nether-only drops
         var dim = level.dimension();
         if (dim == net.minecraft.world.level.Level.NETHER) {
-            // Darkened Rubble - 1/450 from Zombified Piglin (craftable alternative)
-            if (entity instanceof net.minecraft.world.entity.monster.ZombifiedPiglin) {
-                if (ModDropData.rollDrop(level, killerId, 450)) {
+            // Darkened Rubble - 1/1500 from Wither Skeleton, Magma Cube, Blaze,
+            // Piglin, Zombified Piglin and Ghast (craftable alternative)
+            if (entity instanceof net.minecraft.world.entity.monster.WitherSkeleton ||
+                entity instanceof net.minecraft.world.entity.monster.MagmaCube ||
+                entity instanceof net.minecraft.world.entity.monster.Blaze ||
+                entity instanceof net.minecraft.world.entity.monster.piglin.Piglin ||
+                entity instanceof net.minecraft.world.entity.monster.ZombifiedPiglin ||
+                entity instanceof net.minecraft.world.entity.monster.Ghast) {
+                if (ModDropData.rollDrop(level, killerId, 1500)) {
                     event.getDrops().add(new ItemEntity(
                             level, entity.getX(), entity.getY(), entity.getZ(),
                             new ItemStack(DARKENED_RUBBLE.get()))
@@ -316,6 +333,13 @@ public class SenbonzakuraMod {
                 && !(entity instanceof net.minecraft.world.entity.monster.WitherSkeleton);
         if (normalSkeleton || entity instanceof net.minecraft.world.entity.monster.Stray || entity instanceof net.minecraft.world.entity.monster.WitherSkeleton) {
             if (ModDropData.rollDrop(level, killerId, 1250)) {
+                event.getDrops().add(new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(WENDIGO.get())));
+            }
+        }
+
+        // Wendigo - 1/500 from Silverfish
+        if (entity instanceof net.minecraft.world.entity.monster.Silverfish) {
+            if (ModDropData.rollDrop(level, killerId, 500)) {
                 event.getDrops().add(new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(WENDIGO.get())));
             }
         }

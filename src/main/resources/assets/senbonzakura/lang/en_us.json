@@ -41,5 +41,18 @@
   "item.senbonzakura.empire_staff": "Empire Staff",
   "item.senbonzakura.matthias_curseblade": "Matthias' Curseblade",
   "item.senbonzakura.matthias_curseblade.tooltip": "Defeated enemies explode, harming only mobs.",
-  "effect.senbonzakura.cindering": "Cindering"
+  "effect.senbonzakura.cindering": "Cindering",
+  "subtitle.senbonzakura.senbonzakura_swing": "Senbonzakura sweeps",
+  "subtitle.senbonzakura.crescent_blade_slash": "Crescent Blade slashes",
+  "subtitle.senbonzakura.crypt_blade_blast": "Crypt Blade detonates",
+  "subtitle.senbonzakura.saw_blade_axe_spin": "Saw Blade Axe revs",
+  "subtitle.senbonzakura.rite_of_commandments_thunder": "Thunder cracks",
+  "subtitle.senbonzakura.pyrerizer_flame": "Pyrerizer ignites",
+  "subtitle.senbonzakura.yuki_no_ame_swing": "Yuki no Ame sweeps",
+  "subtitle.senbonzakura.razor_shark_laser": "Razor Shark fires",
+  "subtitle.senbonzakura.sentence_swing": "Sentence swings",
+  "subtitle.senbonzakura.wendigo_arrows": "Wendigo fires arrows",
+  "subtitle.senbonzakura.empire_staff_cast": "Empire Staff casts",
+  "subtitle.senbonzakura.god_rock_pulse": "God Rock pulses",
+  "subtitle.senbonzakura.matthias_curseblade_burst": "Curseblade bursts"
 }

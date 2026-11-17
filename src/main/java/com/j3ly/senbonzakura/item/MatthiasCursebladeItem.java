@@ -2,7 +2,7 @@ package com.j3ly.senbonzakura.item;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
+import com.j3ly.senbonzakura.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -41,7 +41,7 @@ public class MatthiasCursebladeItem extends SwordItem {
         Vec3 pos = victim.position();
 
         level.playSound(null, pos.x, pos.y, pos.z,
-                SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 1.2f, 1.2f);
+                ModSounds.MATTHIAS_CURSEBLADE_BURST.get(), SoundSource.PLAYERS, 1.2f, 1.2f);
         level.sendParticles(ParticleTypes.PORTAL,
                 pos.x, pos.y + 0.8, pos.z, 40, 1.2f, 1.0f, 1.2f, 0.15f);
         level.sendParticles(ParticleTypes.WITCH,

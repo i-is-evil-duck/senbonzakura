@@ -9,7 +9,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
+import com.j3ly.senbonzakura.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -92,7 +92,7 @@ public class WendigoItem extends SwordItem {
         Vec3 eye = player.getEyePosition();
 
         level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                SoundEvents.CROSSBOW_SHOOT, SoundSource.PLAYERS, 1.2f, 1.0f);
+                ModSounds.WENDIGO_ARROWS.get(), SoundSource.PLAYERS, 1.2f, 1.0f);
 
         long expireAt = level.getGameTime() + COOLDOWN_TIME;
         List<UUID> spawned = new ArrayList<>(arrowCount);
