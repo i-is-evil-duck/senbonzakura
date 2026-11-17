@@ -36,10 +36,10 @@ public abstract class HumanoidModelMixin {
     // --- Tweak these to line the two hands up with the grip in third person ---
     private static final float MAIN_REACH = 0.90F;      // main arm forward reach (radians)
     private static final float SUPPORT_REACH = 0.95F;   // support arm forward reach
-    private static final float MAIN_ACROSS = 0.18F;     // main arm yaw toward the centre
-    private static final float SUPPORT_ACROSS = 0.50F;  // support arm yaw across the body
-    private static final float MAIN_TUCK = 0.25F;       // main arm roll toward the centre
-    private static final float SUPPORT_TUCK = 0.55F;    // support arm roll toward the centre
+    private static final float MAIN_ACROSS = 0.30F;     // main (right) arm yaw toward the centre
+    private static final float SUPPORT_ACROSS = 0.50F;  // support (left) arm - unchanged
+    private static final float MAIN_TUCK = 0.35F;       // main (right) arm roll toward the centre
+    private static final float SUPPORT_TUCK = 0.55F;    // support (left) arm - unchanged
     private static final float MAIN_BLEND = 0.80F;      // 0 = keep vanilla arm pose, 1 = full two-hand pose
     private static final float SWING_AMOUNT = 1.6F;     // extra swing arc added to both arms
     // --------------------------------------------------------------------------
