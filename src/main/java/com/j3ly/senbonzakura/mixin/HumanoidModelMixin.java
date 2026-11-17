@@ -32,6 +32,7 @@ public abstract class HumanoidModelMixin {
 
     @Shadow public ModelPart rightArm;
     @Shadow public ModelPart leftArm;
+    @Shadow public float attackTime;
 
     // --- Tweak these to line the two hands up with the grip in third person ---
     private static final float MAIN_REACH = 0.90F;      // main arm forward reach (radians)
@@ -41,11 +42,18 @@ public abstract class HumanoidModelMixin {
     private static final float MAIN_TUCK = 0.25F;       // main arm roll toward the centre
     private static final float SUPPORT_TUCK = 0.55F;    // support arm roll toward the centre
     private static final float MAIN_BLEND = 0.80F;      // 0 = keep vanilla arm pose, 1 = full two-hand pose
+    private static final float SWING_AMOUNT = 1.6F;     // extra swing arc added to both arms
     // --------------------------------------------------------------------------
 
     @Inject(method = "setupAnim", at = @At("TAIL"))
     private void senbonzakura$poseTwoHanded(LivingEntity entity, float limbSwing, float limbSwingAmount,
                                             float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+        // Vanilla's first-person PlayerRenderer.renderHand calls setupAnim with
+        // all animation params zeroed. Leave those arms alone so the
+        // first-person TwoHandedWeaponRenderer keeps full control of them.
+        if (ageInTicks == 0.0F && limbSwing == 0.0F && limbSwingAmount == 0.0F
+                && netHeadYaw == 0.0F && headPitch == 0.0F) return;
+
         if (!(entity instanceof Player player)) return;
 
         ItemStack mainHand = player.getMainHandItem();
@@ -71,6 +79,21 @@ public abstract class HumanoidModelMixin {
         support.xRot = -SUPPORT_REACH;
         support.yRot = side * SUPPORT_ACROSS;
         support.zRot = side * SUPPORT_TUCK;
+
+        // Amplify the attack swing. Vanilla only animates the weapon arm and our
+        // convergence pose dampens it further, so drive both arms together for a
+        // proper two-handed sweep.
+        if (this.attackTime > 0.0F) {
+            float f = 1.0F - this.attackTime;
+            f *= f;
+            f *= f;
+            f = 1.0F - f;
+            float swing = Mth.sin(f * (float) Math.PI) * SWING_AMOUNT;
+            main.xRot -= swing;
+            support.xRot -= swing;
+            main.zRot += swing * 0.25F;
+            support.zRot -= swing * 0.25F;
+        }
     }
 
     private static boolean isTwoHanded(ItemStack stack) {

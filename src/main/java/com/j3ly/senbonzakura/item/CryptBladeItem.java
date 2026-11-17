@@ -2,6 +2,7 @@ package com.j3ly.senbonzakura.item;
 
 import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
+import com.j3ly.senbonzakura.network.ModNetworking;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -161,6 +162,9 @@ public class CryptBladeItem extends AxeItem {
     }
 
     private void performExplosion(Player player, ServerLevel level) {
+        // Show a full 360 degree spin so other players can see the slash.
+        ModNetworking.sendSpin(player, 360.0F, 12, false);
+
         Vec3 pos = player.position();
         double explosionRadius = 8.0;
 

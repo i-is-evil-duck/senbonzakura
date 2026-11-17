@@ -5,7 +5,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 1.7.8
+- **Version:** 1.7.9
 
 ## All Items
 
@@ -51,7 +51,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Admin controls:** global `/droprate` multiplier, per-player `/drop` and `/nodrop`, and gamerules for optional ability XP costs.
 - **Wendigo support:** compatible with bow-style enchants (e.g. Power, Flame) plus the custom **Increased Arrows (I–V)** enchantment.
 - **Two-handed holds:** the Crypt Blade, Senbonzakura, and Yuki no Ame are gripped with both hands in first person and third person (F5 / other players). In third person both arms rotate inward so the hands meet on the grip slightly right of centre. Holding an item in the offhand returns to a one-handed hold.
-- **Visible sweep animations:** the Crescent Blade's 360° slash and the Sentence's 180° swing spin the player model (and held weapon) so nearby players can see the attack.
+- **Visible sweep animations:** the Crypt Blade and Crescent Blade's 360° slashes and the Sentence's 180° swing spin the player model (and held weapon) so nearby players can see the attack.
 
 ## Potion Effects
 

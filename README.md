@@ -3,7 +3,7 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 1.7.8 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.7.9 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 
@@ -57,7 +57,7 @@ Output jar: `build/libs/senbonzakura-<version>.jar`
 **Combat visuals**
 
 - **Two-handed holds:** the Crypt Blade, Senbonzakura, and Yuki no Ame are gripped with both hands in first person and third person (F5 / other players). In third person both arms rotate inward so the hands meet on the grip slightly right of centre. Holding an item in the offhand returns to a one-handed hold.
-- **Visible sweep animations:** the Crescent Blade's 360° slash and the Sentence's 180° swing spin the player model (and held weapon) so nearby players can see the attack.
+- **Visible sweep animations:** the Crypt Blade and Crescent Blade's 360° slashes and the Sentence's 180° swing spin the player model (and held weapon) so nearby players can see the attack.
 
 ---
 
