@@ -29,9 +29,8 @@ import net.neoforged.neoforge.client.event.RenderHandEvent;
 public class CryptBladeHandRenderer {
 
     // --- Tweak these to line the support hand up with the blade grip in-game ---
-    private static final float GRIP_OFFSET_X = 0.35F;
-    private static final float GRIP_OFFSET_Y = 0.25F;
-    private static final float GRIP_OFFSET_Z = -0.15F;
+    private static final float GRIP_UP_DOWN = 0.55F; // lower = arm sits lower on the blade
+    private static final float GRIP_FORWARD = 0.57F;
     // --------------------------------------------------------------------------
 
     @SubscribeEvent
@@ -58,26 +57,44 @@ public class CryptBladeHandRenderer {
         EntityRenderDispatcher dispatcher = mc.getEntityRenderDispatcher();
         if (!(dispatcher.getRenderer(player) instanceof PlayerRenderer renderer)) return;
 
-        HumanoidArm supportArm = player.getMainArm() == HumanoidArm.RIGHT
-                ? HumanoidArm.LEFT : HumanoidArm.RIGHT;
-        float side = supportArm == HumanoidArm.RIGHT ? 1.0F : -1.0F;
+        HumanoidArm mainArm = player.getMainArm();
+        float mainSide = mainArm == HumanoidArm.RIGHT ? 1.0F : -1.0F;
+        HumanoidArm supportArm = mainArm == HumanoidArm.RIGHT ? HumanoidArm.LEFT : HumanoidArm.RIGHT;
+        float supportSide = supportArm == HumanoidArm.RIGHT ? 1.0F : -1.0F;
 
         PoseStack pose = event.getPoseStack();
         pose.pushPose();
 
-        // Follow the main hand's swing so the support hand stays near the blade.
         float swing = event.getSwingProgress();
-        float swingX = -0.4F * Mth.sin(Mth.sqrt(swing) * (float) Math.PI);
-        float swingY = 0.2F * Mth.sin(Mth.sqrt(swing) * (float) (Math.PI * 2));
-        float swingZ = -0.2F * Mth.sin(swing * (float) Math.PI);
+        float rootSwing = Mth.sqrt(swing);
 
-        // View-space shift toward the blade, then the vanilla map-hand pose that
-        // brings an arm up from below into the middle of the view.
-        pose.translate(GRIP_OFFSET_X + swingX, GRIP_OFFSET_Y + swingY, GRIP_OFFSET_Z + swingZ);
+        // Match the main-hand item's transform chain exactly so the support hand
+        // stays glued to the blade through the whole swing/equip animation.
+        // 1) swing translation
+        pose.translate(
+                mainSide * -0.4F * Mth.sin(rootSwing * (float) Math.PI),
+                0.2F * Mth.sin(rootSwing * (float) (Math.PI * 2)),
+                -0.2F * Mth.sin(swing * (float) Math.PI)
+        );
+        // 2) base arm transform
+        pose.translate(mainSide * 0.56F, -0.52F + event.getEquipProgress() * -0.6F, -0.72F);
+        // 3) attack rotation
+        float attackF = Mth.sin(swing * swing * (float) Math.PI);
+        pose.mulPose(Axis.YP.rotationDegrees(mainSide * (45.0F + attackF * -20.0F)));
+        float swingF = Mth.sin(rootSwing * (float) Math.PI);
+        pose.mulPose(Axis.ZP.rotationDegrees(mainSide * swingF * -20.0F));
+        pose.mulPose(Axis.XP.rotationDegrees(swingF * -80.0F));
+        pose.mulPose(Axis.YP.rotationDegrees(mainSide * -45.0F));
+
+        // 4) grip offset. X mirrors with the main hand; the base transform was
+        // subtracted out so the idle pose matches the previous tuning.
+        pose.translate(mainSide * -0.21F, GRIP_UP_DOWN, GRIP_FORWARD);
+
+        // 5) vanilla map-hand pose that brings the arm up from below the view.
         pose.mulPose(Axis.YP.rotationDegrees(92.0F));
         pose.mulPose(Axis.XP.rotationDegrees(45.0F));
-        pose.mulPose(Axis.ZP.rotationDegrees(side * -41.0F));
-        pose.translate(side * 0.3F, -1.1F, 0.45F);
+        pose.mulPose(Axis.ZP.rotationDegrees(supportSide * -41.0F));
+        pose.translate(supportSide * 0.3F, -1.1F, 0.45F);
 
         if (supportArm == HumanoidArm.RIGHT) {
             renderer.renderRightHand(pose, event.getMultiBufferSource(), event.getPackedLight(), player);

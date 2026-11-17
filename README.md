@@ -3,7 +3,7 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 1.7.5 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.7.6 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 
@@ -53,6 +53,10 @@ Output jar: `build/libs/senbonzakura-<version>.jar`
 | **Shiny Coin** | Coin | Craft (shapeless): 1 Gold Ingot + 1 Iron Ingot + 2 Copper Ingots | Premium currency/collectible coin. |
 
 > *Notes:* Direct weapon/material drop rates above are base rates; effective chance is scaled by `/droprate` (global) and per-player `/drop`/`/nodrop`. "Iron Ingot" is used as silver in coin recipes.
+
+**Combat visuals**
+
+- **Visible sweep animations:** the Crescent Blade's 360° slash and the Senbonzakura / Yuki no Ame 180° sweeps spin the player model (and held weapon) so nearby players can see the attack.
 
 ---
 

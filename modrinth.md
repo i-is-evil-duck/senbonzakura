@@ -5,7 +5,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 1.7.5
+- **Version:** 1.7.6
 
 ## All Items
 
@@ -50,6 +50,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Ability cooldown bars:** weapon ability cooldowns display on the item durability bar.
 - **Admin controls:** global `/droprate` multiplier, per-player `/drop` and `/nodrop`, and gamerules for optional ability XP costs.
 - **Wendigo support:** compatible with bow-style enchants (e.g. Power, Flame) plus the custom **Increased Arrows (I–V)** enchantment.
+- **Visible sweep animations:** the Crescent Blade's 360° slash and the Senbonzakura / Yuki no Ame 180° sweeps spin the player model (and held weapon) so nearby players can see the attack.
 
 ## Potion Effects
 

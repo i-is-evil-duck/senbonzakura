@@ -2,6 +2,7 @@ package com.j3ly.senbonzakura.item;
 
 import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
+import com.j3ly.senbonzakura.network.ModNetworking;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -156,6 +157,9 @@ public class SenbonzakuraItem extends SwordItem {
     }
 
     private void performSweepAttack(Player player, ServerLevel level) {
+        // Show a 180 degree sweep that returns to the original facing.
+        ModNetworking.sendSpin(player, 180.0F, 10, true);
+
         Vec3 pos = player.position();
         Vec3 look = player.getLookAngle();
 
