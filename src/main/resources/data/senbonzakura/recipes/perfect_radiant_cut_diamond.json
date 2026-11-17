@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "senbonzakura:excellent_princess_diamond"
+    },
+    {
+      "item": "senbonzakura:excellent_princess_diamond"
+    },
+    {
+      "item": "senbonzakura:excellent_princess_diamond"
+    },
+    {
+      "item": "senbonzakura:excellent_princess_diamond"
+    },
+    {
+      "item": "senbonzakura:excellent_princess_diamond"
+    },
+    {
+      "item": "senbonzakura:excellent_princess_diamond"
+    },
+    {
+      "item": "senbonzakura:excellent_princess_diamond"
+    },
+    {
+      "item": "senbonzakura:excellent_princess_diamond"
+    },
+    {
+      "item": "senbonzakura:excellent_princess_diamond"
+    }
+  ],
+  "result": {
+    "id": "senbonzakura:perfect_radiant_cut_diamond",
+    "count": 1
+  }
+}

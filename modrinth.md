@@ -5,7 +5,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 1.6.8
+- **Version:** 1.7.0
 
 ## All Items
 
@@ -21,12 +21,14 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 | **Razor Shark** | Weapon (Axe) | Drop: Elder Guardian 1/35, Guardian 1/350, Drowned 1/1250 | 13 ATK. Hold right-click 1.5s to fire a bubble beam (35 blocks, knockback) — 9s CD; grants Night Vision & Water Breathing in inventory. |
 | **Sentence** | Weapon (Axe) | Drop: Warden/Wither/Ender Dragon 1/44 | 13 ATK. Hold right-click 1.5s for a 180° swing (6-block range) — 9s CD; applies Darkness & Wither (5s) to targets. |
 | **Wendigo** | Weapon (Sword) | Drop: Skeletons/Stray/Wither Skeleton 1/1250 | 15 ATK. Right-click fires 64 arrows (10s CD); hits apply Slowness (2s). Supports bow enchants and Increased Arrows. |
+| **Empire Staff** | Weapon (Staff) | Craft: 1 Perfect Radiant Cut Diamond + 1 Blaze Rod + 1 Breeze Rod | 12 ATK, 1.6 swing speed. Hold right-click 2s to drop 6 random splash potions (good/bad, 7s duration) around you and nearby enemies — 15s CD. White divine particles. |
 | **God Rock** | Weapon/Special | Craft: 1 Yuki no Ame + 2 Crescent Blade of Winds + 1 Crypt Blade + 1 Rite of Commandments + 1 Pyrerizer | 19.5 ATK, unbreakable; grants Resistance II while held with yellow sparkles. |
 | **Inky Pearl** | Material | Drop: Elder Guardian 1/90, Guardian/Drowned 1/900. Craft: 1 Eye of Ender + 6 Netherite Ingots + 2 Ink Sacs | Dark aquatic pearl used in weapon crafting. |
 | **Exalted Blossom** | Material | Drop: Cherry Blossom Leaves 1/7500 | Rare cherry blossom essence used to craft Senbonzakura. |
 | **Ancient Amber** | Material | Drop: Breaking/stripping logs with an axe 1/900 | Ancient resin used in advanced crafting. |
 | **Sigil of Doom** (`deepwoken_relic`) | Material | Drop: All hostile mobs 1/6000 | Ominous relic used in multiple high-tier weapon recipes. |
 | **Excellent Princess Cut Diamond** | Material | Craft: 3 Diamond Blocks + 1 Crude Jewel + 2 Tamahagane + 3 Stone Bricks | Refined diamond component for elite weapons. |
+| **Perfect Radiant Cut Diamond** | Material | Craft (shapeless): 9 Excellent Princess Cut Diamond | Pinnacle diamond component used to craft the Empire Staff. |
 | **Sacred Threads** | Material | Craft: 1 String + 8 Gold Blocks | Blessed threads used in weapon crafting. |
 | **Crude Jewel** (`crude_jewel_steel`) | Material | Craft: 8 Deepslate Diamond Ore + 1 Diamond Block | Rough jewel refined into Excellent Princess Cut Diamond. |
 | **Tamahagane** | Material | Craft: 3 Iron Blocks + 6 Coal Blocks | High-quality steel used in weapon forging. |

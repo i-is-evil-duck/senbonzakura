@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "senbonzakura:perfect_radiant_cut_diamond"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    },
+    {
+      "item": "minecraft:breeze_rod"
+    }
+  ],
+  "result": {
+    "id": "senbonzakura:empire_staff",
+    "count": 1
+  }
+}

@@ -55,6 +55,8 @@ public class SenbonzakuraMod {
             () -> new SentenceItem(new Item.Properties().fireResistant()));
     public static final DeferredHolder<Item, WendigoItem> WENDIGO = ITEMS.register("wendigo",
             () -> new WendigoItem(new Item.Properties().fireResistant()));
+    public static final DeferredHolder<Item, EmpireStaffItem> EMPIRE_STAFF = ITEMS.register("empire_staff",
+            () -> new EmpireStaffItem(new Item.Properties().fireResistant()));
     public static final DeferredHolder<Item, GodRockItem> GOD_ROCK = ITEMS.register("god_rock",
             () -> new GodRockItem(new Item.Properties()));
 
@@ -64,6 +66,7 @@ public class SenbonzakuraMod {
     public static final DeferredHolder<Item, Item> ANCIENT_AMBER = ITEMS.register("ancient_amber", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> DEEPWOKEN_RELIC = ITEMS.register("deepwoken_relic", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> EXCELLENT_PRINCESS_DIAMOND = ITEMS.register("excellent_princess_diamond", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> PERFECT_RADIANT_CUT_DIAMOND = ITEMS.register("perfect_radiant_cut_diamond", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> SACRED_THREADS = ITEMS.register("sacred_threads", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> CRUDE_JEWEL_STEEL = ITEMS.register("crude_jewel_steel", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> TAMAHAGANE = ITEMS.register("tamahagane", () -> new Item(new Item.Properties()));
@@ -398,6 +401,7 @@ public class SenbonzakuraMod {
             event.accept(RAZOR_SHARK.get());
             event.accept(SENTENCE.get());
             event.accept(WENDIGO.get());
+            event.accept(EMPIRE_STAFF.get());
             event.accept(GOD_ROCK.get());
         }
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
@@ -406,6 +410,7 @@ public class SenbonzakuraMod {
             event.accept(ANCIENT_AMBER.get());
             event.accept(DEEPWOKEN_RELIC.get());
             event.accept(EXCELLENT_PRINCESS_DIAMOND.get());
+            event.accept(PERFECT_RADIANT_CUT_DIAMOND.get());
             event.accept(SACRED_THREADS.get());
             event.accept(CRUDE_JEWEL_STEEL.get());
             event.accept(TAMAHAGANE.get());
