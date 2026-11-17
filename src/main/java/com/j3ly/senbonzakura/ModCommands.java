@@ -24,6 +24,12 @@ public class ModCommands {
                 .then(Commands.argument("multiplier", DoubleArgumentType.doubleArg(0.0001, 1000.0))
                         .executes(ctx -> showDropRates(ctx.getSource(), DoubleArgumentType.getDouble(ctx, "multiplier")))));
 
+        dispatcher.register(Commands.literal("wendigodamage")
+                .requires(src -> src.hasPermission(2))
+                .executes(ctx -> showWendigoDamage(ctx.getSource(), null))
+                .then(Commands.argument("multiplier", DoubleArgumentType.doubleArg(0.0001, 1000.0))
+                        .executes(ctx -> showWendigoDamage(ctx.getSource(), DoubleArgumentType.getDouble(ctx, "multiplier")))));
+
         dispatcher.register(Commands.literal("drop")
                 .requires(src -> src.hasPermission(2))
                 .then(Commands.literal("rate")
@@ -60,6 +66,19 @@ public class ModCommands {
         for (String line : ModDropData.describeRates(level)) {
             source.sendSuccess(() -> Component.literal(line), false);
         }
+        return 1;
+    }
+
+    private static int showWendigoDamage(CommandSourceStack source, Double multiplier) {
+        ServerLevel level = source.getLevel();
+        ModWeaponData data = ModWeaponData.get(level);
+        if (multiplier != null) {
+            data.setWendigoArrowDamageMultiplier(multiplier);
+            final double applied = data.getWendigoArrowDamageMultiplier();
+            source.sendSuccess(() -> Component.literal("Set Wendigo ability arrow damage multiplier to " + trimDouble(applied) + "x"), true);
+        }
+        final double current = data.getWendigoArrowDamageMultiplier();
+        source.sendSuccess(() -> Component.literal("Wendigo ability arrow damage multiplier: " + trimDouble(current) + "x (default 1x)"), false);
         return 1;
     }
 

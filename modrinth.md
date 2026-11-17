@@ -5,7 +5,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 1.9.1
+- **Version:** 1.9.2
 
 ## All Items
 
@@ -20,7 +20,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 | **Yuki no Ame** | Weapon (Sword) | Craft: 1 Senbonzakura + 4 Frozen Core + 4 Excellent Princess Cut Diamond | 12 ATK. Upgraded Senbonzakura dash/sweep (5s CD) with snowflake particles. Fully charged hits have a 25% chance to apply Slowness II + Weakness for 5s. Right-click grants Swiftness II for 7s. |
 | **Razor Shark** | Weapon (Axe) | Drop: Elder Guardian 1/35, Guardian 1/350, Drowned 1/1250 | 13 ATK. Hold right-click 1.5s to aim a bubble stream, then fire a thick bubble laser (35 blocks, knockback, grey smoke flecks) — 9s CD; grants Night Vision & Water Breathing in inventory. |
 | **Sentence** | Weapon (Axe) | Drop: Warden/Wither/Ender Dragon 1/44 | 13 ATK. Hold right-click 1.5s for a 180° swing (6-block range) — 9s CD; applies Darkness & Wither (5s) to targets. |
-| **Wendigo** | Weapon (Sword) | Drop: Skeletons/Stray/Wither Skeleton 1/1250, Silverfish 1/500 | 15 ATK. Right-click fires 64 arrows (10s CD); hits apply Slowness (2s). Supports bow enchants and Increased Arrows. |
+| **Wendigo** | Weapon (Sword) | Drop: Skeletons/Stray/Wither Skeleton 1/1250, Silverfish 1/1500 | 15 ATK. Right-click fires 64 arrows (10s CD); hits apply Slowness (2s). Supports bow enchants and Increased Arrows. |
 | **Empire Staff** | Weapon (Staff) | Craft: 1 Perfect Radiant Cut Diamond + 1 Blaze Rod + 1 Breeze Rod | 12 ATK, 1.6 swing speed. Hold right-click 2s to drop 6 random splash potions (good/bad, 7s duration) around you and nearby enemies — 15s CD. White divine particles. |
 | **God Rock** | Weapon/Special | Craft: 1 Yuki no Ame + 2 Crescent Blade of Winds + 1 Crypt Blade + 1 Rite of Commandments + 1 Pyrerizer | 19.5 ATK, unbreakable; grants Resistance II while held with yellow sparkles. |
 | **Matthias' Curseblade** | Weapon (Sword) | Craft (shapeless): 1 Netherite Sword + 1 Sinner's Ash + 1 Tamahagane | 9 ATK, 1.6 swing speed. Passive: defeated enemies explode with purple particles — only mobs take damage, players are immune, and blocks are untouched. |
@@ -50,7 +50,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 ## Features
 
 - **Ability cooldown bars:** weapon ability cooldowns display on the item durability bar.
-- **Admin controls:** global `/droprate` multiplier, per-player `/drop` and `/nodrop`, and gamerules for optional ability XP costs.
+- **Admin controls:** global `/droprate` multiplier, per-player `/drop` and `/nodrop`, `/wendigodamage` for Wendigo arrow damage, and gamerules for optional ability XP costs.
 - **Wendigo support:** compatible with bow-style enchants (e.g. Power, Flame) plus the custom **Increased Arrows (I–V)** enchantment.
 - **Cindering enchantment (I–III):** ignite and curse targets with the Cindering effect; Enchanted Books up to Cindering III are craftable or found in enchanting tables.
 - **Fix:** the third-person arm-pose mixin no longer shadows an inherited field, which previously aborted resource reload and caused startup/particle crashes.
@@ -80,6 +80,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 
 - `/droprate [multiplier]` or `/drop rate [multiplier]` — view/set global drop multiplier (OP level 2)
 - `/drop <percent> <player>` and `/nodrop <player>` — per-player mod drop control (OP level 2)
+- `/wendigodamage [multiplier]` — view/set damage multiplier for Wendigo's fired arrows (default 1x, applies on top of Power; OP level 2)
 - `/gamerule senbonzakuraAbilityXpCostEnabled true|false`
 - `/gamerule senbonzakuraAbilityXpCostLevels <levels>`
 

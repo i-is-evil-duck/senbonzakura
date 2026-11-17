@@ -337,9 +337,9 @@ public class SenbonzakuraMod {
             }
         }
 
-        // Wendigo - 1/500 from Silverfish
+        // Wendigo - 1/1500 from Silverfish
         if (entity instanceof net.minecraft.world.entity.monster.Silverfish) {
-            if (ModDropData.rollDrop(level, killerId, 500)) {
+            if (ModDropData.rollDrop(level, killerId, 1500)) {
                 event.getDrops().add(new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(WENDIGO.get())));
             }
         }

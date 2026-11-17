@@ -2,6 +2,7 @@ package com.j3ly.senbonzakura.item;
 
 import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
+import com.j3ly.senbonzakura.ModWeaponData;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
@@ -79,6 +80,7 @@ public class WendigoItem extends SwordItem {
         int flame = getEnchantmentLevel(serverLevel, stack, "minecraft", "flame");
 
         int arrowCount = 64 + (extraLevels * 32);
+        double arrowDamageMultiplier = ModWeaponData.get(serverLevel).getWendigoArrowDamageMultiplier();
 
         Vec3 look = player.getLookAngle().normalize();
         Vec3 up = new Vec3(0, 1, 0);
@@ -127,6 +129,8 @@ public class WendigoItem extends SwordItem {
             if (power > 0) {
                 arrow.setBaseDamage(arrow.getBaseDamage() + 0.5D * (double) power + 0.5D);
             }
+            // Operator-tuned multiplier for ability arrows (default 1x config).
+            arrow.setBaseDamage(arrow.getBaseDamage() * arrowDamageMultiplier);
             // Punch knockback API varies by mappings; skipped for compatibility.
             if (flame > 0) {
                 arrow.igniteForSeconds(100);

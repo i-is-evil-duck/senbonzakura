@@ -35,7 +35,7 @@ public class ModDropData extends SavedData {
             new DropRate("Razor Shark", "Drowned", 1250),
             new DropRate("Sentence", "Warden, Wither, Ender Dragon", 44),
             new DropRate("Wendigo", "Skeletons, Stray, Wither Skeleton", 1250),
-            new DropRate("Wendigo", "Silverfish", 500)
+            new DropRate("Wendigo", "Silverfish", 1500)
     );
 
     private final Map<UUID, Integer> dropPercents = new HashMap<>();
