@@ -11,12 +11,14 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
+//? if neoforge {
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
@@ -30,10 +32,13 @@ import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+//?}
 
 import java.util.Random;
 
+//? if neoforge {
 @Mod(SenbonzakuraMod.MOD_ID)
+//?}
 public class SenbonzakuraMod {
     public static final String MOD_ID = "senbonzakura";
     public static final Random random = new Random();
@@ -75,6 +80,8 @@ public class SenbonzakuraMod {
             () -> new EmpireStaffItem(new Item.Properties().fireResistant()));
     public static final DeferredHolder<Item, GodRockItem> GOD_ROCK = ITEMS.register("god_rock",
             () -> new GodRockItem(new Item.Properties()));
+    public static final DeferredHolder<Item, MatthiasCursebladeItem> MATTHIAS_CURSEBLADE = ITEMS.register("matthias_curseblade",
+            () -> new MatthiasCursebladeItem(new Item.Properties().fireResistant()));
 
     // Crafting Items
     public static final DeferredHolder<Item, Item> INKY_PEARL = ITEMS.register("inky_pearl", () -> new Item(new Item.Properties()));
@@ -105,6 +112,7 @@ public class SenbonzakuraMod {
         PARTICLE_TYPES.register(modEventBus);
         MOB_EFFECTS.register(modEventBus);
         modEventBus.addListener(this::addCreative);
+        //? if neoforge {
         NeoForge.EVENT_BUS.addListener(this::onPlayerTick);
         NeoForge.EVENT_BUS.addListener(this::onLevelTick);
         NeoForge.EVENT_BUS.addListener(this::onLivingDamage);
@@ -112,6 +120,7 @@ public class SenbonzakuraMod {
         NeoForge.EVENT_BUS.addListener(this::onLivingDrops);
         NeoForge.EVENT_BUS.addListener(this::onBlockBreak);
         NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);
+        //?}
     }
 
     public void onRegisterCommands(RegisterCommandsEvent event) {
@@ -168,7 +177,21 @@ public class SenbonzakuraMod {
     }
 
     public void onLivingDeath(LivingDeathEvent event) {
-        // Skystone drops from Phantoms/Breeze are handled in onLivingDrops.
+        // Matthias' Curseblade: defeated mobs burst into a mob-only, block-safe blast.
+        LivingEntity victim = event.getEntity();
+        if (!(victim instanceof Mob)) return;
+        if (!(victim.level() instanceof ServerLevel level)) return;
+
+        Player killer = null;
+        if (event.getSource().getEntity() instanceof Player p) {
+            killer = p;
+        } else if (victim.getKillCredit() instanceof Player p) {
+            killer = p;
+        }
+        if (killer == null) return;
+        if (!(killer.getMainHandItem().getItem() instanceof MatthiasCursebladeItem)) return;
+
+        MatthiasCursebladeItem.onVictimDefeated(level, victim, killer);
     }
 
     public void onLivingDrops(LivingDropsEvent event) {
@@ -437,6 +460,7 @@ public class SenbonzakuraMod {
             event.accept(WENDIGO.get());
             event.accept(EMPIRE_STAFF.get());
             event.accept(GOD_ROCK.get());
+            event.accept(MATTHIAS_CURSEBLADE.get());
         }
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(INKY_PEARL.get());

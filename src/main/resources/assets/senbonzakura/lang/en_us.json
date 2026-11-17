@@ -39,5 +39,7 @@
   "enchantment.senbonzakura.cindering": "Cindering",
   "item.senbonzakura.perfect_radiant_cut_diamond": "Perfect Radiant Cut Diamond",
   "item.senbonzakura.empire_staff": "Empire Staff",
+  "item.senbonzakura.matthias_curseblade": "Matthias' Curseblade",
+  "item.senbonzakura.matthias_curseblade.tooltip": "Defeated enemies explode, harming only mobs.",
   "effect.senbonzakura.cindering": "Cindering"
 }

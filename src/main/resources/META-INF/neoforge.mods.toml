@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="*"
+license="All Rights Reserved"
+
+[[mods]]
+modId="${id}"
+version="${version}"
+displayName="${name}"
+authors="j3ly"
+description='''${description}'''
+
+[[dependencies.${id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="*"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="@MOD_MC_RANGE@"
+    ordering="NONE"
+    side="BOTH"
+
+[[mixins]]
+    config="senbonzakura.mixins.json"

@@ -3,16 +3,28 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 1.8.1 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.9.0 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 
 ## Building
 
+The project uses [Stonecutter](https://stonecutter.kikugie.dev/) + Stonecraft so
+new Minecraft versions and mod loaders can be added incrementally from one source
+tree.
+
 ```bash
-./gradlew build
+./gradlew build       # active target: 1.21.1-neoforge
 ```
-Output jar: `build/libs/senbonzakura-<version>.jar`
+
+Output jar: `versions/1.21.1-neoforge/build/libs/senbonzakura-<version>.jar`
+
+**Port status:** NeoForge 1.21.1 is the only built/verified target. The full
+version × loader matrix is declared in `settings.gradle.kts` and is gated behind
+`-PstonecutterAllTargets=true`; the other targets are not ported yet (several
+files use NeoForge-only APIs). Platform-specific entry points are marked with
+Stonecutter `//? if neoforge {` directives. The matrix lives in
+`settings.gradle.kts` and per-version dependency pins in `versions/dependencies/`.
 
 ---
 
@@ -32,6 +44,7 @@ Output jar: `build/libs/senbonzakura-<version>.jar`
 | **Wendigo** | Weapon (Sword) | Drop: Skeletons/Stray/Wither Skeleton 1/1250 | 15 ATK. Right-click fires 64 arrows (10s CD); hits apply Slowness (2s). Supports bow enchants and Increased Arrows. |
 | **Empire Staff** | Weapon (Staff) | Craft: 1 Perfect Radiant Cut Diamond + 1 Blaze Rod + 1 Breeze Rod | 12 ATK, 1.6 swing speed. Hold right-click 2s to drop 6 random splash potions (good/bad, 7s duration) around you and nearby enemies — 15s CD. White divine particles. |
 | **God Rock** | Weapon/Special | Craft: 1 Yuki no Ame + 2 Crescent Blade of Winds + 1 Crypt Blade + 1 Rite of Commandments + 1 Pyrerizer | 19.5 ATK, unbreakable; grants Resistance II while held with yellow sparkles. |
+| **Matthias' Curseblade** | Weapon (Sword) | Craft (shapeless): 1 Netherite Sword + 1 Sinner's Ash + 1 Tamahagane | 9 ATK, 1.6 swing speed. Passive: each defeated mob bursts into purple particles and takes a mob-only explosion — players are never hurt and blocks are never broken. |
 | **Inky Pearl** | Material | Drop: Elder Guardian 1/90, Guardian/Drowned 1/900. Craft: 1 Eye of Ender + 6 Netherite Ingots + 2 Ink Sacs | Dark aquatic pearl used in weapon crafting. |
 | **Exalted Blossom** | Material | Drop: Cherry Blossom Leaves 1/7500 | Rare cherry blossom essence used to craft Senbonzakura. |
 | **Ancient Amber** | Material | Drop: Breaking/stripping logs with an axe 1/900 | Ancient resin used in advanced crafting. |
@@ -62,6 +75,7 @@ Output jar: `build/libs/senbonzakura-<version>.jar`
 
 - **Two-handed holds:** the Crypt Blade, Senbonzakura, and Yuki no Ame are gripped with both hands in first person and third person (F5 / other players). In third person both arms rotate inward so the hands meet on the grip slightly right of centre. Holding an item in the offhand returns to a one-handed hold.
 - **Visible sweep animations:** the Crypt Blade and Crescent Blade's 360° slashes and the Sentence's 180° swing spin the player model (and held weapon) so nearby players can see the attack.
+- **Matthias' Curseblade passive:** a defeated mob triggers a purple burst that damages other mobs only. The blast never hurts players and never destroys blocks.
 
 **Textures**
 
