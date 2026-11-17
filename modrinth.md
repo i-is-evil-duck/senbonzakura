@@ -5,7 +5,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 1.7.7
+- **Version:** 1.7.8
 
 ## All Items
 
@@ -18,7 +18,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 | **Rite of Commandments** | Weapon (Sword) | Craft: 1 Netherite Sword + 2 Ultra Conductive Material + 1 Sigil of Doom + 1 Supreme Alloy + 2 Skystone + 2 Sacred Threads | 14 ATK. Lightning-themed ability with white particles. |
 | **Pyrerizer** | Weapon (Axe) | Craft: 1 Netherite Sword + 3 Sinner's Ash + 3 Cindering Core + 1 Sigil of Doom + 1 Supreme Alloy | 14 ATK. Fire ability (7s CD) with flame/smoke particles. |
 | **Yuki no Ame** | Weapon (Sword) | Craft: 1 Senbonzakura + 4 Frozen Core + 4 Excellent Princess Cut Diamond | 12 ATK. Upgraded Senbonzakura dash/sweep (5s CD) with snowflake particles. Fully charged hits have a 25% chance to apply Slowness II + Weakness for 5s. Right-click grants Swiftness II for 7s. |
-| **Razor Shark** | Weapon (Axe) | Drop: Elder Guardian 1/35, Guardian 1/350, Drowned 1/1250 | 13 ATK. Hold right-click 1.5s to fire a bubble beam (35 blocks, knockback) — 9s CD; grants Night Vision & Water Breathing in inventory. |
+| **Razor Shark** | Weapon (Axe) | Drop: Elder Guardian 1/35, Guardian 1/350, Drowned 1/1250 | 13 ATK. Hold right-click 1.5s to aim a bubble stream, then fire a thick bubble laser (35 blocks, knockback, grey smoke flecks) — 9s CD; grants Night Vision & Water Breathing in inventory. |
 | **Sentence** | Weapon (Axe) | Drop: Warden/Wither/Ender Dragon 1/44 | 13 ATK. Hold right-click 1.5s for a 180° swing (6-block range) — 9s CD; applies Darkness & Wither (5s) to targets. |
 | **Wendigo** | Weapon (Sword) | Drop: Skeletons/Stray/Wither Skeleton 1/1250 | 15 ATK. Right-click fires 64 arrows (10s CD); hits apply Slowness (2s). Supports bow enchants and Increased Arrows. |
 | **Empire Staff** | Weapon (Staff) | Craft: 1 Perfect Radiant Cut Diamond + 1 Blaze Rod + 1 Breeze Rod | 12 ATK, 1.6 swing speed. Hold right-click 2s to drop 6 random splash potions (good/bad, 7s duration) around you and nearby enemies — 15s CD. White divine particles. |
@@ -50,7 +50,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Ability cooldown bars:** weapon ability cooldowns display on the item durability bar.
 - **Admin controls:** global `/droprate` multiplier, per-player `/drop` and `/nodrop`, and gamerules for optional ability XP costs.
 - **Wendigo support:** compatible with bow-style enchants (e.g. Power, Flame) plus the custom **Increased Arrows (I–V)** enchantment.
-- **Two-handed holds:** the Crypt Blade, Senbonzakura, and Yuki no Ame are gripped with both hands in first person and third person (F5 / other players). Holding an item in the offhand returns to a one-handed hold.
+- **Two-handed holds:** the Crypt Blade, Senbonzakura, and Yuki no Ame are gripped with both hands in first person and third person (F5 / other players). In third person both arms rotate inward so the hands meet on the grip slightly right of centre. Holding an item in the offhand returns to a one-handed hold.
 - **Visible sweep animations:** the Crescent Blade's 360° slash and the Sentence's 180° swing spin the player model (and held weapon) so nearby players can see the attack.
 
 ## Potion Effects

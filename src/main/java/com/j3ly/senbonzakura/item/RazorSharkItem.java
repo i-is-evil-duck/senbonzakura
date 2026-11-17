@@ -64,10 +64,15 @@ public class RazorSharkItem extends AxeItem {
         int ticks = chargeTicks.getOrDefault(id, 0) + 1;
         chargeTicks.put(id, ticks);
 
-        if (ticks % 4 == 0) {
-            Vec3 look = player.getLookAngle();
-            Vec3 start = player.getEyePosition().add(look.scale(0.5));
-            serverLevel.sendParticles(ParticleTypes.BUBBLE, start.x, start.y, start.z, 2, 0.05, 0.05, 0.05, 0.01);
+        // A tight stream of bubbles along the aim direction acts as a charging
+        // laser so the player can line the shot up before releasing.
+        if (ticks % 2 == 0) {
+            Vec3 look = player.getLookAngle().normalize();
+            Vec3 start = player.getEyePosition().add(look.scale(0.6));
+            for (double d = 0.0; d <= 35.0; d += 0.75) {
+                Vec3 p = start.add(look.scale(d));
+                serverLevel.sendParticles(ParticleTypes.BUBBLE, p.x, p.y, p.z, 1, 0.03, 0.03, 0.03, 0.0);
+            }
         }
 
         if (ticks >= CHARGE_TIME) {
@@ -109,9 +114,15 @@ public class RazorSharkItem extends AxeItem {
         Set<Integer> hitIds = new HashSet<>();
         for (double d = 0; d <= range; d += 0.5) {
             Vec3 pos = start.add(look.scale(d));
-            serverLevel.sendParticles(ParticleTypes.BUBBLE, pos.x, pos.y, pos.z, 1, 0.05, 0.05, 0.05, 0.0);
+            // Thick beam: several bubbles across the width at each step, rather
+            // than the single-particle aim stream used while charging.
+            serverLevel.sendParticles(ParticleTypes.BUBBLE, pos.x, pos.y, pos.z, 4, 0.16, 0.16, 0.16, 0.02);
             if (d % 2 == 0) {
-                serverLevel.sendParticles(ParticleTypes.BUBBLE_POP, pos.x, pos.y, pos.z, 1, 0.02, 0.02, 0.02, 0.0);
+                serverLevel.sendParticles(ParticleTypes.BUBBLE_POP, pos.x, pos.y, pos.z, 2, 0.12, 0.12, 0.12, 0.0);
+            }
+            // A few grey smoke flecks ride along the beam.
+            if (d % 3 == 0) {
+                serverLevel.sendParticles(ParticleTypes.SMOKE, pos.x, pos.y, pos.z, 1, 0.05, 0.05, 0.05, 0.01);
             }
 
             AABB box = new AABB(pos.x - 0.8, pos.y - 0.8, pos.z - 0.8, pos.x + 0.8, pos.y + 0.8, pos.z + 0.8);
