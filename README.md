@@ -3,7 +3,7 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 1.7.3 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.7.4 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 
@@ -53,6 +53,14 @@ Output jar: `build/libs/senbonzakura-<version>.jar`
 | **Shiny Coin** | Coin | Craft (shapeless): 1 Gold Ingot + 1 Iron Ingot + 2 Copper Ingots | Premium currency/collectible coin. |
 
 > *Notes:* Direct weapon/material drop rates above are base rates; effective chance is scaled by `/droprate` (global) and per-player `/drop`/`/nodrop`. "Iron Ingot" is used as silver in coin recipes.
+
+---
+
+## Potion Effects
+
+| Effect | Description | How to obtain |
+|--------|-------------|---------------|
+| **Cindering** (`senbonzakura:cindering`) | Fire burns out **2x faster**, but fire damage taken is **3x** higher. Shows custom ember particles. | Random Empire Staff splash potions, or `/effect give <targets> senbonzakura:cindering <seconds>` |
 
 ---
 

@@ -1,10 +1,16 @@
 package com.j3ly.senbonzakura;
 
+import com.j3ly.senbonzakura.effect.CinderingEffect;
 import com.j3ly.senbonzakura.item.*;
+import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -33,6 +39,16 @@ public class SenbonzakuraMod {
     public static final Random random = new Random();
 
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
+    public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(Registries.PARTICLE_TYPE, MOD_ID);
+    public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, MOD_ID);
+
+    // Particles
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> CINDERING_PARTICLES =
+            PARTICLE_TYPES.register("cindering_particles", () -> new ModSimpleParticleType(false));
+
+    // Effects
+    public static final DeferredHolder<MobEffect, CinderingEffect> CINDERING =
+            MOB_EFFECTS.register("cindering", CinderingEffect::new);
 
     // Weapons
     public static final DeferredHolder<Item, SenbonzakuraItem> SENBONZAKURA = ITEMS.register("senbonzakura",
@@ -86,6 +102,8 @@ public class SenbonzakuraMod {
     public SenbonzakuraMod(IEventBus modEventBus) {
         ModGameRules.init();
         ITEMS.register(modEventBus);
+        PARTICLE_TYPES.register(modEventBus);
+        MOB_EFFECTS.register(modEventBus);
         modEventBus.addListener(this::addCreative);
         NeoForge.EVENT_BUS.addListener(this::onPlayerTick);
         NeoForge.EVENT_BUS.addListener(this::onLevelTick);
@@ -107,6 +125,11 @@ public class SenbonzakuraMod {
     }
 
     public void onLivingDamage(LivingDamageEvent.Pre event) {
+        // Cindering: fire damage is tripled while the effect is active.
+        if (event.getEntity().hasEffect(CINDERING) && event.getSource().is(DamageTypeTags.IS_FIRE)) {
+            event.setNewDamage(event.getNewDamage() * 3.0f);
+        }
+
         if (!(event.getSource().getEntity() instanceof Player player)) return;
         if (!CrescentBladeItem.isDualWielding(player)) return;
         if (!(player.getMainHandItem().getItem() instanceof CrescentBladeItem)) return;
@@ -435,6 +458,13 @@ public class SenbonzakuraMod {
             event.accept(COPPER_COIN.get());
             event.accept(GOLD_COIN.get());
             event.accept(SHINY_COIN.get());
+        }
+    }
+
+    /** SimpleParticleType's constructor is protected, so expose a public subclass for registration. */
+    public static class ModSimpleParticleType extends SimpleParticleType {
+        public ModSimpleParticleType(boolean overrideLimiter) {
+            super(overrideLimiter);
         }
     }
 }

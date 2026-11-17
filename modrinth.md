@@ -5,7 +5,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 1.7.3
+- **Version:** 1.7.4
 
 ## All Items
 
@@ -50,6 +50,12 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Ability cooldown bars:** weapon ability cooldowns display on the item durability bar.
 - **Admin controls:** global `/droprate` multiplier, per-player `/drop` and `/nodrop`, and gamerules for optional ability XP costs.
 - **Wendigo support:** compatible with bow-style enchants (e.g. Power, Flame) plus the custom **Increased Arrows (I–V)** enchantment.
+
+## Potion Effects
+
+| Effect | Description | How to obtain |
+|--------|-------------|---------------|
+| **Cindering** (`senbonzakura:cindering`) | Fire burns out **2x faster**, but fire damage taken is **3x** higher. Shows custom ember particles. | Random Empire Staff splash potions, or `/effect give <targets> senbonzakura:cindering <seconds>` |
 
 ## Commands & Gamerules
 

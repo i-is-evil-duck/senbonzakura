@@ -2,6 +2,7 @@ package com.j3ly.senbonzakura.item;
 
 import com.j3ly.senbonzakura.AbilityCooldown;
 import com.j3ly.senbonzakura.ModGameRules;
+import com.j3ly.senbonzakura.SenbonzakuraMod;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -65,7 +66,8 @@ public class EmpireStaffItem extends SwordItem {
             MobEffects.HUNGER,
             MobEffects.LEVITATION,
             MobEffects.UNLUCK,
-            MobEffects.DARKNESS
+            MobEffects.DARKNESS,
+            SenbonzakuraMod.CINDERING
     );
 
     public EmpireStaffItem(Properties properties) {
