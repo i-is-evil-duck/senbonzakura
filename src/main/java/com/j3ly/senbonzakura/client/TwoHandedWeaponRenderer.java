@@ -2,6 +2,8 @@ package com.j3ly.senbonzakura.client;
 
 import com.j3ly.senbonzakura.SenbonzakuraMod;
 import com.j3ly.senbonzakura.item.CryptBladeItem;
+import com.j3ly.senbonzakura.item.SenbonzakuraItem;
+import com.j3ly.senbonzakura.item.YukiNoAmeItem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
@@ -18,7 +20,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderHandEvent;
 
 /**
- * Renders a second (support) hand gripping the Crypt Blade in first person.
+ * Renders a second (support) hand gripping two-handed weapons in first person.
  *
  * <p>Uses only APIs that already ship with the mod: {@link RenderHandEvent} is
  * provided by NeoForge, and {@link PlayerRenderer#renderLeftHand} /
@@ -26,12 +28,12 @@ import net.neoforged.neoforge.client.event.RenderHandEvent;
  * access transformers, or third-party dependencies are required.</p>
  */
 @EventBusSubscriber(modid = SenbonzakuraMod.MOD_ID, value = Dist.CLIENT)
-public class CryptBladeHandRenderer {
+public class TwoHandedWeaponRenderer {
 
-    // --- Tweak these to line the support hand up with the blade grip in-game ---
-    private static final float GRIP_UP_DOWN = 0.55F; // lower = arm sits lower on the blade
+    // --- Tweak these to line the support hand up with the grip in-game ---
+    private static final float GRIP_UP_DOWN = 0.55F; // lower = arm sits lower on the weapon
     private static final float GRIP_FORWARD = 0.57F;
-    // --------------------------------------------------------------------------
+    // ----------------------------------------------------------------------
 
     @SubscribeEvent
     public static void onRenderHand(RenderHandEvent event) {
@@ -40,18 +42,18 @@ public class CryptBladeHandRenderer {
         if (player == null) return;
 
         ItemStack mainHand = player.getMainHandItem();
-        boolean cryptBlade = mainHand.getItem() instanceof CryptBladeItem;
+        boolean twoHanded = isTwoHanded(mainHand);
 
         if (event.getHand() == InteractionHand.OFF_HAND) {
-            // Suppress the normal offhand arm while both hands are on the blade.
-            if (cryptBlade && player.getOffhandItem().isEmpty()) {
+            // Suppress the normal offhand arm while both hands are on the weapon.
+            if (twoHanded && player.getOffhandItem().isEmpty()) {
                 event.setCanceled(true);
             }
             return;
         }
 
         if (event.getHand() != InteractionHand.MAIN_HAND) return;
-        if (!cryptBlade) return;
+        if (!twoHanded) return;
         if (!player.getOffhandItem().isEmpty()) return; // a real offhand item wins
 
         EntityRenderDispatcher dispatcher = mc.getEntityRenderDispatcher();
@@ -69,7 +71,7 @@ public class CryptBladeHandRenderer {
         float rootSwing = Mth.sqrt(swing);
 
         // Match the main-hand item's transform chain exactly so the support hand
-        // stays glued to the blade through the whole swing/equip animation.
+        // stays glued to the weapon through the whole swing/equip animation.
         // 1) swing translation
         pose.translate(
                 mainSide * -0.4F * Mth.sin(rootSwing * (float) Math.PI),
@@ -103,5 +105,11 @@ public class CryptBladeHandRenderer {
         }
 
         pose.popPose();
+    }
+
+    private static boolean isTwoHanded(ItemStack stack) {
+        return stack.getItem() instanceof CryptBladeItem
+                || stack.getItem() instanceof SenbonzakuraItem
+                || stack.getItem() instanceof YukiNoAmeItem;
     }
 }
