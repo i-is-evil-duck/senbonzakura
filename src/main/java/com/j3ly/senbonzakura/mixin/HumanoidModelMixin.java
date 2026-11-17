@@ -32,7 +32,6 @@ public abstract class HumanoidModelMixin {
 
     @Shadow public ModelPart rightArm;
     @Shadow public ModelPart leftArm;
-    @Shadow public float attackTime;
 
     // --- Tweak these to line the two hands up with the grip in third person ---
     private static final float MAIN_REACH = 0.90F;      // main arm forward reach (radians)
@@ -83,8 +82,12 @@ public abstract class HumanoidModelMixin {
         // Amplify the attack swing. Vanilla only animates the weapon arm and our
         // convergence pose dampens it further, so drive both arms together for a
         // proper two-handed sweep.
-        if (this.attackTime > 0.0F) {
-            float f = 1.0F - this.attackTime;
+        // Read the swing from the entity itself. Shadowing EntityModel.attackTime
+        // from a HumanoidModel mixin fails at runtime (the field is inherited,
+        // not declared on the mixin target) and crashes resource reload.
+        float attackTime = player.getAttackAnim(1.0F);
+        if (attackTime > 0.0F) {
+            float f = 1.0F - attackTime;
             f *= f;
             f *= f;
             f = 1.0F - f;
