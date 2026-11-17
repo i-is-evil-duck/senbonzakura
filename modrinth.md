@@ -42,6 +42,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 | **Copper Coin** | Coin | Craft (shapeless): 4 Copper Ingots **or** 3 Copper Ingots + 1 Iron Ingot | Basic currency/collectible coin. |
 | **Gold Coin** | Coin | Craft (shapeless): 2 Gold Ingots + 1 Iron Ingot | Valuable currency/collectible coin. |
 | **Shiny Coin** | Coin | Craft (shapeless): 1 Gold Ingot + 1 Iron Ingot + 2 Copper Ingots | Premium currency/collectible coin. |
+| **Enchanted Book (Cindering I–III)** | Enchanted Book | Craft (shapeless): Book + 1/2/3 Cindering Core + 1/2/3 Lapis Lazuli; also from enchanting tables | Stores Cindering I–III for applying to weapons in an anvil. |
 
 > *Notes:* Direct weapon/material drop rates above are base rates; effective chance is scaled by `/droprate` (global) and per-player `/drop`/`/nodrop`. "Iron Ingot" is used as silver in coin recipes.
 
@@ -50,6 +51,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Ability cooldown bars:** weapon ability cooldowns display on the item durability bar.
 - **Admin controls:** global `/droprate` multiplier, per-player `/drop` and `/nodrop`, and gamerules for optional ability XP costs.
 - **Wendigo support:** compatible with bow-style enchants (e.g. Power, Flame) plus the custom **Increased Arrows (I–V)** enchantment.
+- **Cindering enchantment (I–III):** ignite and curse targets with the Cindering effect; Enchanted Books up to Cindering III are craftable or found in enchanting tables.
 - **Fix:** the third-person arm-pose mixin no longer shadows an inherited field, which previously aborted resource reload and caused startup/particle crashes.
 - **Third-person tweak:** the left arm keeps its grip pose while the right arm angles a little further toward the centre. The Sentence's held-item scale has been reduced so it no longer renders oversized.
 - **Two-handed holds:** the Crypt Blade, Senbonzakura, and Yuki no Ame are gripped with both hands in first person and third person (F5 / other players). In third person both arms rotate inward so the hands meet on the grip slightly right of centre. Holding an item in the offhand returns to a one-handed hold.
@@ -60,6 +62,15 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 | Effect | Description | How to obtain |
 |--------|-------------|---------------|
 | **Cindering** (`senbonzakura:cindering`) | Fire burns out **2x faster**, but fire damage taken is **3x** higher. Shows custom ember particles. | Random Empire Staff splash potions, or `/effect give <targets> senbonzakura:cindering <seconds>` |
+
+## Enchantments
+
+| Enchantment | Max level | Effect | Applies to |
+|-------------|-----------|--------|------------|
+| **Increased Arrows** (`senbonzakura:increased_arrows`) | V | +32 arrows per level to Wendigo’s burst (base 64) | Wendigo (enchanting table / anvil / enchanted books) |
+| **Cindering** (`senbonzakura:cindering`) | III | On a direct hit, ignites the target and applies the Cindering effect for 4s at I, +2s per level. While Cindering is active, fire burns out 2x faster but fire damage taken is 3x higher. | All Senbonzakura weapons (enchanting table / anvil / enchanted books) |
+
+**Cindering books:** Enchanted Books with Cindering I, II, or III can be found in enchanting tables (surround with bookshelves for higher levels) or crafted shapelessly from a Book, 1/2/3 Cindering Cores and 1/2/3 Lapis Lazuli. Combine books in an anvil to reach Cindering III.
 
 ## Commands & Gamerules
 
