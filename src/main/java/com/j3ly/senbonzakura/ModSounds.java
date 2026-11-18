@@ -45,6 +45,8 @@ public final class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> EMPIRE_STAFF_CAST = register("empire_staff_cast");
     public static final DeferredHolder<SoundEvent, SoundEvent> GOD_ROCK_PULSE = register("god_rock_pulse");
     public static final DeferredHolder<SoundEvent, SoundEvent> MATTHIAS_CURSEBLADE_BURST = register("matthias_curseblade_burst");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DUCKYS_WAND_DUCK = register("duckys_wand_duck");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DUCKYS_WAND_DOMAIN = register("duckys_wand_domain");
 
     private ModSounds() {
     }

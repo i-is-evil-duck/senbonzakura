@@ -41,6 +41,9 @@
   "item.senbonzakura.empire_staff": "Empire Staff",
   "item.senbonzakura.matthias_curseblade": "Matthias' Curseblade",
   "item.senbonzakura.matthias_curseblade.tooltip": "Defeated enemies explode, harming only mobs.",
+  "item.senbonzakura.duckys_wand": "Ducky's Wand",
+  "item.senbonzakura.duckys_wand.tooltip": "Left-click fires ducks (3 hearts, ignores armor). Right-click opens Ducky Domain: all players and mobs within 15 blocks are trapped for 30s. 120s cooldown.",
+  "item.senbonzakura.duck_egg": "Duck Egg",
   "effect.senbonzakura.cindering": "Cindering",
   "subtitle.senbonzakura.senbonzakura_swing": "Senbonzakura sweeps",
   "subtitle.senbonzakura.crescent_blade_slash": "Crescent Blade slashes",
@@ -54,5 +57,7 @@
   "subtitle.senbonzakura.wendigo_arrows": "Wendigo fires arrows",
   "subtitle.senbonzakura.empire_staff_cast": "Empire Staff casts",
   "subtitle.senbonzakura.god_rock_pulse": "God Rock pulses",
-  "subtitle.senbonzakura.matthias_curseblade_burst": "Curseblade bursts"
+  "subtitle.senbonzakura.matthias_curseblade_burst": "Curseblade bursts",
+  "subtitle.senbonzakura.duckys_wand_duck": "Duck quacks",
+  "subtitle.senbonzakura.duckys_wand_domain": "Ducky Domain opens"
 }

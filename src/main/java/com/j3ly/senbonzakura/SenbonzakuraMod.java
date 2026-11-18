@@ -27,9 +27,11 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
+import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 //?}
@@ -82,6 +84,8 @@ public class SenbonzakuraMod {
             () -> new GodRockItem(new Item.Properties()));
     public static final DeferredHolder<Item, MatthiasCursebladeItem> MATTHIAS_CURSEBLADE = ITEMS.register("matthias_curseblade",
             () -> new MatthiasCursebladeItem(new Item.Properties().fireResistant()));
+    public static final DeferredHolder<Item, DuckysWandItem> DUCKYS_WAND = ITEMS.register("duckys_wand",
+            () -> new DuckysWandItem(new Item.Properties().fireResistant().stacksTo(1)));
 
     // Crafting Items
     public static final DeferredHolder<Item, Item> INKY_PEARL = ITEMS.register("inky_pearl", () -> new Item(new Item.Properties()));
@@ -100,6 +104,10 @@ public class SenbonzakuraMod {
     public static final DeferredHolder<Item, Item> DARKENED_RUBBLE = ITEMS.register("darkened_rubble", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> SINNERS_ASH = ITEMS.register("sinners_ash", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> FROZEN_CORE = ITEMS.register("frozen_core", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> DUCK_EGG = ITEMS.register("duck_egg", () -> new Item(new Item.Properties()));
+
+    // Internal projectile item (never shown in creative tabs)
+    public static final DeferredHolder<Item, Item> DUCK_PROJECTILE = ITEMS.register("duck_projectile", () -> new Item(new Item.Properties()));
 
     // Coins
     public static final DeferredHolder<Item, Item> COPPER_COIN = ITEMS.register("copper_coin", () -> new Item(new Item.Properties()));
@@ -122,6 +130,8 @@ public class SenbonzakuraMod {
         NeoForge.EVENT_BUS.addListener(this::onLivingDeath);
         NeoForge.EVENT_BUS.addListener(this::onLivingDrops);
         NeoForge.EVENT_BUS.addListener(this::onBlockBreak);
+        NeoForge.EVENT_BUS.addListener(this::onAttackEntity);
+        NeoForge.EVENT_BUS.addListener(this::onServerTick);
         NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);
         //?}
     }
@@ -177,6 +187,21 @@ public class SenbonzakuraMod {
         } else if (mainHand.getItem() instanceof SentenceItem) {
             spawnRedSwordParticles(level, player);
         }
+
+        if (mainHand.getItem() instanceof DuckysWandItem) {
+            DuckysWandItem.tickSwing(player, level);
+        }
+    }
+
+    public void onAttackEntity(AttackEntityEvent event) {
+        // Ducky's Wand replaces melee swings with duck projectiles.
+        if (event.getEntity().getMainHandItem().getItem() instanceof DuckysWandItem) {
+            event.setCanceled(true);
+        }
+    }
+
+    public void onServerTick(ServerTickEvent.Post event) {
+        DuckyDomain.tick(event.getServer());
     }
 
     public void onLivingDeath(LivingDeathEvent event) {
@@ -206,6 +231,16 @@ public class SenbonzakuraMod {
             killerId = p.getUUID();
         } else if (entity instanceof net.minecraft.world.entity.LivingEntity living && living.getKillCredit() instanceof Player p) {
             killerId = p.getUUID();
+        }
+
+        // Duck Egg - 1/100 when a chicken drowns
+        if (entity instanceof net.minecraft.world.entity.animal.Chicken
+                && event.getSource().is(net.minecraft.world.damagesource.DamageTypes.DROWN)) {
+            if (ModDropData.rollDrop(level, killerId, 100)) {
+                event.getDrops().add(new ItemEntity(
+                        level, entity.getX(), entity.getY(), entity.getZ(),
+                        new ItemStack(DUCK_EGG.get())));
+            }
         }
 
         // Inky Pearls - 1/90 Elder Guardian, 1/900 Guardian/Drowned (craftable alternative)
@@ -485,6 +520,7 @@ public class SenbonzakuraMod {
             event.accept(EMPIRE_STAFF.get());
             event.accept(GOD_ROCK.get());
             event.accept(MATTHIAS_CURSEBLADE.get());
+            event.accept(DUCKYS_WAND.get());
         }
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(INKY_PEARL.get());
@@ -503,6 +539,7 @@ public class SenbonzakuraMod {
             event.accept(DARKENED_RUBBLE.get());
             event.accept(SINNERS_ASH.get());
             event.accept(FROZEN_CORE.get());
+            event.accept(DUCK_EGG.get());
             event.accept(COPPER_COIN.get());
             event.accept(GOLD_COIN.get());
             event.accept(SHINY_COIN.get());

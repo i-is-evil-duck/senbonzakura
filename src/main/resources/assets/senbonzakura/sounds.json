@@ -50,5 +50,13 @@
   "matthias_curseblade_burst": {
     "subtitle": "subtitle.senbonzakura.matthias_curseblade_burst",
     "sounds": ["senbonzakura:matthias_curseblade_burst"]
+  },
+  "duckys_wand_duck": {
+    "subtitle": "subtitle.senbonzakura.duckys_wand_duck",
+    "sounds": ["senbonzakura:duckys_wand_duck"]
+  },
+  "duckys_wand_domain": {
+    "subtitle": "subtitle.senbonzakura.duckys_wand_domain",
+    "sounds": ["senbonzakura:duckys_wand_domain"]
   }
 }

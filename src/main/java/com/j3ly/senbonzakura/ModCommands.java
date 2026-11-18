@@ -30,6 +30,19 @@ public class ModCommands {
                 .then(Commands.argument("multiplier", DoubleArgumentType.doubleArg(0.0001, 1000.0))
                         .executes(ctx -> showWendigoDamage(ctx.getSource(), DoubleArgumentType.getDouble(ctx, "multiplier")))));
 
+        dispatcher.register(Commands.literal("duckydomain")
+                .requires(src -> src.hasPermission(2))
+                .executes(ctx -> {
+                    ctx.getSource().sendSuccess(() -> Component.literal(DuckyDomain.status()), false);
+                    return 1;
+                })
+                .then(Commands.literal("end")
+                        .executes(ctx -> {
+                            DuckyDomain.close(ctx.getSource().getServer());
+                            ctx.getSource().sendSuccess(() -> Component.literal("Ducky Domain ended."), true);
+                            return 1;
+                        })));
+
         dispatcher.register(Commands.literal("drop")
                 .requires(src -> src.hasPermission(2))
                 .then(Commands.literal("rate")

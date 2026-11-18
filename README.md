@@ -3,7 +3,7 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 1.9.2 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.9.3 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ---
 
@@ -45,6 +45,7 @@ Stonecutter `//? if neoforge {` directives. The matrix lives in
 | **Empire Staff** | Weapon (Staff) | Craft: 1 Perfect Radiant Cut Diamond + 1 Blaze Rod + 1 Breeze Rod | 12 ATK, 1.6 swing speed. Hold right-click 2s to drop 6 random splash potions (good/bad, 7s duration) around you and nearby enemies — 15s CD. White divine particles. |
 | **God Rock** | Weapon/Special | Craft: 1 Yuki no Ame + 2 Crescent Blade of Winds + 1 Crypt Blade + 1 Rite of Commandments + 1 Pyrerizer | 19.5 ATK, unbreakable; grants Resistance II while held with yellow sparkles. |
 | **Matthias' Curseblade** | Weapon (Sword) | Craft (shapeless): 1 Netherite Sword + 1 Sinner's Ash + 1 Tamahagane | 9 ATK, 1.6 swing speed. Passive: each defeated mob bursts into purple particles and takes a mob-only explosion — players are never hurt and blocks are never broken. |
+| **Ducky's Wand** | Weapon (Wand) | Craft (shapeless): 1 Duck Egg + 1 Breeze Rod + 1 Gold Coin | 19 ATK, 1.6 swing speed. Left-click fires ducks dealing 3 hearts of magic damage (ignores armor). Right-click opens Ducky Domain: all players and mobs within 15 blocks are pulled into a sealed same-world arena for 30s, then returned — 120s CD. |
 | **Inky Pearl** | Material | Drop: Elder Guardian 1/90, Guardian/Drowned 1/900. Craft: 1 Eye of Ender + 6 Netherite Ingots + 2 Ink Sacs | Dark aquatic pearl used in weapon crafting. |
 | **Exalted Blossom** | Material | Drop: Cherry Blossom Leaves 1/7500 | Rare cherry blossom essence used to craft Senbonzakura. |
 | **Ancient Amber** | Material | Drop: Breaking/stripping logs with an axe 1/900 | Ancient resin used in advanced crafting. |
@@ -61,6 +62,7 @@ Stonecutter `//? if neoforge {` directives. The matrix lives in
 | **Darkened Rubble** | Material | Drop: Wither Skeleton/Magma Cube/Blaze/Piglin/Zombified Piglin/Ghast (Nether) 1/1500. Craft: 4 Netherite Ingots + 4 Gilded Blackstone + 1 Nether Star | Nether debris material used in powerful alloys and ash. |
 | **Sinner's Ash** | Material | Drop: Ender Dragon/Wither/Warden 1/30. Craft: 3 Wither Skeleton Skulls + 1 Netherite Ingot + 2 Darkened Rubble | Remains of mighty foes used in dark weapon crafting. |
 | **Frozen Core** | Material | Craft: 1 Cindering Core + 1 Skystone | Chilled core used to craft Yuki no Ame. |
+| **Duck Egg** | Material | Drop: Chicken drowned 1/100 | Rare egg used with a Breeze Rod and Gold Coin to craft Ducky's Wand. |
 | **Copper Coin** | Coin | Craft (shapeless): 4 Copper Ingots **or** 3 Copper Ingots + 1 Iron Ingot | Basic currency/collectible coin. |
 | **Gold Coin** | Coin | Craft (shapeless): 2 Gold Ingots + 1 Iron Ingot | Valuable currency/collectible coin. |
 | **Shiny Coin** | Coin | Craft (shapeless): 1 Gold Ingot + 1 Iron Ingot + 2 Copper Ingots | Premium currency/collectible coin. |
@@ -79,7 +81,7 @@ Stonecutter `//? if neoforge {` directives. The matrix lives in
 
 **Custom ability sounds**
 
-Every weapon now has its own sound event and a short placeholder tone in `assets/senbonzakura/sounds/`. To replace one, drop an `.ogg` at `assets/senbonzakura/sounds/<name>.ogg` with the same name as the entry in `sounds.json` — no code changes needed. Names: `senbonzakura_swing`, `crescent_blade_slash`, `crypt_blade_blast`, `saw_blade_axe_spin`, `rite_of_commandments_thunder`, `pyrerizer_flame`, `yuki_no_ame_swing`, `razor_shark_laser`, `sentence_swing`, `wendigo_arrows`, `empire_staff_cast`, `god_rock_pulse`, `matthias_curseblade_burst`.
+Every weapon now has its own sound event and a short placeholder tone in `assets/senbonzakura/sounds/`. To replace one, drop an `.ogg` at `assets/senbonzakura/sounds/<name>.ogg` with the same name as the entry in `sounds.json` — no code changes needed. Names: `senbonzakura_swing`, `crescent_blade_slash`, `crypt_blade_blast`, `saw_blade_axe_spin`, `rite_of_commandments_thunder`, `pyrerizer_flame`, `yuki_no_ame_swing`, `razor_shark_laser`, `sentence_swing`, `wendigo_arrows`, `empire_staff_cast`, `god_rock_pulse`, `matthias_curseblade_burst`, `duckys_wand_duck`, `duckys_wand_domain`.
 
 **Textures**
 
@@ -130,6 +132,13 @@ Scales the damage of the arrows fired by Wendigo's right-click ability (melee da
 ```
 
 - Applies on top of bow enchantments such as Power. Persists per world.
+
+### Ducky Domain control (operator level 2+)
+
+```mcfunction
+/duckydomain          # Show whether a domain is active and how long remains
+/duckydomain end      # End the active domain immediately and return everyone
+```
 
 ### Ability XP Cost (game rules)
 

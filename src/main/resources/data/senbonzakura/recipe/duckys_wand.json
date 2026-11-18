@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "combat",
+  "ingredients": [
+    {
+      "item": "senbonzakura:duck_egg"
+    },
+    {
+      "item": "minecraft:breeze_rod"
+    },
+    {
+      "item": "senbonzakura:gold_coin"
+    }
+  ],
+  "result": {
+    "id": "senbonzakura:duckys_wand",
+    "count": 1
+  }
+}
