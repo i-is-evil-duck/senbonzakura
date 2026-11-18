@@ -23,5 +23,12 @@ description='''${description}'''
     ordering="NONE"
     side="BOTH"
 
+[[dependencies.${id}]]
+    modId="duckys_duck_mod"
+    type="optional"
+    versionRange="*"
+    ordering="NONE"
+    side="BOTH"
+
 [[mixins]]
     config="senbonzakura.mixins.json"

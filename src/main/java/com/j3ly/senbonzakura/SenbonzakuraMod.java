@@ -223,9 +223,14 @@ public class SenbonzakuraMod {
     }
 
     public void onLivingDrops(LivingDropsEvent event) {
-        if (!(event.getEntity().level() instanceof ServerLevel level)) return;
-
         Entity entity = event.getEntity();
+        // Ducks spawned by Ducky's Wand die on impact without leaving loot.
+        if (entity.getPersistentData().getBoolean(DuckCompat.NO_DROPS_KEY)) {
+            event.getDrops().clear();
+            return;
+        }
+        if (!(entity.level() instanceof ServerLevel level)) return;
+
         java.util.UUID killerId = null;
         if (event.getSource().getEntity() instanceof Player p) {
             killerId = p.getUUID();
