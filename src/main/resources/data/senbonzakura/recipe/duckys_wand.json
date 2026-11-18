@@ -1,17 +1,22 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "minecraft:crafting_shaped",
   "category": "combat",
-  "ingredients": [
-    {
-      "item": "senbonzakura:duck_egg"
+  "pattern": [
+    "G",
+    "B",
+    "S"
+  ],
+  "key": {
+    "G": {
+      "item": "senbonzakura:gold_duck_egg"
     },
-    {
+    "B": {
       "item": "minecraft:breeze_rod"
     },
-    {
-      "item": "senbonzakura:gold_coin"
+    "S": {
+      "item": "senbonzakura:shiny_coin"
     }
-  ],
+  },
   "result": {
     "id": "senbonzakura:duckys_wand",
     "count": 1

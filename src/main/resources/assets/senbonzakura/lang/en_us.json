@@ -44,6 +44,7 @@
   "item.senbonzakura.duckys_wand": "Ducky's Wand",
   "item.senbonzakura.duckys_wand.tooltip": "Left-click fires ducks (3 hearts, ignores armor). Right-click opens Ducky Domain: all players and mobs within 15 blocks are trapped for 30s. 120s cooldown.",
   "item.senbonzakura.duck_egg": "Duck Egg",
+  "item.senbonzakura.gold_duck_egg": "Gold Duck Egg",
   "effect.senbonzakura.cindering": "Cindering",
   "subtitle.senbonzakura.senbonzakura_swing": "Senbonzakura sweeps",
   "subtitle.senbonzakura.crescent_blade_slash": "Crescent Blade slashes",

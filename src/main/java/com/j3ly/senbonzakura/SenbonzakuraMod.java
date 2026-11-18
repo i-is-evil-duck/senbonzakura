@@ -105,6 +105,7 @@ public class SenbonzakuraMod {
     public static final DeferredHolder<Item, Item> SINNERS_ASH = ITEMS.register("sinners_ash", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> FROZEN_CORE = ITEMS.register("frozen_core", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> DUCK_EGG = ITEMS.register("duck_egg", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> GOLD_DUCK_EGG = ITEMS.register("gold_duck_egg", () -> new Item(new Item.Properties()));
 
     // Internal projectile item (never shown in creative tabs)
     public static final DeferredHolder<Item, Item> DUCK_PROJECTILE = ITEMS.register("duck_projectile", () -> new Item(new Item.Properties()));
@@ -545,6 +546,7 @@ public class SenbonzakuraMod {
             event.accept(SINNERS_ASH.get());
             event.accept(FROZEN_CORE.get());
             event.accept(DUCK_EGG.get());
+            event.accept(GOLD_DUCK_EGG.get());
             event.accept(COPPER_COIN.get());
             event.accept(GOLD_COIN.get());
             event.accept(SHINY_COIN.get());
