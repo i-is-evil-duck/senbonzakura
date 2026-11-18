@@ -5,7 +5,8 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 1.9.3
+- **Version:** 1.9.4
+- **1.9.4 changes:** Ducky Domain is now a sealed white room (chat notifications removed); Cindering Core and Cindering particle textures swapped.
 
 ## All Items
 
@@ -60,7 +61,7 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Two-handed holds:** the Crypt Blade, Senbonzakura, and Yuki no Ame are gripped with both hands in first person and third person (F5 / other players). In third person both arms rotate inward so the hands meet on the grip slightly right of centre. Holding an item in the offhand returns to a one-handed hold.
 - **Visible sweep animations:** the Crypt Blade and Crescent Blade's 360° slashes and the Sentence's 180° swing spin the player model (and held weapon) so nearby players can see the attack.
 - **Matthias' Curseblade passive:** each defeated mob bursts into purple particles and damages nearby mobs. Players are never hurt and blocks are never broken.
-- **Ducky Domain:** Ducky's Wand traps nearby players and mobs in a sealed arena built in a force-loaded, far-away chunk of the same world — instant teleports, no separate-dimension loading screen. Everyone is returned after 30 seconds (or with `/duckydomain end`).
+- **Ducky Domain:** Ducky's Wand traps nearby players and mobs in a sealed white room built in a force-loaded, far-away chunk of the same world — instant teleports, no separate-dimension loading screen. Everyone is returned after 30 seconds (or with `/duckydomain end`).
 - **Custom ability sounds:** every weapon has its own placeholder sound; replacing the matching `.ogg` under `assets/senbonzakura/sounds/` is all it takes to add your own audio.
 - **Textures:** refreshed item textures; the Ancient Amber icon is temporarily absent.
 
