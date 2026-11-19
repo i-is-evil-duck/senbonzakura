@@ -3,9 +3,24 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 1.9.8 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: a0.0.1 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ## Recap of recent changes
+
+**a0.0.1** — Chaotic Mode Bosses: Full Release
+- All 23 Chaotic Mode bosses implemented with Iron Golem placeholder reskins
+- Tier 1 (Pre-Iron Worm): King Slime, Zombie General, Skeleton General, Queen Spider, Iron Worm
+- Post-Ender Dragon/Wither: Werewolf Tribe Chief, Sky Serpent, Hell Serpent
+- Post-Warden: Frozen Serpent, Kraken Guardian, Wendigo Warlord
+- Post-Wendigo Warlord: Sinful Squire, Sinful Bishop, Sinister Knight
+- Post-Sinister Knight: Felio of Flame, Ieirith of Ice, Therim of Thunder, Wahiko of Wind, Sakurai Wahiko (Cherry Grove), Serrik of Shadow
+- Final: Lucius Retainer of Ruin, Drallius Visions of Doom, Drallius Chaos UNLEASHED
+- All bosses have custom AI abilities, boss bars, anti-despawn, and loot tables
+- 23 one-time-use summon items with crafting recipes
+- 22-tier advancement progression tree
+- 2 new music discs: "Servants of the Scourge" and "Scourge of the Universe & Universal Collapse"
+- Textures: Zombie General grey skin, Queen Spider 2x scale — DONE
+- See assets.md for all remaining textures and audio assets needed
 
 **1.9.8** — Chaotic Mode Bosses: Custom AI
 - **King Slime** — jump slam every 60 ticks: leaps at the player, area damage on landing (6 HP).

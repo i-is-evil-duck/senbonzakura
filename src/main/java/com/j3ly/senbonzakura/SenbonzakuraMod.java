@@ -1,13 +1,34 @@
 package com.j3ly.senbonzakura;
 
 import com.j3ly.senbonzakura.entity.ModEntities;
+import com.j3ly.senbonzakura.entity.boss.ChaoticBossEntity;
+import com.j3ly.senbonzakura.entity.boss.DralliusChaosUnleashedEntity;
+import com.j3ly.senbonzakura.entity.boss.DralliusVisionsOfDoomEntity;
+import com.j3ly.senbonzakura.entity.boss.FelioOfFlameEntity;
+import com.j3ly.senbonzakura.entity.boss.FrozenSerpentEntity;
+import com.j3ly.senbonzakura.entity.boss.HellSerpentEntity;
+import com.j3ly.senbonzakura.entity.boss.IeirithOfIceEntity;
+import com.j3ly.senbonzakura.entity.boss.IronWormEntity;
 import com.j3ly.senbonzakura.entity.boss.KingSlimeEntity;
+import com.j3ly.senbonzakura.entity.boss.KrakenGuardianEntity;
+import com.j3ly.senbonzakura.entity.boss.LuciusRetainerOfRuinEntity;
 import com.j3ly.senbonzakura.entity.boss.QueenSpiderEntity;
+import com.j3ly.senbonzakura.entity.boss.SakuraiWahikoEntity;
+import com.j3ly.senbonzakura.entity.boss.SerrikOfShadowEntity;
+import com.j3ly.senbonzakura.entity.boss.SinfulBishopEntity;
+import com.j3ly.senbonzakura.entity.boss.SinfulSquireEntity;
+import com.j3ly.senbonzakura.entity.boss.SinisterKnightEntity;
 import com.j3ly.senbonzakura.entity.boss.SkeletonGeneralEntity;
+import com.j3ly.senbonzakura.entity.boss.SkySerpentEntity;
+import com.j3ly.senbonzakura.entity.boss.TherimOfThunderEntity;
+import com.j3ly.senbonzakura.entity.boss.WahikoOfWindEntity;
+import com.j3ly.senbonzakura.entity.boss.WendigoWarlordEntity;
+import com.j3ly.senbonzakura.entity.boss.WerewolfTribeChiefEntity;
 import com.j3ly.senbonzakura.entity.boss.ZombieGeneralEntity;
 import com.j3ly.senbonzakura.effect.CinderingEffect;
 import com.j3ly.senbonzakura.item.*;
 import com.j3ly.senbonzakura.item.boss.*;
+import com.j3ly.senbonzakura.item.music.*;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -16,6 +37,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -23,6 +45,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 //? if neoforge {
 import net.neoforged.bus.api.IEventBus;
@@ -44,6 +67,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 //?}
 
 import java.util.Random;
+import java.util.Set;
 
 //? if neoforge {
 @Mod(SenbonzakuraMod.MOD_ID)
@@ -127,6 +151,44 @@ public class SenbonzakuraMod {
     public static final DeferredHolder<Item, Item> PUTRID_BAIT = ITEMS.register("putrid_bait", () -> new PutridBaitItem(new Item.Properties()));
     public static final DeferredHolder<Item, Item> CALCIUM = ITEMS.register("calcium", () -> new CalciumItem(new Item.Properties()));
     public static final DeferredHolder<Item, Item> SUSPICIOUS_BUG = ITEMS.register("suspicious_bug", () -> new SuspiciousBugItem(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> CORRODING_LURE = ITEMS.register("corroding_lure", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.IRON_WORM.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> LUNAR_TOTEM = ITEMS.register("lunar_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.WEREWOLF_TRIBE_CHIEF.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> STORM_TOTEM = ITEMS.register("storm_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.SKY_SERPENT.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> INFERNAL_TOTEM = ITEMS.register("infernal_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.HELL_SERPENT.get(), true, Set.of(Level.NETHER), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> FROST_TOTEM = ITEMS.register("frost_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.FROZEN_SERPENT.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> DEEP_TOTEM = ITEMS.register("deep_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.KRAKEN_GUARDIAN.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> END_TOTEM = ITEMS.register("end_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.WENDIGO_WARLORD.get(), true, Set.of(Level.END), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> SINFUL_TOTEM = ITEMS.register("sinful_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.SINFUL_SQUIRE.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> BISHOP_TOTEM = ITEMS.register("bishop_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.SINFUL_BISHOP.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> KNIGHT_TOTEM = ITEMS.register("knight_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.SINISTER_KNIGHT.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> FLAME_TOTEM = ITEMS.register("flame_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.FELIO_OF_FLAME.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> ICE_TOTEM = ITEMS.register("ice_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.IEIRITH_OF_ICE.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> THUNDER_TOTEM = ITEMS.register("thunder_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.THERIM_OF_THUNDER.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> WIND_TOTEM = ITEMS.register("wind_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.WAHIKO_OF_WIND.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> CHERRY_TOTEM = ITEMS.register("cherry_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.SAKURAI_WAHIKO.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> SHADOW_TOTEM = ITEMS.register("shadow_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.SERRIK_OF_SHADOW.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> RUIN_TOTEM = ITEMS.register("ruin_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.LUCIUS_RETAINER_OF_RUIN.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> VISIONS_TOTEM = ITEMS.register("visions_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.DRALLIUS_VISIONS_OF_DOOM.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
+    public static final DeferredHolder<Item, Item> CHAOS_TOTEM = ITEMS.register("chaos_totem", () -> new BossSummonItem(
+            (EntityType<? extends LivingEntity>) ModEntities.DRALLIUS_CHAOS_UNLEASHED.get(), true, Set.of(Level.OVERWORLD), new Item.Properties()) {});
 
     // King Slime drops
     public static final DeferredHolder<Item, Item> CONDENSED_SLIME = ITEMS.register("condensed_slime", () -> new Item(new Item.Properties()));
@@ -144,6 +206,98 @@ public class SenbonzakuraMod {
     public static final DeferredHolder<Item, Item> SPIDER_NECKLACE = ITEMS.register("spider_necklace", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> WEBBER = ITEMS.register("webber", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> NOXIOUS_DAGGER = ITEMS.register("noxious_dagger", () -> new Item(new Item.Properties()));
+
+    // Iron Worm drops
+    public static final DeferredHolder<Item, Item> METEOR_IRON_SHARD = ITEMS.register("meteor_iron_shard", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> DRILL_SHAPED_TEETH = ITEMS.register("drill_shaped_teeth", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> IRON_SCALE = ITEMS.register("iron_scale", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> IRON_BONE_FRAGMENT = ITEMS.register("iron_bone_fragment", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> IRON_MANDIBLE_BLADE = ITEMS.register("iron_mandible_blade", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> IRON_SPINE_SPEAR = ITEMS.register("iron_spine_spear", () -> new Item(new Item.Properties()));
+
+    // Werewolf Tribe Chief drops
+    public static final DeferredHolder<Item, Item> WEREWOLF_FANG = ITEMS.register("werewolf_fang", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> MOON_CLAW = ITEMS.register("moon_claw", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> LUNAR_PELT = ITEMS.register("lunar_pelt", () -> new Item(new Item.Properties()));
+
+    // Sky Serpent drops
+    public static final DeferredHolder<Item, Item> SERPENT_FANG = ITEMS.register("serpent_fang", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> SKY_SCALE = ITEMS.register("sky_scale", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> CLOUD_ESS = ITEMS.register("cloud_essence", () -> new Item(new Item.Properties()));
+
+    // Hell Serpent drops
+    public static final DeferredHolder<Item, Item> HELL_SCALE = ITEMS.register("hell_scale", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> INFERNAL_CORE = ITEMS.register("infernal_core", () -> new Item(new Item.Properties()));
+
+    // Frozen Serpent drops
+    public static final DeferredHolder<Item, Item> FROST_FANG = ITEMS.register("frost_fang", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> EVERFROST_SHARD = ITEMS.register("everfrost_shard", () -> new Item(new Item.Properties()));
+
+    // Kraken Guardian drops
+    public static final DeferredHolder<Item, Item> KRAKEN_TENTACLE = ITEMS.register("kraken_tentacle", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> DEEP_PRISM = ITEMS.register("deep_prism", () -> new Item(new Item.Properties()));
+
+    // Wendigo Warlord drops
+    public static final DeferredHolder<Item, Item> WENDIGO_CLAW = ITEMS.register("wendigo_claw", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> SHADOW_HEART = ITEMS.register("shadow_heart", () -> new Item(new Item.Properties()));
+
+    // Sinful Squire drops
+    public static final DeferredHolder<Item, Item> SINFUL_BLADE = ITEMS.register("sinful_blade", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> PENITENT_SHIELD = ITEMS.register("penitent_shield", () -> new Item(new Item.Properties()));
+
+    // Sinful Bishop drops
+    public static final DeferredHolder<Item, Item> BISHOP_STAFF = ITEMS.register("bishop_staff", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> HOLY_SEAL = ITEMS.register("holy_seal", () -> new Item(new Item.Properties()));
+
+    // Sinister Knight drops
+    public static final DeferredHolder<Item, Item> KNIGHT_LANCE = ITEMS.register("knight_lance", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> DARK_PLATING = ITEMS.register("dark_plating", () -> new Item(new Item.Properties()));
+
+    // Felio, of Flame drops
+    public static final DeferredHolder<Item, Item> CURSED_FLAMES = ITEMS.register("cursed_flames", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> SCORCHED_EARTH = ITEMS.register("scorched_earth", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> INSIGNIA_OF_FIRE = ITEMS.register("insignia_of_fire", () -> new Item(new Item.Properties()));
+
+    // Ieirith, of Ice drops
+    public static final DeferredHolder<Item, Item> EVERFROSTED_GLASS = ITEMS.register("everfrosted_glass", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> GRAN_IEIRITH = ITEMS.register("gran_ieirith", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> INSIGNIA_OF_ICE = ITEMS.register("insignia_of_ice", () -> new Item(new Item.Properties()));
+
+    // Therim, of Thunder drops
+    public static final DeferredHolder<Item, Item> ROARING_SPARK = ITEMS.register("roaring_spark", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> THUNDERBIRD = ITEMS.register("thunderbird", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> INSIGNIA_OF_THUNDER = ITEMS.register("insignia_of_thunder", () -> new Item(new Item.Properties()));
+
+    // Wahiko, of Wind drops
+    public static final DeferredHolder<Item, Item> WIND_ESSENCE = ITEMS.register("wind_essence", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> CHERRY_PETAL = ITEMS.register("cherry_petal", () -> new Item(new Item.Properties()));
+
+    // Sakurai Wahiko drops
+    public static final DeferredHolder<Item, Item> SAKURAI_BLADE = ITEMS.register("sakurai_blade", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> BLOSSOM_CORE = ITEMS.register("blossom_core", () -> new Item(new Item.Properties()));
+
+    // Serrik, of Shadow drops
+    public static final DeferredHolder<Item, Item> UMBRAL_SPORES = ITEMS.register("umbral_spores", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> DEPTH_ASCENDER = ITEMS.register("depth_ascender", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> INSIGNIA_OF_SHADOW = ITEMS.register("insignia_of_shadow", () -> new Item(new Item.Properties()));
+
+    // Lucius, Retainer of Ruin drops
+    public static final DeferredHolder<Item, Item> RUIN_SHARD = ITEMS.register("ruin_shard", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> VOID_ESSENCE = ITEMS.register("void_essence", () -> new Item(new Item.Properties()));
+
+    // Drallius drops
+    public static final DeferredHolder<Item, Item> VISIONS_OF_CHAOS = ITEMS.register("visions_of_chaos", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> FINALITY = ITEMS.register("finality", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> CHAOTIC_CIRCLET = ITEMS.register("chaotic_circlet", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> CHAOTIC_MANTLE = ITEMS.register("chaotic_mantle", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> CHAOTIC_PLATING = ITEMS.register("chaotic_plating", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> CHAOTIC_KICKS = ITEMS.register("chaotic_kicks", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> THE_CREDITS = ITEMS.register("the_credits", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> FROZONE = ITEMS.register("frozone", () -> new Item(new Item.Properties()));
+
+    // Music discs
+    public static final DeferredHolder<Item, Item> MUSIC_DISC_SERVANTS = ITEMS.register("music_disc_servants", () -> new MusicDiscItem(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> MUSIC_DISC_UNIVERSE = ITEMS.register("music_disc_universe", () -> new MusicDiscItem(new Item.Properties()));
 
     public SenbonzakuraMod(IEventBus modEventBus) {
         ModGameRules.init();
@@ -597,6 +751,87 @@ public class SenbonzakuraMod {
             event.accept(SPIDER_NECKLACE.get());
             event.accept(WEBBER.get());
             event.accept(NOXIOUS_DAGGER.get());
+            event.accept(CORRODING_LURE.get());
+            event.accept(LUNAR_TOTEM.get());
+            event.accept(STORM_TOTEM.get());
+            event.accept(INFERNAL_TOTEM.get());
+            event.accept(FROST_TOTEM.get());
+            event.accept(DEEP_TOTEM.get());
+            event.accept(END_TOTEM.get());
+            event.accept(SINFUL_TOTEM.get());
+            event.accept(BISHOP_TOTEM.get());
+            event.accept(KNIGHT_TOTEM.get());
+            event.accept(FLAME_TOTEM.get());
+            event.accept(ICE_TOTEM.get());
+            event.accept(THUNDER_TOTEM.get());
+            event.accept(WIND_TOTEM.get());
+            event.accept(CHERRY_TOTEM.get());
+            event.accept(SHADOW_TOTEM.get());
+            event.accept(RUIN_TOTEM.get());
+            event.accept(VISIONS_TOTEM.get());
+            event.accept(CHAOS_TOTEM.get());
+            event.accept(METEOR_IRON_SHARD.get());
+            event.accept(DRILL_SHAPED_TEETH.get());
+            event.accept(IRON_SCALE.get());
+            event.accept(IRON_BONE_FRAGMENT.get());
+            event.accept(IRON_MANDIBLE_BLADE.get());
+            event.accept(IRON_SPINE_SPEAR.get());
+            event.accept(WEREWOLF_FANG.get());
+            event.accept(MOON_CLAW.get());
+            event.accept(LUNAR_PELT.get());
+            event.accept(SERPENT_FANG.get());
+            event.accept(SKY_SCALE.get());
+            event.accept(CLOUD_ESS.get());
+            event.accept(HELL_SCALE.get());
+            event.accept(INFERNAL_CORE.get());
+            event.accept(FROST_FANG.get());
+            event.accept(EVERFROST_SHARD.get());
+            event.accept(KRAKEN_TENTACLE.get());
+            event.accept(DEEP_PRISM.get());
+            event.accept(WENDIGO_CLAW.get());
+            event.accept(SHADOW_HEART.get());
+            event.accept(SINFUL_BLADE.get());
+            event.accept(PENITENT_SHIELD.get());
+            event.accept(BISHOP_STAFF.get());
+            event.accept(HOLY_SEAL.get());
+            event.accept(KNIGHT_LANCE.get());
+            event.accept(DARK_PLATING.get());
+            event.accept(CURSED_FLAMES.get());
+            event.accept(SCORCHED_EARTH.get());
+            event.accept(INSIGNIA_OF_FIRE.get());
+            event.accept(EVERFROSTED_GLASS.get());
+            event.accept(GRAN_IEIRITH.get());
+            event.accept(INSIGNIA_OF_ICE.get());
+            event.accept(ROARING_SPARK.get());
+            event.accept(THUNDERBIRD.get());
+            event.accept(INSIGNIA_OF_THUNDER.get());
+            event.accept(WIND_ESSENCE.get());
+            event.accept(CHERRY_PETAL.get());
+            event.accept(SAKURAI_BLADE.get());
+            event.accept(BLOSSOM_CORE.get());
+            event.accept(UMBRAL_SPORES.get());
+            event.accept(DEPTH_ASCENDER.get());
+            event.accept(INSIGNIA_OF_SHADOW.get());
+            event.accept(RUIN_SHARD.get());
+            event.accept(VOID_ESSENCE.get());
+            event.accept(VISIONS_OF_CHAOS.get());
+            event.accept(FINALITY.get());
+            event.accept(CHAOTIC_CIRCLET.get());
+            event.accept(CHAOTIC_MANTLE.get());
+            event.accept(CHAOTIC_PLATING.get());
+            event.accept(CHAOTIC_KICKS.get());
+            event.accept(THE_CREDITS.get());
+            event.accept(FROZONE.get());
+            event.accept(MUSIC_DISC_SERVANTS.get());
+            event.accept(MUSIC_DISC_UNIVERSE.get());
+            event.accept(WEREWOLF_FANG.get());
+            event.accept(MOON_CLAW.get());
+            event.accept(LUNAR_PELT.get());
+            event.accept(SERPENT_FANG.get());
+            event.accept(SKY_SCALE.get());
+            event.accept(CLOUD_ESS.get());
+            event.accept(MUSIC_DISC_SERVANTS.get());
+            event.accept(MUSIC_DISC_UNIVERSE.get());
             event.accept(ROYAL_JELLY.get());
             event.accept(PUTRID_BAIT.get());
             event.accept(CALCIUM.get());
@@ -612,6 +847,25 @@ public class SenbonzakuraMod {
         event.put(ModEntities.ZOMBIE_GENERAL.get(), ZombieGeneralEntity.createAttributes().build());
         event.put(ModEntities.SKELETON_GENERAL.get(), SkeletonGeneralEntity.createAttributes().build());
         event.put(ModEntities.QUEEN_SPIDER.get(), QueenSpiderEntity.createAttributes().build());
+        event.put(ModEntities.IRON_WORM.get(), IronWormEntity.createAttributes().build());
+        event.put(ModEntities.WEREWOLF_TRIBE_CHIEF.get(), WerewolfTribeChiefEntity.createAttributes().build());
+        event.put(ModEntities.SKY_SERPENT.get(), SkySerpentEntity.createAttributes().build());
+        event.put(ModEntities.HELL_SERPENT.get(), HellSerpentEntity.createAttributes().build());
+        event.put(ModEntities.FROZEN_SERPENT.get(), FrozenSerpentEntity.createAttributes().build());
+        event.put(ModEntities.KRAKEN_GUARDIAN.get(), KrakenGuardianEntity.createAttributes().build());
+        event.put(ModEntities.WENDIGO_WARLORD.get(), WendigoWarlordEntity.createAttributes().build());
+        event.put(ModEntities.SINFUL_SQUIRE.get(), SinfulSquireEntity.createAttributes().build());
+        event.put(ModEntities.SINFUL_BISHOP.get(), SinfulBishopEntity.createAttributes().build());
+        event.put(ModEntities.SINISTER_KNIGHT.get(), SinisterKnightEntity.createAttributes().build());
+        event.put(ModEntities.FELIO_OF_FLAME.get(), FelioOfFlameEntity.createAttributes().build());
+        event.put(ModEntities.IEIRITH_OF_ICE.get(), IeirithOfIceEntity.createAttributes().build());
+        event.put(ModEntities.THERIM_OF_THUNDER.get(), TherimOfThunderEntity.createAttributes().build());
+        event.put(ModEntities.WAHIKO_OF_WIND.get(), WahikoOfWindEntity.createAttributes().build());
+        event.put(ModEntities.SAKURAI_WAHIKO.get(), SakuraiWahikoEntity.createAttributes().build());
+        event.put(ModEntities.SERRIK_OF_SHADOW.get(), SerrikOfShadowEntity.createAttributes().build());
+        event.put(ModEntities.LUCIUS_RETAINER_OF_RUIN.get(), LuciusRetainerOfRuinEntity.createAttributes().build());
+        event.put(ModEntities.DRALLIUS_VISIONS_OF_DOOM.get(), DralliusVisionsOfDoomEntity.createAttributes().build());
+        event.put(ModEntities.DRALLIUS_CHAOS_UNLEASHED.get(), DralliusChaosUnleashedEntity.createAttributes().build());
     }
 
     /** SimpleParticleType's constructor is protected, so expose a public subclass for registration. */
