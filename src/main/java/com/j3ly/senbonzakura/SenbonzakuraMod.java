@@ -1,7 +1,10 @@
 package com.j3ly.senbonzakura;
 
+import com.j3ly.senbonzakura.entity.ModEntities;
+import com.j3ly.senbonzakura.entity.boss.KingSlimeEntity;
 import com.j3ly.senbonzakura.effect.CinderingEffect;
 import com.j3ly.senbonzakura.item.*;
+import com.j3ly.senbonzakura.item.boss.RoyalJellyItem;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -24,6 +27,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
@@ -115,15 +119,25 @@ public class SenbonzakuraMod {
     public static final DeferredHolder<Item, Item> GOLD_COIN = ITEMS.register("gold_coin", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> SHINY_COIN = ITEMS.register("shiny_coin", () -> new Item(new Item.Properties()));
 
+    // Boss summon items
+    public static final DeferredHolder<Item, Item> ROYAL_JELLY = ITEMS.register("royal_jelly", () -> new RoyalJellyItem(new Item.Properties()));
+
+    // King Slime drops
+    public static final DeferredHolder<Item, Item> CONDENSED_SLIME = ITEMS.register("condensed_slime", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> SLIME_BALL_SLINGSHOT = ITEMS.register("slime_ball_slingshot", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> SLIME_SHIELD = ITEMS.register("slime_shield", () -> new Item(new Item.Properties()));
+
     public SenbonzakuraMod(IEventBus modEventBus) {
         ModGameRules.init();
         ITEMS.register(modEventBus);
+        ModEntities.ENTITY_TYPES.register(modEventBus);
         PARTICLE_TYPES.register(modEventBus);
         MOB_EFFECTS.register(modEventBus);
         //? if neoforge {
         ModSounds.SOUND_EVENTS.register(modEventBus);
         //?}
         modEventBus.addListener(this::addCreative);
+        modEventBus.addListener(this::onEntityAttributes);
         //? if neoforge {
         NeoForge.EVENT_BUS.addListener(this::onPlayerTick);
         NeoForge.EVENT_BUS.addListener(this::onLevelTick);
@@ -550,7 +564,15 @@ public class SenbonzakuraMod {
             event.accept(COPPER_COIN.get());
             event.accept(GOLD_COIN.get());
             event.accept(SHINY_COIN.get());
+            event.accept(ROYAL_JELLY.get());
+            event.accept(CONDENSED_SLIME.get());
+            event.accept(SLIME_BALL_SLINGSHOT.get());
+            event.accept(SLIME_SHIELD.get());
         }
+    }
+
+    private void onEntityAttributes(EntityAttributeCreationEvent event) {
+        event.put(ModEntities.KING_SLIME.get(), KingSlimeEntity.createAttributes().build());
     }
 
     /** SimpleParticleType's constructor is protected, so expose a public subclass for registration. */

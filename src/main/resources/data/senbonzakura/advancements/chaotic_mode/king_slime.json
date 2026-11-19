@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "senbonzakura:condensed_slime"
+    },
+    "title": "Slime Sovereign",
+    "description": "Defeat the King Slime",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "senbonzakura:chaotic_mode_root",
+  "criteria": {
+    "killed_king_slime": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "senbonzakura:king_slime"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "killed_king_slime"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  }
+}

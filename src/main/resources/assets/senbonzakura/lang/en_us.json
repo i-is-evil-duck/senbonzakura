@@ -60,5 +60,10 @@
   "subtitle.senbonzakura.god_rock_pulse": "God Rock pulses",
   "subtitle.senbonzakura.matthias_curseblade_burst": "Curseblade bursts",
   "subtitle.senbonzakura.duckys_wand_duck": "Duck quacks",
-  "subtitle.senbonzakura.duckys_wand_domain": "Ducky Domain opens"
+  "subtitle.senbonzakura.duckys_wand_domain": "Ducky Domain opens",
+  "entity.senbonzakura.king_slime": "King Slime",
+  "item.senbonzakura.royal_jelly": "Royal Jelly",
+  "item.senbonzakura.condensed_slime": "Condensed Slime",
+  "item.senbonzakura.slime_ball_slingshot": "Slime Ball Slingshot",
+  "item.senbonzakura.slime_shield": "Slime Shield"
 }

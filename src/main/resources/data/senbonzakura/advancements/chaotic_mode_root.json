@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "senbonzakura:royal_jelly"
+    },
+    "title": "Chaotic Mode",
+    "description": "Begin the Chaotic Mode boss progression",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "obtained_royal_jelly": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "senbonzakura:royal_jelly"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtained_royal_jelly"
+    ]
+  ]
+}

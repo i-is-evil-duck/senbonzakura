@@ -5,9 +5,15 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 1.9.5
+- **Version:** 1.9.6
 
 ## Recap of recent changes
+
+**1.9.6** — Chaotic Mode Bosses (Tier 1)
+- **King Slime** added — 44 HP (22 hearts), vanilla slime reskin with boss bar, splits into smaller slimes on defeat.
+- **Royal Jelly** summon item added — crafted with 1 honey comb + 8 slime blocks. One-time use, Overworld-only.
+- King Slime drops: Slime Balls (24–64), Condensed Slime (5–24), Slime Ball Slingshot (25%), Slime Shield (25%).
+- Advancement tree started: *Chaotic Mode* (root) → *Slime Sovereign* (kill King Slime).
 
 **1.9.5**
 - **New Ducky's Wand recipe:** shaped vertically — Gold Duck Egg (top), Breeze Rod (middle), Shiny Coin (bottom).

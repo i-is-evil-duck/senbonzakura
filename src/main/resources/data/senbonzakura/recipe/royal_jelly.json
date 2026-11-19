@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:honeycomb" },
+    { "item": "minecraft:slime_block" },
+    { "item": "minecraft:slime_block" },
+    { "item": "minecraft:slime_block" },
+    { "item": "minecraft:slime_block" },
+    { "item": "minecraft:slime_block" },
+    { "item": "minecraft:slime_block" },
+    { "item": "minecraft:slime_block" },
+    { "item": "minecraft:slime_block" }
+  ],
+  "result": {
+    "id": "senbonzakura:royal_jelly",
+    "count": 1
+  }
+}
