@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": { "item": "senbonzakura:end_totem" },
+    "title": "Ender's Bane",
+    "description": "Defeat the Wendigo Warlord",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "senbonzakura:chaotic_mode/kraken_guardian",
+  "criteria": {
+    "killed_wendigo_warlord": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": { "entity": { "type": "senbonzakura:wendigo_warlord" } }
+    }
+  },
+  "requirements": [ [ "killed_wendigo_warlord" ] ],
+  "rewards": { "experience": 600 }
+}

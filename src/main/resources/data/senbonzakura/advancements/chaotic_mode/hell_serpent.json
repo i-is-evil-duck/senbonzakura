@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": { "item": "senbonzakura:infernal_totem" },
+    "title": "Infernal Serpent",
+    "description": "Defeat the Hell Serpent",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "senbonzakura:chaotic_mode/sky_serpent",
+  "criteria": {
+    "killed_hell_serpent": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": { "entity": { "type": "senbonzakura:hell_serpent" } }
+    }
+  },
+  "requirements": [ [ "killed_hell_serpent" ] ],
+  "rewards": { "experience": 450 }
+}

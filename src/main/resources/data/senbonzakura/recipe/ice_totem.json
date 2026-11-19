@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:packed_ice" },
+    { "item": "minecraft:packed_ice" },
+    { "item": "minecraft:packed_ice" },
+    { "item": "minecraft:blue_ice" },
+    { "item": "minecraft:blue_ice" },
+    { "item": "senbonzakura:frozen_core" },
+    { "item": "senbonzakura:frozen_core" },
+    { "item": "senbonzakura:sinners_ash" },
+    { "item": "senbonzakura:sinners_ash" }
+  ],
+  "result": { "id": "senbonzakura:ice_totem", "count": 1 }
+}

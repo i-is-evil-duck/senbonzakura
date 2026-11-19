@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:phantom_membrane" },
+    { "item": "minecraft:phantom_membrane" },
+    { "item": "minecraft:phantom_membrane" },
+    { "item": "minecraft:phantom_membrane" },
+    { "item": "minecraft:feather" },
+    { "item": "minecraft:feather" },
+    { "item": "minecraft:feather" },
+    { "item": "minecraft:feather" },
+    { "item": "minecraft:glass_bottle" }
+  ],
+  "result": {
+    "id": "senbonzakura:storm_totem",
+    "count": 1
+  }
+}

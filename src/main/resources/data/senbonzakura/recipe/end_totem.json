@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:end_stone" },
+    { "item": "minecraft:end_stone" },
+    { "item": "minecraft:end_stone" },
+    { "item": "minecraft:ender_pearl" },
+    { "item": "minecraft:ender_pearl" },
+    { "item": "minecraft:ender_pearl" },
+    { "item": "minecraft:chorus_fruit" },
+    { "item": "minecraft:chorus_fruit" },
+    { "item": "minecraft:elytra" }
+  ],
+  "result": { "id": "senbonzakura:end_totem", "count": 1 }
+}

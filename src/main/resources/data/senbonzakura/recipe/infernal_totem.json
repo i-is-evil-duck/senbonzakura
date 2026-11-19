@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:magma_block" },
+    { "item": "minecraft:blaze_rod" },
+    { "item": "minecraft:blaze_rod" },
+    { "item": "minecraft:netherrack" },
+    { "item": "minecraft:netherrack" },
+    { "item": "minecraft:netherrack" },
+    { "item": "minecraft:ghast_tear" },
+    { "item": "minecraft:gold_ingot" },
+    { "item": "minecraft:gold_ingot" }
+  ],
+  "result": { "id": "senbonzakura:infernal_totem", "count": 1 }
+}

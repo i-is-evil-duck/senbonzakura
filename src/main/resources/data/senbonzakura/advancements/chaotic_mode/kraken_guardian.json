@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": { "item": "senbonzakura:deep_totem" },
+    "title": "Kraken's Bane",
+    "description": "Defeat the Kraken Guardian",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "senbonzakura:chaotic_mode/frozen_serpent",
+  "criteria": {
+    "killed_kraken_guardian": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": { "entity": { "type": "senbonzakura:kraken_guardian" } }
+    }
+  },
+  "requirements": [ [ "killed_kraken_guardian" ] ],
+  "rewards": { "experience": 500 }
+}

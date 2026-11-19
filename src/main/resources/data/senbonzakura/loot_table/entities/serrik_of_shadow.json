@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:umbral_spores", "weight": 1 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:sinners_ash", "weight": 1 }, { "type": "minecraft:empty", "weight": 9 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:depth_ascender", "weight": 3 }, { "type": "minecraft:empty", "weight": 37 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:insignia_of_shadow", "weight": 3 }, { "type": "minecraft:empty", "weight": 37 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:sentence", "weight": 1 }, { "type": "minecraft:empty", "weight": 19 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:crypt_blade", "weight": 1 }, { "type": "minecraft:empty", "weight": 99 } ] }
+  ]
+}

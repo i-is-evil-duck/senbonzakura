@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:the_credits", "weight": 1 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:visions_of_chaos", "weight": 1 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:finality", "weight": 1 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:chaotic_circlet", "weight": 1 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:chaotic_mantle", "weight": 1 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:chaotic_plating", "weight": 1 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:chaotic_kicks", "weight": 1 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:music_disc_universe", "weight": 1 } ] }
+  ]
+}

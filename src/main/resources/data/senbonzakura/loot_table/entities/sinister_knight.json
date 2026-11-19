@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "minecraft:iron_ingot", "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 5.0, "max": 20.0 } } ] } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:knight_lance", "weight": 1 }, { "type": "minecraft:empty", "weight": 3 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:dark_plating", "weight": 1 }, { "type": "minecraft:empty", "weight": 5 } ] }
+  ]
+}

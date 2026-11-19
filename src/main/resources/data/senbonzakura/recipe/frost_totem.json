@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:packed_ice" },
+    { "item": "minecraft:packed_ice" },
+    { "item": "minecraft:packed_ice" },
+    { "item": "minecraft:blue_ice" },
+    { "item": "minecraft:snow_block" },
+    { "item": "minecraft:snow_block" },
+    { "item": "minecraft:diamond" },
+    { "item": "minecraft:amethyst_shard" },
+    { "item": "minecraft:amethyst_shard" }
+  ],
+  "result": { "id": "senbonzakura:frost_totem", "count": 1 }
+}

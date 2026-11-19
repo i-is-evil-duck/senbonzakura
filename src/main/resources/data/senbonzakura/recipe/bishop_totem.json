@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:book" },
+    { "item": "minecraft:book" },
+    { "item": "minecraft:book" },
+    { "item": "minecraft:blaze_powder" },
+    { "item": "minecraft:glowstone_dust" },
+    { "item": "minecraft:glowstone_dust" },
+    { "item": "senbonzakura:sinners_ash" },
+    { "item": "senbonzakura:sinners_ash" },
+    { "item": "senbonzakura:sinners_ash" }
+  ],
+  "result": { "id": "senbonzakura:bishop_totem", "count": 1 }
+}

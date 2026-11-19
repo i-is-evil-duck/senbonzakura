@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": { "item": "senbonzakura:knight_totem" },
+    "title": "Knight of Shadows",
+    "description": "Defeat the Sinister Knight",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "senbonzakura:chaotic_mode/sinful_bishop",
+  "criteria": {
+    "killed_sinister_knight": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": { "entity": { "type": "senbonzakura:sinister_knight" } }
+    }
+  },
+  "requirements": [ [ "killed_sinister_knight" ] ],
+  "rewards": { "experience": 800 }
+}

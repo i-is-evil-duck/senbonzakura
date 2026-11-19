@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "minecraft:prismarine_shard", "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 10.0, "max": 30.0 } } ] } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:kraken_tentacle", "weight": 1 }, { "type": "minecraft:empty", "weight": 3 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:deep_prism", "weight": 1 }, { "type": "minecraft:empty", "weight": 5 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "minecraft:nautilus_shell", "weight": 1 }, { "type": "minecraft:empty", "weight": 9 } ] }
+  ]
+}

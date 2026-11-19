@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": { "item": "senbonzakura:frost_totem" },
+    "title": "Frozen Wrath",
+    "description": "Defeat the Frozen Serpent",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "senbonzakura:chaotic_mode/hell_serpent",
+  "criteria": {
+    "killed_frozen_serpent": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": { "entity": { "type": "senbonzakura:frozen_serpent" } }
+    }
+  },
+  "requirements": [ [ "killed_frozen_serpent" ] ],
+  "rewards": { "experience": 450 }
+}

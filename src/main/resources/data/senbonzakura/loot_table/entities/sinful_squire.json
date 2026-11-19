@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "minecraft:iron_sword", "weight": 1 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:sinful_blade", "weight": 1 }, { "type": "minecraft:empty", "weight": 3 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:penitent_shield", "weight": 1 }, { "type": "minecraft:empty", "weight": 5 } ] }
+  ]
+}

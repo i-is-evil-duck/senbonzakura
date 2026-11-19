@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:everfrosted_glass", "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 4.0, "max": 8.0 } } ] } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:sinners_ash", "weight": 1 }, { "type": "minecraft:empty", "weight": 9 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:gran_ieirith", "weight": 3 }, { "type": "minecraft:empty", "weight": 37 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:insignia_of_ice", "weight": 3 }, { "type": "minecraft:empty", "weight": 37 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:sentence", "weight": 1 }, { "type": "minecraft:empty", "weight": 19 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:frozone", "weight": 1 }, { "type": "minecraft:empty", "weight": 99 } ] }
+  ]
+}

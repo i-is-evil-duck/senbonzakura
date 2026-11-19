@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": { "item": "senbonzakura:ice_totem" },
+    "title": "Ieirith, of Ice",
+    "description": "Defeat Ieirith, of Ice",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "senbonzakura:chaotic_mode/felio_of_flame",
+  "criteria": {
+    "killed_ieirith_of_ice": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": { "entity": { "type": "senbonzakura:ieirith_of_ice" } }
+    }
+  },
+  "requirements": [ [ "killed_ieirith_of_ice" ] ],
+  "rewards": { "experience": 1000 }
+}

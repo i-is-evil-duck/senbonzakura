@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "senbonzakura:visions_of_chaos" },
+    { "item": "senbonzakura:visions_of_chaos" },
+    { "item": "senbonzakura:visions_of_chaos" },
+    { "item": "senbonzakura:finality" },
+    { "item": "senbonzakura:finality" },
+    { "item": "senbonzakura:chaotic_circlet" },
+    { "item": "senbonzakura:chaotic_mantle" },
+    { "item": "senbonzakura:chaotic_plating" },
+    { "item": "senbonzakura:chaotic_kicks" }
+  ],
+  "result": { "id": "senbonzakura:visions_totem", "count": 1 }
+}

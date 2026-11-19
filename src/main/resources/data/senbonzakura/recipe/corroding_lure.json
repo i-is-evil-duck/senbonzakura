@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "senbonzakura:condensed_slime" },
+    { "item": "senbonzakura:condensed_slime" },
+    { "item": "senbonzakura:forgotten_insignia" },
+    { "item": "senbonzakura:forgotten_insignia" },
+    { "item": "senbonzakura:forgotten_insignia" },
+    { "item": "senbonzakura:forgotten_insignia" },
+    { "item": "senbonzakura:queen_silk" },
+    { "item": "senbonzakura:queen_silk" },
+    { "item": "minecraft:iron_block" }
+  ],
+  "result": {
+    "id": "senbonzakura:corroding_lure",
+    "count": 1
+  }
+}

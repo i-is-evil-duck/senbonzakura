@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "minecraft:feather", "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 5.0, "max": 20.0 } } ] } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:wind_essence", "weight": 1 }, { "type": "minecraft:empty", "weight": 3 } ] },
+    { "rolls": 1.0, "entries": [ { "type": "minecraft:item", "name": "senbonzakura:cherry_petal", "weight": 1 }, { "type": "minecraft:empty", "weight": 5 } ] }
+  ]
+}

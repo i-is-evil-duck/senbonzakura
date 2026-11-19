@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:golden_carrot" },
+    { "item": "minecraft:golden_carrot" },
+    { "item": "minecraft:golden_carrot" },
+    { "item": "minecraft:golden_carrot" },
+    { "item": "minecraft:rabbit_hide" },
+    { "item": "minecraft:rabbit_hide" },
+    { "item": "minecraft:rabbit_hide" },
+    { "item": "minecraft:rabbit_hide" },
+    { "item": "minecraft:glistering_melon_slice" }
+  ],
+  "result": {
+    "id": "senbonzakura:lunar_totem",
+    "count": 1
+  }
+}
