@@ -92,4 +92,4 @@
 | Textures: All items | ⬜ Todo | See assets.md |
 | Music disc OGG files | ⬜ Todo | Need audio assets |
 | Item models | ⬜ Todo | Need JSON models |
-| Release as a0.0.1 | 🚧 In Progress | Build, tag, release |
+| Release as v2.0.0 | ✅ Done | https://github.com/i-is-evil-duck/senbonzakura/releases/tag/v2.0.0 |
