@@ -15,6 +15,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,6 +31,7 @@ public class KingSlimeEntity extends Slime {
 
     private final ServerBossEvent bossEvent;
     private final Set<ServerPlayer> trackedPlayers = new HashSet<>();
+    private int customAiTick = 0;
 
     public KingSlimeEntity(EntityType<? extends Slime> type, Level level) {
         super(type, level);
@@ -68,6 +70,7 @@ public class KingSlimeEntity extends Slime {
     @Override
     public void aiStep() {
         super.aiStep();
+        this.customAiTick++;
         if (this.level() instanceof ServerLevel serverLevel) {
             this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
             for (ServerPlayer player : serverLevel.getPlayers(p -> true)) {
@@ -78,6 +81,42 @@ public class KingSlimeEntity extends Slime {
                 }
             }
         }
+        this.onCustomAiTick();
+    }
+
+    protected void onCustomAiTick() {
+        // King Slime: jump slam every 60 ticks — leaps at target and slams down
+        if (this.customAiTick % 60 == 0 && this.onGround()) {
+            Player target = this.findNearestPlayer(10.0);
+            if (target != null && this.level() instanceof ServerLevel serverLevel) {
+                this.jumpSlam(serverLevel, target);
+            }
+        }
+    }
+
+    private void jumpSlam(ServerLevel serverLevel, Player target) {
+        // Leap toward the target
+        double dx = target.getX() - this.getX();
+        double dz = target.getZ() - this.getZ();
+        double dist = Math.sqrt(dx * dx + dz * dz);
+        if (dist > 0.5) {
+            this.setDeltaMovement(dx / dist * 0.8, 0.6, dz / dist * 0.8);
+        }
+        // Slash/damage on landing handled in next tick when onGround
+        if (this.onGround() && dist < 4.0) {
+            this.doSlamDamage(serverLevel);
+        }
+    }
+
+    private void doSlamDamage(ServerLevel serverLevel) {
+        // Area damage on slam landing
+        serverLevel.getEntitiesOfClass(Player.class,
+                new AABB(this.getX() - 2.5, this.getY() - 1.0, this.getZ() - 2.5,
+                        this.getX() + 2.5, this.getY() + 1.0, this.getZ() + 2.5)).forEach(player -> {
+            if (player.isAlive() && player.distanceToSqr(this) < 16.0) {
+                player.hurt(this.damageSources().mobAttack(this), 6.0F);
+            }
+        });
     }
 
     @Override
@@ -104,10 +143,19 @@ public class KingSlimeEntity extends Slime {
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putBoolean("KingSlimeBoss", true);
+        tag.putInt("CustomAiTick", this.customAiTick);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
+        this.customAiTick = tag.getInt("CustomAiTick");
+    }
+
+    /** Finds the nearest living player within range. */
+    protected Player findNearestPlayer(double range) {
+        Level level = this.level();
+        if (!(level instanceof ServerLevel serverLevel)) return null;
+        return serverLevel.getNearestPlayer(this, range);
     }
 }

@@ -26,6 +26,7 @@ import java.util.Set;
 public class SkeletonGeneralEntity extends Skeleton {
     private final ServerBossEvent bossEvent;
     private final Set<ServerPlayer> trackedPlayers = new HashSet<>();
+    private int customAiTick = 0;
 
     public SkeletonGeneralEntity(EntityType<? extends Skeleton> type, Level level) {
         super(type, level);
@@ -63,6 +64,7 @@ public class SkeletonGeneralEntity extends Skeleton {
     @Override
     public void aiStep() {
         super.aiStep();
+        this.customAiTick++;
         if (this.level() instanceof ServerLevel serverLevel) {
             this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
             for (ServerPlayer player : serverLevel.getPlayers(p -> true)) {
@@ -72,6 +74,33 @@ public class SkeletonGeneralEntity extends Skeleton {
                     this.trackedPlayers.add(player);
                 }
             }
+        }
+        this.onCustomAiTick();
+    }
+
+    protected void onCustomAiTick() {
+        // Skeleton General: arrow barrage every 80 ticks — fires 3-5 arrows at the target
+        if (this.customAiTick % 80 == 0) {
+            Player target = this.findNearestPlayer(16.0);
+            if (target != null && this.level() instanceof ServerLevel serverLevel) {
+                this.barrageArrows(serverLevel, target);
+            }
+        }
+    }
+
+    private void barrageArrows(ServerLevel serverLevel, Player target) {
+        int arrowCount = 3 + this.getRandom().nextInt(3);
+        for (int i = 0; i < arrowCount; i++) {
+            net.minecraft.world.entity.projectile.Arrow arrow =
+                    new net.minecraft.world.entity.projectile.Arrow(
+                            net.minecraft.world.entity.EntityType.ARROW, serverLevel);
+            arrow.moveTo(this.getX(), this.getEyeY(), this.getZ());
+            double dx = target.getX() - this.getX();
+            double dy = target.getY() + target.getEyeHeight() - 1.0 - this.getY();
+            double dz = target.getZ() - this.getZ();
+            double dist = Math.sqrt(dx * dx + dy * dy + dz * dz) * 0.2;
+            arrow.shoot(dx * dist, dy * dist + 0.2, dz * dist, 1.6F, 2.0F);
+            serverLevel.addFreshEntity(arrow);
         }
     }
 
@@ -92,10 +121,19 @@ public class SkeletonGeneralEntity extends Skeleton {
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putBoolean("SkeletonGeneralBoss", true);
+        tag.putInt("CustomAiTick", this.customAiTick);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
+        this.customAiTick = tag.getInt("CustomAiTick");
+    }
+
+    /** Finds the nearest living player within range. */
+    protected Player findNearestPlayer(double range) {
+        Level level = this.level();
+        if (!(level instanceof ServerLevel serverLevel)) return null;
+        return serverLevel.getNearestPlayer(this, range);
     }
 }

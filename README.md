@@ -3,9 +3,16 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 1.9.6 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 1.9.8 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ## Recap of recent changes
+
+**1.9.8** — Chaotic Mode Bosses: Custom AI
+- **King Slime** — jump slam every 60 ticks: leaps at the player, area damage on landing (6 HP).
+- **Zombie General** — undead cleave every 120 ticks: sweeping arc attack in front (4 HP).
+- **Skeleton General** — arrow barrage every 80 ticks: fires 3-5 arrows at the target.
+- **Queen Spider** — web trap every 100 ticks: places 6 cobwebs around the target.
+- All bosses share a custom AI tick framework (`onCustomAiTick()` hook), boss bars, and anti-despawn.
 
 **1.9.7** — Chaotic Mode Bosses (Tier 1, expanded)
 - **Zombie General** added — 80 HP (40 hearts), vanilla zombie reskin (grey skin texture), drops Rotten Flesh, Iron Ingots, Forgotten Insignia (50%), Undead Sword (25%), Tomb Chestplate (25%).

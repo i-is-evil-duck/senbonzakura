@@ -1,6 +1,7 @@
 package com.j3ly.senbonzakura.entity.boss;
 
 import com.j3ly.senbonzakura.entity.ModEntities;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerBossEvent;
@@ -26,6 +27,7 @@ import java.util.Set;
 public class QueenSpiderEntity extends Spider {
     private final ServerBossEvent bossEvent;
     private final Set<ServerPlayer> trackedPlayers = new HashSet<>();
+    private int customAiTick = 0;
 
     public QueenSpiderEntity(EntityType<? extends Spider> type, Level level) {
         super(type, level);
@@ -63,6 +65,7 @@ public class QueenSpiderEntity extends Spider {
     @Override
     public void aiStep() {
         super.aiStep();
+        this.customAiTick++;
         if (this.level() instanceof ServerLevel serverLevel) {
             this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
             for (ServerPlayer player : serverLevel.getPlayers(p -> true)) {
@@ -71,6 +74,32 @@ public class QueenSpiderEntity extends Spider {
                     this.bossEvent.addPlayer(player);
                     this.trackedPlayers.add(player);
                 }
+            }
+        }
+        this.onCustomAiTick();
+    }
+
+    protected void onCustomAiTick() {
+        // Queen Spider: web trap every 100 ticks — places webs around the target
+        if (this.customAiTick % 100 == 0) {
+            Player target = this.findNearestPlayer(8.0);
+            if (target != null && this.level() instanceof ServerLevel serverLevel) {
+                this.placeWebs(serverLevel, target);
+            }
+        }
+    }
+
+    private void placeWebs(ServerLevel serverLevel, Player target) {
+        for (int i = 0; i < 6; i++) {
+            double offsetX = (this.getRandom().nextDouble() - 0.5) * 4.0;
+            double offsetZ = (this.getRandom().nextDouble() - 0.5) * 4.0;
+            BlockPos webPos = new BlockPos(
+                    (int) (target.getX() + offsetX),
+                    (int) target.getY(),
+                    (int) (target.getZ() + offsetZ)
+            );
+            if (serverLevel.isEmptyBlock(webPos)) {
+                serverLevel.setBlock(webPos, net.minecraft.world.level.block.Blocks.COBWEB.defaultBlockState(), 3);
             }
         }
     }
@@ -92,10 +121,19 @@ public class QueenSpiderEntity extends Spider {
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putBoolean("QueenSpiderBoss", true);
+        tag.putInt("CustomAiTick", this.customAiTick);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
+        this.customAiTick = tag.getInt("CustomAiTick");
+    }
+
+    /** Finds the nearest living player within range. */
+    protected Player findNearestPlayer(double range) {
+        Level level = this.level();
+        if (!(level instanceof ServerLevel serverLevel)) return null;
+        return serverLevel.getNearestPlayer(this, range);
     }
 }

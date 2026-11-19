@@ -1,6 +1,6 @@
 package com.j3ly.senbonzakura.entity.boss;
 
-import com.j3ly.senbonzakura.entity.ModEntities;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerBossEvent;
@@ -9,12 +9,15 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +29,7 @@ import java.util.Set;
 public class ZombieGeneralEntity extends Zombie {
     private final ServerBossEvent bossEvent;
     private final Set<ServerPlayer> trackedPlayers = new HashSet<>();
+    private int customAiTick = 0;
 
     public ZombieGeneralEntity(EntityType<? extends Zombie> type, Level level) {
         super(type, level);
@@ -63,6 +67,7 @@ public class ZombieGeneralEntity extends Zombie {
     @Override
     public void aiStep() {
         super.aiStep();
+        this.customAiTick++;
         if (this.level() instanceof ServerLevel serverLevel) {
             this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
             for (ServerPlayer player : serverLevel.getPlayers(p -> true)) {
@@ -73,6 +78,39 @@ public class ZombieGeneralEntity extends Zombie {
                 }
             }
         }
+        this.onCustomAiTick();
+    }
+
+    protected void onCustomAiTick() {
+        // Zombie General: periodic undead cleave (sweeping attack) every 120 ticks
+        if (this.customAiTick % 120 == 0) {
+            Player target = this.findNearestPlayer(6.0);
+            if (target != null && this.level() instanceof ServerLevel serverLevel) {
+                this.doSweepAttack(serverLevel, target);
+            }
+        }
+    }
+
+    private void doSweepAttack(ServerLevel serverLevel, Player target) {
+        // Sweep attack in a 4-block arc in front of the zombie
+        double yaw = Math.toRadians(this.getYRot());
+        double dx = -Math.sin(yaw) * 3.0;
+        double dz = Math.cos(yaw) * 3.0;
+        BlockPos center = new BlockPos(
+                (int) (this.getX() + dx),
+                (int) this.getY(),
+                (int) (this.getZ() + dz)
+        );
+
+        serverLevel.getEntitiesOfClass(Player.class,
+                new AABB(
+                        center.getX() - 2.0, center.getY() - 1.0, center.getZ() - 2.0,
+                        center.getX() + 2.0, center.getY() + 1.0, center.getZ() + 2.0
+                )).forEach(player -> {
+            if (player.isAlive() && player.distanceToSqr(this) < 25.0) {
+                player.hurt(this.damageSources().mobAttack(this), 4.0F);
+            }
+        });
     }
 
     @Override
@@ -92,10 +130,19 @@ public class ZombieGeneralEntity extends Zombie {
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putBoolean("ZombieGeneralBoss", true);
+        tag.putInt("CustomAiTick", this.customAiTick);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
+        this.customAiTick = tag.getInt("CustomAiTick");
+    }
+
+    /** Finds the nearest living player within range. */
+    protected Player findNearestPlayer(double range) {
+        Level level = this.level();
+        if (!(level instanceof ServerLevel serverLevel)) return null;
+        return serverLevel.getNearestPlayer(this, range);
     }
 }
