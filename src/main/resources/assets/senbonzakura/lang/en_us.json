@@ -65,5 +65,19 @@
   "item.senbonzakura.royal_jelly": "Royal Jelly",
   "item.senbonzakura.condensed_slime": "Condensed Slime",
   "item.senbonzakura.slime_ball_slingshot": "Slime Ball Slingshot",
-  "item.senbonzakura.slime_shield": "Slime Shield"
+  "item.senbonzakura.slime_shield": "Slime Shield",
+  "item.senbonzakura.putrid_bait": "Putrid Bait",
+  "item.senbonzakura.calcium": "Calcium",
+  "item.senbonzakura.suspicious_bug": "Suspicious Bug",
+  "item.senbonzakura.forgotten_insignia": "Forgotten Insignia",
+  "item.senbonzakura.undead_sword": "Undead Sword",
+  "item.senbonzakura.undead_bow": "Undead Bow",
+  "item.senbonzakura.tomb_chestplate": "Tomb Chestplate",
+  "item.senbonzakura.queen_silk": "Queen Silk",
+  "item.senbonzakura.spider_necklace": "Spider Necklace",
+  "item.senbonzakura.webber": "Webber",
+  "item.senbonzakura.noxious_dagger": "Noxious Dagger",
+  "entity.senbonzakura.zombie_general": "Zombie General",
+  "entity.senbonzakura.skeleton_general": "Skeleton General",
+  "entity.senbonzakura.queen_spider": "Queen Spider"
 }

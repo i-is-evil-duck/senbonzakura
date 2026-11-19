@@ -2,9 +2,12 @@ package com.j3ly.senbonzakura;
 
 import com.j3ly.senbonzakura.entity.ModEntities;
 import com.j3ly.senbonzakura.entity.boss.KingSlimeEntity;
+import com.j3ly.senbonzakura.entity.boss.QueenSpiderEntity;
+import com.j3ly.senbonzakura.entity.boss.SkeletonGeneralEntity;
+import com.j3ly.senbonzakura.entity.boss.ZombieGeneralEntity;
 import com.j3ly.senbonzakura.effect.CinderingEffect;
 import com.j3ly.senbonzakura.item.*;
-import com.j3ly.senbonzakura.item.boss.RoyalJellyItem;
+import com.j3ly.senbonzakura.item.boss.*;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -121,11 +124,26 @@ public class SenbonzakuraMod {
 
     // Boss summon items
     public static final DeferredHolder<Item, Item> ROYAL_JELLY = ITEMS.register("royal_jelly", () -> new RoyalJellyItem(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> PUTRID_BAIT = ITEMS.register("putrid_bait", () -> new PutridBaitItem(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> CALCIUM = ITEMS.register("calcium", () -> new CalciumItem(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> SUSPICIOUS_BUG = ITEMS.register("suspicious_bug", () -> new SuspiciousBugItem(new Item.Properties()));
 
     // King Slime drops
     public static final DeferredHolder<Item, Item> CONDENSED_SLIME = ITEMS.register("condensed_slime", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> SLIME_BALL_SLINGSHOT = ITEMS.register("slime_ball_slingshot", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> SLIME_SHIELD = ITEMS.register("slime_shield", () -> new Item(new Item.Properties()));
+
+    // Zombie / Skeleton General drops
+    public static final DeferredHolder<Item, Item> FORGOTTEN_INSIGNIA = ITEMS.register("forgotten_insignia", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> UNDEAD_SWORD = ITEMS.register("undead_sword", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> UNDEAD_BOW = ITEMS.register("undead_bow", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> TOMB_CHESTPLATE = ITEMS.register("tomb_chestplate", () -> new Item(new Item.Properties()));
+
+    // Queen Spider drops
+    public static final DeferredHolder<Item, Item> QUEEN_SILK = ITEMS.register("queen_silk", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> SPIDER_NECKLACE = ITEMS.register("spider_necklace", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> WEBBER = ITEMS.register("webber", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> NOXIOUS_DAGGER = ITEMS.register("noxious_dagger", () -> new Item(new Item.Properties()));
 
     public SenbonzakuraMod(IEventBus modEventBus) {
         ModGameRules.init();
@@ -565,6 +583,24 @@ public class SenbonzakuraMod {
             event.accept(GOLD_COIN.get());
             event.accept(SHINY_COIN.get());
             event.accept(ROYAL_JELLY.get());
+            event.accept(PUTRID_BAIT.get());
+            event.accept(CALCIUM.get());
+            event.accept(SUSPICIOUS_BUG.get());
+            event.accept(CONDENSED_SLIME.get());
+            event.accept(SLIME_BALL_SLINGSHOT.get());
+            event.accept(SLIME_SHIELD.get());
+            event.accept(FORGOTTEN_INSIGNIA.get());
+            event.accept(UNDEAD_SWORD.get());
+            event.accept(UNDEAD_BOW.get());
+            event.accept(TOMB_CHESTPLATE.get());
+            event.accept(QUEEN_SILK.get());
+            event.accept(SPIDER_NECKLACE.get());
+            event.accept(WEBBER.get());
+            event.accept(NOXIOUS_DAGGER.get());
+            event.accept(ROYAL_JELLY.get());
+            event.accept(PUTRID_BAIT.get());
+            event.accept(CALCIUM.get());
+            event.accept(SUSPICIOUS_BUG.get());
             event.accept(CONDENSED_SLIME.get());
             event.accept(SLIME_BALL_SLINGSHOT.get());
             event.accept(SLIME_SHIELD.get());
@@ -573,6 +609,9 @@ public class SenbonzakuraMod {
 
     private void onEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.KING_SLIME.get(), KingSlimeEntity.createAttributes().build());
+        event.put(ModEntities.ZOMBIE_GENERAL.get(), ZombieGeneralEntity.createAttributes().build());
+        event.put(ModEntities.SKELETON_GENERAL.get(), SkeletonGeneralEntity.createAttributes().build());
+        event.put(ModEntities.QUEEN_SPIDER.get(), QueenSpiderEntity.createAttributes().build());
     }
 
     /** SimpleParticleType's constructor is protected, so expose a public subclass for registration. */

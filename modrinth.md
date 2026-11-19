@@ -9,6 +9,13 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 
 ## Recap of recent changes
 
+**1.9.7** — Chaotic Mode Bosses (Tier 1, expanded)
+- **Zombie General** added — 80 HP (40 hearts), vanilla zombie reskin (grey skin texture), drops Rotten Flesh, Iron Ingots, Forgotten Insignia (50%), Undead Sword (25%), Tomb Chestplate (25%).
+- **Skeleton General** added — 80 HP (40 hearts), vanilla skeleton reskin, drops Bones, Iron Ingots, Forgotten Insignia (50%), Undead Bow (25%), Tomb Chestplate (25%).
+- **Queen Spider** added — 90 HP (45 hearts), vanilla spider reskin at 2x size, drops String, Spider Eyes, Queen Silk (50%), Spider Necklace (25%), Webber (25%), Noxious Dagger (10%).
+- **Summon items:** Putrid Bait, Calcium, Suspicious Bug.
+- Advancement chain: *Slime Sovereign* → *General of the Undead* → *General of the Bones* → *Queen of the Web*.
+
 **1.9.6** — Chaotic Mode Bosses (Tier 1)
 - **King Slime** added — 44 HP (22 hearts), vanilla slime reskin with boss bar, splits into smaller slimes on defeat.
 - **Royal Jelly** summon item added — crafted with 1 honey comb + 8 slime blocks. One-time use, Overworld-only.

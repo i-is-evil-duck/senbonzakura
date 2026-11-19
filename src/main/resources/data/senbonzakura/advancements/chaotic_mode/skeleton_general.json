@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "senbonzakura:calcium"
+    },
+    "title": "General of the Bones",
+    "description": "Defeat the Skeleton General",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "senbonzakura:chaotic_mode/zombie_general",
+  "criteria": {
+    "killed_skeleton_general": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "senbonzakura:skeleton_general"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "killed_skeleton_general"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  }
+}

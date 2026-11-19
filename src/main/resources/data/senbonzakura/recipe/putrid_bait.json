@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:gold_block" },
+    { "item": "minecraft:rotten_flesh" },
+    { "item": "minecraft:rotten_flesh" },
+    { "item": "minecraft:rotten_flesh" },
+    { "item": "minecraft:rotten_flesh" },
+    { "item": "minecraft:poisonous_potato" },
+    { "item": "minecraft:poisonous_potato" }
+  ],
+  "result": {
+    "id": "senbonzakura:putrid_bait",
+    "count": 1
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "senbonzakura:suspicious_bug"
+    },
+    "title": "Queen of the Web",
+    "description": "Defeat the Queen Spider",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "senbonzakura:chaotic_mode/skeleton_general",
+  "criteria": {
+    "killed_queen_spider": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "senbonzakura:queen_spider"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "killed_queen_spider"
+    ]
+  ],
+  "rewards": {
+    "experience": 150
+  }
+}
