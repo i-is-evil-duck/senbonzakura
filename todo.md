@@ -91,5 +91,7 @@
 | Textures: All other bosses | ⬜ Todo | See assets.md |
 | Textures: All items | ⬜ Todo | See assets.md |
 | Music disc OGG files | ⬜ Todo | Need audio assets |
-| Item models | ⬜ Todo | Need JSON models |
-| Release as v2.0.1 | ✅ Done | https://github.com/i-is-evil-duck/senbonzakura/releases/tag/v2.0.1 |
+| Item models | ✅ Done | 88 model JSONs created |
+| Spawn eggs for all bosses | ✅ Done | 23 spawn eggs registered |
+| Chaos Mode creative tab | ✅ Done | New tab with all boss spawn eggs |
+| Release as v2.0.2 | ✅ Done | https://github.com/i-is-evil-duck/senbonzakura/releases/tag/v2.0.2 |
