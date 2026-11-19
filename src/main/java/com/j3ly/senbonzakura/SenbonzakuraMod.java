@@ -824,21 +824,6 @@ public class SenbonzakuraMod {
             event.accept(FROZONE.get());
             event.accept(MUSIC_DISC_SERVANTS.get());
             event.accept(MUSIC_DISC_UNIVERSE.get());
-            event.accept(WEREWOLF_FANG.get());
-            event.accept(MOON_CLAW.get());
-            event.accept(LUNAR_PELT.get());
-            event.accept(SERPENT_FANG.get());
-            event.accept(SKY_SCALE.get());
-            event.accept(CLOUD_ESS.get());
-            event.accept(MUSIC_DISC_SERVANTS.get());
-            event.accept(MUSIC_DISC_UNIVERSE.get());
-            event.accept(ROYAL_JELLY.get());
-            event.accept(PUTRID_BAIT.get());
-            event.accept(CALCIUM.get());
-            event.accept(SUSPICIOUS_BUG.get());
-            event.accept(CONDENSED_SLIME.get());
-            event.accept(SLIME_BALL_SLINGSHOT.get());
-            event.accept(SLIME_SHIELD.get());
         }
     }
 
