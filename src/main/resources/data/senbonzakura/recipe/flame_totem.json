@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    { "item": "minecraft:blaze_powder" },
-    { "item": "minecraft:blaze_powder" },
-    { "item": "minecraft:blaze_powder" },
-    { "item": "minecraft:blaze_powder" },
-    { "item": "minecraft:netherite_ingot" },
-    { "item": "senbonzakura:cindering_core" },
-    { "item": "senbonzakura:cindering_core" },
-    { "item": "senbonzakura:sinners_ash" },
-    { "item": "senbonzakura:sinners_ash" }
+    { "id": "minecraft:blaze_powder" },
+    { "id": "minecraft:blaze_powder" },
+    { "id": "minecraft:blaze_powder" },
+    { "id": "minecraft:blaze_powder" },
+    { "id": "minecraft:netherite_ingot" },
+    { "id": "senbonzakura:cindering_core" },
+    { "id": "senbonzakura:cindering_core" },
+    { "id": "senbonzakura:sinners_ash" },
+    { "id": "senbonzakura:sinners_ash" }
   ],
   "result": { "id": "senbonzakura:flame_totem", "count": 1 }
 }

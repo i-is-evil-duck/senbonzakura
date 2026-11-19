@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    { "item": "minecraft:feather" },
-    { "item": "minecraft:feather" },
-    { "item": "minecraft:feather" },
-    { "item": "minecraft:feather" },
-    { "item": "minecraft:feather" },
-    { "item": "minecraft:feather" },
-    { "item": "minecraft:dragon_breath" },
-    { "item": "minecraft:elytra" },
-    { "item": "minecraft:diamond" }
+    { "id": "minecraft:feather" },
+    { "id": "minecraft:feather" },
+    { "id": "minecraft:feather" },
+    { "id": "minecraft:feather" },
+    { "id": "minecraft:feather" },
+    { "id": "minecraft:feather" },
+    { "id": "minecraft:dragon_breath" },
+    { "id": "minecraft:elytra" },
+    { "id": "minecraft:diamond" }
   ],
   "result": { "id": "senbonzakura:wind_totem", "count": 1 }
 }

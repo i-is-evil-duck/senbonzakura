@@ -45,7 +45,8 @@ public class QueenSpiderEntity extends Spider {
         return AttributeSupplier.builder()
                 .add(Attributes.MAX_HEALTH, 90.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.35D)
-                .add(Attributes.ATTACK_DAMAGE, 5.0D);
+                .add(Attributes.ATTACK_DAMAGE, 5.0D)
+                .add(Attributes.FOLLOW_RANGE, 16.0D);
     }
 
     @Override

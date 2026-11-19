@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    { "item": "minecraft:phantom_membrane" },
-    { "item": "minecraft:phantom_membrane" },
-    { "item": "minecraft:phantom_membrane" },
-    { "item": "minecraft:phantom_membrane" },
-    { "item": "minecraft:feather" },
-    { "item": "minecraft:feather" },
-    { "item": "minecraft:feather" },
-    { "item": "minecraft:feather" },
-    { "item": "minecraft:glass_bottle" }
+    { "id": "minecraft:phantom_membrane" },
+    { "id": "minecraft:phantom_membrane" },
+    { "id": "minecraft:phantom_membrane" },
+    { "id": "minecraft:phantom_membrane" },
+    { "id": "minecraft:feather" },
+    { "id": "minecraft:feather" },
+    { "id": "minecraft:feather" },
+    { "id": "minecraft:feather" },
+    { "id": "minecraft:glass_bottle" }
   ],
   "result": {
     "id": "senbonzakura:storm_totem",

@@ -3,9 +3,15 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 2.0.1 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 2.0.2 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ## Recap of recent changes
+
+**2.0.2** — Spawn Eggs & Creative Tab
+- Added new "Chaotic Mode" creative tab with spawn eggs for all 23 bosses
+- Fixed FOLLOW_RANGE attribute on King Slime, Zombie General, Skeleton General, Queen Spider (crash on summon)
+- Fixed deep_totem recipe format (id instead of item)
+- Fixed duplicate creative tab entry crash
 
 **2.0.1** — Chaotic Mode Bosses: Fixes
 - Fixed duplicate creative tab entry crash (werewolf_fang)

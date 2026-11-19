@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    { "item": "minecraft:amethyst_shard" },
-    { "item": "minecraft:amethyst_shard" },
-    { "item": "minecraft:amethyst_shard" },
-    { "item": "minecraft:amethyst_shard" },
-    { "item": "minecraft:diamond" },
-    { "item": "minecraft:diamond" },
-    { "item": "senbonzakura:ultra_conductive_material" },
-    { "item": "senbonzakura:sinners_ash" },
-    { "item": "senbonzakura:sinners_ash" }
+    { "id": "minecraft:amethyst_shard" },
+    { "id": "minecraft:amethyst_shard" },
+    { "id": "minecraft:amethyst_shard" },
+    { "id": "minecraft:amethyst_shard" },
+    { "id": "minecraft:diamond" },
+    { "id": "minecraft:diamond" },
+    { "id": "senbonzakura:ultra_conductive_material" },
+    { "id": "senbonzakura:sinners_ash" },
+    { "id": "senbonzakura:sinners_ash" }
   ],
   "result": { "id": "senbonzakura:thunder_totem", "count": 1 }
 }

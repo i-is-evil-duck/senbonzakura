@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    { "item": "minecraft:pink_petals" },
-    { "item": "minecraft:pink_petals" },
-    { "item": "minecraft:pink_petals" },
-    { "item": "minecraft:pink_petals" },
-    { "item": "minecraft:cherry_log" },
-    { "item": "minecraft:cherry_log" },
-    { "item": "minecraft:diamond" },
-    { "item": "minecraft:emerald" },
-    { "item": "senbonzakura:ancient_amber" }
+    { "id": "minecraft:pink_petals" },
+    { "id": "minecraft:pink_petals" },
+    { "id": "minecraft:pink_petals" },
+    { "id": "minecraft:pink_petals" },
+    { "id": "minecraft:cherry_log" },
+    { "id": "minecraft:cherry_log" },
+    { "id": "minecraft:diamond" },
+    { "id": "minecraft:emerald" },
+    { "id": "senbonzakura:ancient_amber" }
   ],
   "result": { "id": "senbonzakura:cherry_totem", "count": 1 }
 }

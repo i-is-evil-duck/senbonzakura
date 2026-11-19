@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    { "item": "minecraft:bone_block" },
-    { "item": "minecraft:bone_block" },
-    { "item": "minecraft:bone_block" },
-    { "item": "minecraft:bone_block" },
-    { "item": "minecraft:milk_bucket" },
-    { "item": "minecraft:milk_bucket" },
-    { "item": "minecraft:milk_bucket" },
-    { "item": "minecraft:milk_bucket" }
+    { "id": "minecraft:bone_block" },
+    { "id": "minecraft:bone_block" },
+    { "id": "minecraft:bone_block" },
+    { "id": "minecraft:bone_block" },
+    { "id": "minecraft:milk_bucket" },
+    { "id": "minecraft:milk_bucket" },
+    { "id": "minecraft:milk_bucket" },
+    { "id": "minecraft:milk_bucket" }
   ],
   "result": {
     "id": "senbonzakura:calcium",

@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    { "item": "senbonzakura:supreme_alloy" },
-    { "item": "senbonzakura:supreme_alloy" },
-    { "item": "senbonzakura:ruin_shard" },
-    { "item": "senbonzakura:ruin_shard" },
-    { "item": "senbonzakura:ruin_shard" },
-    { "item": "minecraft:netherite_ingot" },
-    { "item": "minecraft:netherite_ingot" },
-    { "item": "minecraft:netherite_ingot" },
-    { "item": "senbonzakura:ancient_amber" }
+    { "id": "senbonzakura:supreme_alloy" },
+    { "id": "senbonzakura:supreme_alloy" },
+    { "id": "senbonzakura:ruin_shard" },
+    { "id": "senbonzakura:ruin_shard" },
+    { "id": "senbonzakura:ruin_shard" },
+    { "id": "minecraft:netherite_ingot" },
+    { "id": "minecraft:netherite_ingot" },
+    { "id": "minecraft:netherite_ingot" },
+    { "id": "senbonzakura:ancient_amber" }
   ],
   "result": { "id": "senbonzakura:ruin_totem", "count": 1 }
 }

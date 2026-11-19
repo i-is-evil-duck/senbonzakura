@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    { "item": "minecraft:white_wool" },
-    { "item": "minecraft:white_wool" },
-    { "item": "minecraft:white_wool" },
-    { "item": "minecraft:white_wool" },
-    { "item": "minecraft:fermented_spider_eye" },
-    { "item": "minecraft:fermented_spider_eye" },
-    { "item": "minecraft:fermented_spider_eye" },
-    { "item": "minecraft:fermented_spider_eye" },
-    { "item": "minecraft:potion" }
+    { "id": "minecraft:white_wool" },
+    { "id": "minecraft:white_wool" },
+    { "id": "minecraft:white_wool" },
+    { "id": "minecraft:white_wool" },
+    { "id": "minecraft:fermented_spider_eye" },
+    { "id": "minecraft:fermented_spider_eye" },
+    { "id": "minecraft:fermented_spider_eye" },
+    { "id": "minecraft:fermented_spider_eye" },
+    { "id": "minecraft:potion" }
   ],
   "result": {
     "id": "senbonzakura:suspicious_bug",

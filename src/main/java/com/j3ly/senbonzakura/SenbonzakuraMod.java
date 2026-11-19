@@ -42,15 +42,18 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 //? if neoforge {
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
@@ -79,6 +82,7 @@ public class SenbonzakuraMod {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(Registries.PARTICLE_TYPE, MOD_ID);
     public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, MOD_ID);
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
 
     // Particles
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> CINDERING_PARTICLES =
@@ -148,6 +152,9 @@ public class SenbonzakuraMod {
 
     // Boss summon items
     public static final DeferredHolder<Item, Item> ROYAL_JELLY = ITEMS.register("royal_jelly", () -> new RoyalJellyItem(new Item.Properties()));
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CHAOTIC_MODE_TAB = CREATIVE_MODE_TABS.register("chaotic_mode", () -> CreativeModeTab.builder()
+            .icon(() -> new ItemStack(ROYAL_JELLY.get()))
+            .build());
     public static final DeferredHolder<Item, Item> PUTRID_BAIT = ITEMS.register("putrid_bait", () -> new PutridBaitItem(new Item.Properties()));
     public static final DeferredHolder<Item, Item> CALCIUM = ITEMS.register("calcium", () -> new CalciumItem(new Item.Properties()));
     public static final DeferredHolder<Item, Item> SUSPICIOUS_BUG = ITEMS.register("suspicious_bug", () -> new SuspiciousBugItem(new Item.Properties()));
@@ -299,9 +306,35 @@ public class SenbonzakuraMod {
     public static final DeferredHolder<Item, Item> MUSIC_DISC_SERVANTS = ITEMS.register("music_disc_servants", () -> new MusicDiscItem(new Item.Properties()));
     public static final DeferredHolder<Item, Item> MUSIC_DISC_UNIVERSE = ITEMS.register("music_disc_universe", () -> new MusicDiscItem(new Item.Properties()));
 
+    // Boss spawn eggs
+    public static final DeferredHolder<Item, SpawnEggItem> KING_SLIME_SPAWN_EGG = ITEMS.register("king_slime_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.KING_SLIME.get(), 0x00AAFF, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> ZOMBIE_GENERAL_SPAWN_EGG = ITEMS.register("zombie_general_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.ZOMBIE_GENERAL.get(), 0x808080, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> SKELETON_GENERAL_SPAWN_EGG = ITEMS.register("skeleton_general_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.SKELETON_GENERAL.get(), 0xFFFFFF, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> QUEEN_SPIDER_SPAWN_EGG = ITEMS.register("queen_spider_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.QUEEN_SPIDER.get(), 0xFF00FF, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> IRON_WORM_SPAWN_EGG = ITEMS.register("iron_worm_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.IRON_WORM.get(), 0xAAAAAA, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> WEREWOLF_TRIBE_CHIEF_SPAWN_EGG = ITEMS.register("werewolf_tribe_chief_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.WEREWOLF_TRIBE_CHIEF.get(), 0x808080, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> SKY_SERPENT_SPAWN_EGG = ITEMS.register("sky_serpent_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.SKY_SERPENT.get(), 0xFFFF00, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> HELL_SERPENT_SPAWN_EGG = ITEMS.register("hell_serpent_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.HELL_SERPENT.get(), 0xFF0000, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> FROZEN_SERPENT_SPAWN_EGG = ITEMS.register("frozen_serpent_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.FROZEN_SERPENT.get(), 0x00FFFF, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> KRAKEN_GUARDIAN_SPAWN_EGG = ITEMS.register("kraken_guardian_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.KRAKEN_GUARDIAN.get(), 0x800080, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> WENDIGO_WARLORD_SPAWN_EGG = ITEMS.register("wendigo_warlord_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.WENDIGO_WARLORD.get(), 0x000000, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> SINFUL_SQUIRE_SPAWN_EGG = ITEMS.register("sinful_squire_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.SINFUL_SQUIRE.get(), 0xFF0000, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> SINFUL_BISHOP_SPAWN_EGG = ITEMS.register("sinful_bishop_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.SINFUL_BISHOP.get(), 0x800080, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> SINISTER_KNIGHT_SPAWN_EGG = ITEMS.register("sinister_knight_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.SINISTER_KNIGHT.get(), 0x404040, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> FELIO_OF_FLAME_SPAWN_EGG = ITEMS.register("felio_of_flame_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.FELIO_OF_FLAME.get(), 0xFF4500, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> IEIRITH_OF_ICE_SPAWN_EGG = ITEMS.register("ieirith_of_ice_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.IEIRITH_OF_ICE.get(), 0x00BFFF, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> THERIM_OF_THUNDER_SPAWN_EGG = ITEMS.register("therim_of_thunder_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.THERIM_OF_THUNDER.get(), 0xFFA500, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> WAHIKO_OF_WIND_SPAWN_EGG = ITEMS.register("wahiko_of_wind_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.WAHIKO_OF_WIND.get(), 0x90EE90, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> SAKURAI_WAHIKO_SPAWN_EGG = ITEMS.register("sakurai_wahiko_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.SAKURAI_WAHIKO.get(), 0xFF69B4, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> SERRIK_OF_SHADOW_SPAWN_EGG = ITEMS.register("serrik_of_shadow_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.SERRIK_OF_SHADOW.get(), 0x191970, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> LUCIUS_RETAINER_OF_RUIN_SPAWN_EGG = ITEMS.register("lucius_retainer_of_ruin_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.LUCIUS_RETAINER_OF_RUIN.get(), 0x8B0000, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> DRALLIUS_VISIONS_OF_DOOM_SPAWN_EGG = ITEMS.register("drallius_visions_of_doom_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.DRALLIUS_VISIONS_OF_DOOM.get(), 0x4B0082, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> DRALLIUS_CHAOS_UNLEASHED_SPAWN_EGG = ITEMS.register("drallius_chaos_unleashed_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.DRALLIUS_CHAOS_UNLEASHED.get(), 0x800080, 0xFFFFFF, new Item.Properties()));
+
     public SenbonzakuraMod(IEventBus modEventBus) {
         ModGameRules.init();
         ITEMS.register(modEventBus);
+        CREATIVE_MODE_TABS.register(modEventBus);
         ModEntities.ENTITY_TYPES.register(modEventBus);
         PARTICLE_TYPES.register(modEventBus);
         MOB_EFFECTS.register(modEventBus);
@@ -824,6 +857,31 @@ public class SenbonzakuraMod {
             event.accept(FROZONE.get());
             event.accept(MUSIC_DISC_SERVANTS.get());
             event.accept(MUSIC_DISC_UNIVERSE.get());
+        }
+        if (event.getTabKey() == CHAOTIC_MODE_TAB.getKey()) {
+            event.accept(KING_SLIME_SPAWN_EGG.get());
+            event.accept(ZOMBIE_GENERAL_SPAWN_EGG.get());
+            event.accept(SKELETON_GENERAL_SPAWN_EGG.get());
+            event.accept(QUEEN_SPIDER_SPAWN_EGG.get());
+            event.accept(IRON_WORM_SPAWN_EGG.get());
+            event.accept(WEREWOLF_TRIBE_CHIEF_SPAWN_EGG.get());
+            event.accept(SKY_SERPENT_SPAWN_EGG.get());
+            event.accept(HELL_SERPENT_SPAWN_EGG.get());
+            event.accept(FROZEN_SERPENT_SPAWN_EGG.get());
+            event.accept(KRAKEN_GUARDIAN_SPAWN_EGG.get());
+            event.accept(WENDIGO_WARLORD_SPAWN_EGG.get());
+            event.accept(SINFUL_SQUIRE_SPAWN_EGG.get());
+            event.accept(SINFUL_BISHOP_SPAWN_EGG.get());
+            event.accept(SINISTER_KNIGHT_SPAWN_EGG.get());
+            event.accept(FELIO_OF_FLAME_SPAWN_EGG.get());
+            event.accept(IEIRITH_OF_ICE_SPAWN_EGG.get());
+            event.accept(THERIM_OF_THUNDER_SPAWN_EGG.get());
+            event.accept(WAHIKO_OF_WIND_SPAWN_EGG.get());
+            event.accept(SAKURAI_WAHIKO_SPAWN_EGG.get());
+            event.accept(SERRIK_OF_SHADOW_SPAWN_EGG.get());
+            event.accept(LUCIUS_RETAINER_OF_RUIN_SPAWN_EGG.get());
+            event.accept(DRALLIUS_VISIONS_OF_DOOM_SPAWN_EGG.get());
+            event.accept(DRALLIUS_CHAOS_UNLEASHED_SPAWN_EGG.get());
         }
     }
 

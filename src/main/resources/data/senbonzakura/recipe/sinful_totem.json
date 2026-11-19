@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    { "item": "minecraft:iron_sword" },
-    { "item": "minecraft:shield" },
-    { "item": "minecraft:rotten_flesh" },
-    { "item": "minecraft:rotten_flesh" },
-    { "item": "minecraft:bone" },
-    { "item": "minecraft:bone" },
-    { "item": "senbonzakura:forgotten_insignia" },
-    { "item": "senbonzakura:sinners_ash" },
-    { "item": "senbonzakura:sinners_ash" }
+    { "id": "minecraft:iron_sword" },
+    { "id": "minecraft:shield" },
+    { "id": "minecraft:rotten_flesh" },
+    { "id": "minecraft:rotten_flesh" },
+    { "id": "minecraft:bone" },
+    { "id": "minecraft:bone" },
+    { "id": "senbonzakura:forgotten_insignia" },
+    { "id": "senbonzakura:sinners_ash" },
+    { "id": "senbonzakura:sinners_ash" }
   ],
   "result": { "id": "senbonzakura:sinful_totem", "count": 1 }
 }

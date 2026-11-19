@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    { "item": "senbonzakura:chaotic_circlet" },
-    { "item": "senbonzakura:chaotic_mantle" },
-    { "item": "senbonzakura:chaotic_plating" },
-    { "item": "senbonzakura:chaotic_kicks" },
-    { "item": "senbonzakura:finality" },
-    { "item": "senbonzakura:the_credits" },
-    { "item": "senbonzakura:music_disc_universe" },
-    { "item": "senbonzakura:ancient_amber" },
-    { "item": "senbonzakura:deepwoken_relic" }
+    { "id": "senbonzakura:chaotic_circlet" },
+    { "id": "senbonzakura:chaotic_mantle" },
+    { "id": "senbonzakura:chaotic_plating" },
+    { "id": "senbonzakura:chaotic_kicks" },
+    { "id": "senbonzakura:finality" },
+    { "id": "senbonzakura:the_credits" },
+    { "id": "senbonzakura:music_disc_universe" },
+    { "id": "senbonzakura:ancient_amber" },
+    { "id": "senbonzakura:deepwoken_relic" }
   ],
   "result": { "id": "senbonzakura:chaos_totem", "count": 1 }
 }
