@@ -3,11 +3,11 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: a0.0.1 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 2.0.0 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ## Recap of recent changes
 
-**a0.0.1** — Chaotic Mode Bosses: Full Release
+**2.0.0** — Chaotic Mode Bosses: Full Release
 - All 23 Chaotic Mode bosses implemented with Iron Golem placeholder reskins
 - Tier 1 (Pre-Iron Worm): King Slime, Zombie General, Skeleton General, Queen Spider, Iron Worm
 - Post-Ender Dragon/Wither: Werewolf Tribe Chief, Sky Serpent, Hell Serpent
