@@ -5,9 +5,14 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 2.0.0
+- **Version:** 2.0.1
 
 ## Recap of recent changes
+
+**2.0.1** — Chaotic Mode Bosses: Fixes
+- Fixed duplicate creative tab entry crash (werewolf_fang)
+- Added missing item models for all 88 new items
+- Fixed skeleton_general loot table (minecraft:bones → minecraft:bone)
 
 **2.0.0** — Chaotic Mode Bosses: Full Release
 - All 23 Chaotic Mode bosses implemented with Iron Golem placeholder reskins
