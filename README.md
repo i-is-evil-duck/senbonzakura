@@ -3,9 +3,14 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 2.0.2 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 2.0.3 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ## Recap of recent changes
+
+**2.0.3** — Entity Renderer Fix
+- Fixed crash on boss summon/render: registered entity renderers for all 23 bosses
+- Tier 1 bosses use vanilla renderers (SlimeRenderer, ZombieRenderer, SkeletonRenderer, SpiderRenderer)
+- Iron Golem-based bosses use IronGolemRenderer as placeholder
 
 **2.0.2** — Spawn Eggs & Creative Tab
 - Added new "Chaotic Mode" creative tab with spawn eggs for all 23 bosses
