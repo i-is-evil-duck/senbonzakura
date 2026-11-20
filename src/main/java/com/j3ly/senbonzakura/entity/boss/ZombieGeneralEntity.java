@@ -48,7 +48,8 @@ public class ZombieGeneralEntity extends Zombie {
                 .add(Attributes.MAX_HEALTH, 80.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.3D)
                 .add(Attributes.ATTACK_DAMAGE, 6.0D)
-                .add(Attributes.FOLLOW_RANGE, 16.0D);
+                .add(Attributes.FOLLOW_RANGE, 16.0D)
+                .add(Attributes.SCALE, 1.0D);
     }
 
     @Override

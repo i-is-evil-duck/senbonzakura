@@ -40,6 +40,7 @@ public abstract class ChaoticBossEntity extends IronGolem {
         this.setHealth(this.getMaxHealth());
         this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(speed);
         this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(attackDamage);
+        this.getAttribute(Attributes.SCALE).setBaseValue(1.0D);
         this.bossEvent = new ServerBossEvent(
                 Component.literal(displayName),
                 color,
@@ -52,7 +53,8 @@ public abstract class ChaoticBossEntity extends IronGolem {
         return AttributeSupplier.builder()
                 .add(Attributes.MAX_HEALTH, maxHealth)
                 .add(Attributes.MOVEMENT_SPEED, speed)
-                .add(Attributes.ATTACK_DAMAGE, attackDamage);
+                .add(Attributes.ATTACK_DAMAGE, attackDamage)
+                .add(Attributes.SCALE, 1.0D);
     }
 
     @Override

@@ -3,9 +3,14 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 2.0.3 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 2.0.4 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ## Recap of recent changes
+
+**2.0.4** — Renderer + Attribute Fixes
+- Fixed `generic.scale` attribute crash: added SCALE to all boss attribute suppliers
+- Fixed `generic.follow_range` crash: added FOLLOW_RANGE to all tier 1 bosses
+- All bosses now have proper attribute registration for rendering
 
 **2.0.3** — Entity Renderer Fix
 - Fixed crash on boss summon/render: registered entity renderers for all 23 bosses
