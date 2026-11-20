@@ -102,4 +102,4 @@
 | Spawn eggs for all bosses | ✅ Done | 25 spawn eggs registered (incl. Earthworm + Ocean Serpent) |
 | Chaos Mode creative tab | ✅ Done | New tab with all boss spawn eggs |
 | Release as v2.0.6 | ✅ Done | https://github.com/i-is-evil-duck/senbonzakura/releases/tag/v2.0.6 |
-| Release as v2.1.0 | ⬜ Todo | Segmented worms integration |
+| Release as v2.1.0 | ✅ Done | https://github.com/i-is-evil-duck/senbonzakura/releases/tag/v2.1.0 |
