@@ -94,4 +94,4 @@
 | Item models | ✅ Done | 88 model JSONs created |
 | Spawn eggs for all bosses | ✅ Done | 23 spawn eggs registered |
 | Chaos Mode creative tab | ✅ Done | New tab with all boss spawn eggs |
-| Release as v2.0.5 | ✅ Done | https://github.com/i-is-evil-duck/senbonzakura/releases/tag/v2.0.5 |
+| Release as v2.0.6 | ✅ Done | https://github.com/i-is-evil-duck/senbonzakura/releases/tag/v2.0.6 |
