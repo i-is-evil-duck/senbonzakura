@@ -1,7 +1,6 @@
 package com.j3ly.senbonzakura.item.boss;
 
 import com.j3ly.senbonzakura.entity.ModEntities;
-import com.j3ly.senbonzakura.entity.boss.SkySerpentEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;

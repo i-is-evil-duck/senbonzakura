@@ -6,9 +6,7 @@ import com.j3ly.senbonzakura.entity.boss.DralliusChaosUnleashedEntity;
 import com.j3ly.senbonzakura.entity.boss.DralliusVisionsOfDoomEntity;
 import com.j3ly.senbonzakura.entity.boss.FelioOfFlameEntity;
 import com.j3ly.senbonzakura.entity.boss.FrozenSerpentEntity;
-import com.j3ly.senbonzakura.entity.boss.HellSerpentEntity;
 import com.j3ly.senbonzakura.entity.boss.IeirithOfIceEntity;
-import com.j3ly.senbonzakura.entity.boss.IronWormEntity;
 import com.j3ly.senbonzakura.entity.boss.KingSlimeEntity;
 import com.j3ly.senbonzakura.entity.boss.KrakenGuardianEntity;
 import com.j3ly.senbonzakura.entity.boss.LuciusRetainerOfRuinEntity;
@@ -19,12 +17,17 @@ import com.j3ly.senbonzakura.entity.boss.SinfulBishopEntity;
 import com.j3ly.senbonzakura.entity.boss.SinfulSquireEntity;
 import com.j3ly.senbonzakura.entity.boss.SinisterKnightEntity;
 import com.j3ly.senbonzakura.entity.boss.SkeletonGeneralEntity;
-import com.j3ly.senbonzakura.entity.boss.SkySerpentEntity;
 import com.j3ly.senbonzakura.entity.boss.TherimOfThunderEntity;
 import com.j3ly.senbonzakura.entity.boss.WahikoOfWindEntity;
 import com.j3ly.senbonzakura.entity.boss.WendigoWarlordEntity;
 import com.j3ly.senbonzakura.entity.boss.WerewolfTribeChiefEntity;
 import com.j3ly.senbonzakura.entity.boss.ZombieGeneralEntity;
+import com.j3ly.senbonzakura.entity.worm.EarthWormEntity;
+import com.j3ly.senbonzakura.entity.worm.HellSerpentEntity;
+import com.j3ly.senbonzakura.entity.worm.IronWormEntity;
+import com.j3ly.senbonzakura.entity.worm.OceanSerpentEntity;
+import com.j3ly.senbonzakura.entity.worm.SkySerpentEntity;
+import com.j3ly.senbonzakura.entity.worm.WormVariant;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -72,13 +75,21 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .build("queen_spider"));
 
-    /** Iron Worm — pre-iron tier gate, 12×40 HP (480 total / 240 hearts), Iron Golem placeholder. */
+    /** Iron Worm — pre-iron tier gate, 480 HP. Real segmented worm from the Iron Worm PoC. */
     public static final DeferredHolder<EntityType<?>, EntityType<IronWormEntity>> IRON_WORM =
             ENTITY_TYPES.register("iron_worm", () -> EntityType.Builder
                     .<IronWormEntity>of(IronWormEntity::new, MobCategory.MONSTER)
-                    .sized(1.4F, 2.9F)
+                    .sized(WormVariant.IRON.hitboxWidth(), WormVariant.IRON.hitboxHeight())
                     .clientTrackingRange(12)
                     .build("iron_worm"));
+
+    /** Earthworm — small, weak overworld worm. Spawn egg only. */
+    public static final DeferredHolder<EntityType<?>, EntityType<EarthWormEntity>> EARTH_WORM =
+            ENTITY_TYPES.register("earth_worm", () -> EntityType.Builder
+                    .<EarthWormEntity>of(EarthWormEntity::new, MobCategory.MONSTER)
+                    .sized(WormVariant.EARTH.hitboxWidth(), WormVariant.EARTH.hitboxHeight())
+                    .clientTrackingRange(10)
+                    .build("earth_worm"));
 
     /** Werewolf Tribe Chief — post-Ender Dragon / Wither boss, 400 HP (200 hearts). Iron Golem placeholder. */
     public static final DeferredHolder<EntityType<?>, EntityType<WerewolfTribeChiefEntity>> WEREWOLF_TRIBE_CHIEF =
@@ -88,21 +99,29 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .build("werewolf_tribe_chief"));
 
-    /** Sky Serpent — post-Ender Dragon / Wither boss, 420 HP (210 hearts). Iron Golem placeholder. */
+    /** Sky Serpent — post-Ender Dragon / Wither boss, 420 HP. Flying segmented worm. */
     public static final DeferredHolder<EntityType<?>, EntityType<SkySerpentEntity>> SKY_SERPENT =
             ENTITY_TYPES.register("sky_serpent", () -> EntityType.Builder
                     .<SkySerpentEntity>of(SkySerpentEntity::new, MobCategory.MONSTER)
-                    .sized(0.9F, 0.5F)
-                    .clientTrackingRange(10)
+                    .sized(WormVariant.SKY.hitboxWidth(), WormVariant.SKY.hitboxHeight())
+                    .clientTrackingRange(12)
                     .build("sky_serpent"));
 
-    /** Hell Serpent — post-Ender Dragon / Wither boss, 480 HP (240 hearts). Nether-restricted. Iron Golem placeholder. */
+    /** Hell Serpent — post-Ender Dragon / Wither boss, 480 HP. Nether-restricted segmented worm. */
     public static final DeferredHolder<EntityType<?>, EntityType<HellSerpentEntity>> HELL_SERPENT =
             ENTITY_TYPES.register("hell_serpent", () -> EntityType.Builder
                     .<HellSerpentEntity>of(HellSerpentEntity::new, MobCategory.MONSTER)
-                    .sized(1.4F, 2.9F)
+                    .sized(WormVariant.HELL.hitboxWidth(), WormVariant.HELL.hitboxHeight())
                     .clientTrackingRange(12)
                     .build("hell_serpent"));
+
+    /** Ocean Serpent — water-dwelling phantom-style serpent. Natural spawn in oceans. */
+    public static final DeferredHolder<EntityType<?>, EntityType<OceanSerpentEntity>> OCEAN_SERPENT =
+            ENTITY_TYPES.register("ocean_serpent", () -> EntityType.Builder
+                    .<OceanSerpentEntity>of(OceanSerpentEntity::new, MobCategory.WATER_CREATURE)
+                    .sized(WormVariant.OCEAN.hitboxWidth(), WormVariant.OCEAN.hitboxHeight())
+                    .clientTrackingRange(10)
+                    .build("ocean_serpent"));
 
     /** Frozen Serpent — post-Warden boss, 500 HP (250 hearts). Iron Golem placeholder. */
     public static final DeferredHolder<EntityType<?>, EntityType<FrozenSerpentEntity>> FROZEN_SERPENT =

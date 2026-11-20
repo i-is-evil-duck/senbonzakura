@@ -3,9 +3,16 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 2.0.6 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 2.1.0 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ## Recap of recent changes
+
+**2.1.0** — Segmented Worms & Serpents
+- Replaced the Iron Worm, Hell Serpent and Sky Serpent placeholders with real segmented worm entities: multi-part bodies that follow a position trail, cobra-like rear-up strikes (Iron/Hell) and phantom-style circling/swoop AI (Sky), custom textures, and boss bars
+- Boss HP preserved (Iron Worm 480, Hell Serpent 480, Sky Serpent 420) and registry IDs unchanged, so loot tables, advancements and summon items keep working
+- Added **Earthworm** (14 HP, spawn egg only) and **Ocean Serpent** (30 HP, water-only) as new regular mobs with their own loot tables
+- Natural spawning: Hell Serpent in crimson forest / warped forest / soul sand valley, Ocean Serpent in all ocean biomes
+- Added spawn eggs for all five worms and item models for all 25 boss spawn eggs (previously rendered as checkerboards)
 
 **2.0.6** — Comprehensive Boss Fixes
 - Fixed root cause of repeating attribute crashes: all bosses now inherit complete vanilla attribute sets (IronGolem, Mob, Zombie, Skeleton, Spider parents)

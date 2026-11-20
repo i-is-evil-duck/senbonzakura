@@ -6,9 +6,7 @@ import com.j3ly.senbonzakura.entity.boss.DralliusChaosUnleashedEntity;
 import com.j3ly.senbonzakura.entity.boss.DralliusVisionsOfDoomEntity;
 import com.j3ly.senbonzakura.entity.boss.FelioOfFlameEntity;
 import com.j3ly.senbonzakura.entity.boss.FrozenSerpentEntity;
-import com.j3ly.senbonzakura.entity.boss.HellSerpentEntity;
 import com.j3ly.senbonzakura.entity.boss.IeirithOfIceEntity;
-import com.j3ly.senbonzakura.entity.boss.IronWormEntity;
 import com.j3ly.senbonzakura.entity.boss.KingSlimeEntity;
 import com.j3ly.senbonzakura.entity.boss.KrakenGuardianEntity;
 import com.j3ly.senbonzakura.entity.boss.LuciusRetainerOfRuinEntity;
@@ -19,12 +17,14 @@ import com.j3ly.senbonzakura.entity.boss.SinfulBishopEntity;
 import com.j3ly.senbonzakura.entity.boss.SinfulSquireEntity;
 import com.j3ly.senbonzakura.entity.boss.SinisterKnightEntity;
 import com.j3ly.senbonzakura.entity.boss.SkeletonGeneralEntity;
-import com.j3ly.senbonzakura.entity.boss.SkySerpentEntity;
 import com.j3ly.senbonzakura.entity.boss.TherimOfThunderEntity;
 import com.j3ly.senbonzakura.entity.boss.WahikoOfWindEntity;
 import com.j3ly.senbonzakura.entity.boss.WendigoWarlordEntity;
 import com.j3ly.senbonzakura.entity.boss.WerewolfTribeChiefEntity;
 import com.j3ly.senbonzakura.entity.boss.ZombieGeneralEntity;
+import com.j3ly.senbonzakura.entity.worm.OceanSerpentEntity;
+import com.j3ly.senbonzakura.entity.worm.WormEntity;
+import com.j3ly.senbonzakura.entity.worm.WormVariant;
 import com.j3ly.senbonzakura.effect.CinderingEffect;
 import com.j3ly.senbonzakura.item.*;
 import com.j3ly.senbonzakura.item.boss.*;
@@ -40,6 +40,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
@@ -48,6 +49,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
 //? if neoforge {
 import net.neoforged.bus.api.IEventBus;
@@ -57,6 +59,7 @@ import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
@@ -311,10 +314,12 @@ public class SenbonzakuraMod {
     public static final DeferredHolder<Item, SpawnEggItem> ZOMBIE_GENERAL_SPAWN_EGG = ITEMS.register("zombie_general_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.ZOMBIE_GENERAL.get(), 0x808080, 0xFFFFFF, new Item.Properties()));
     public static final DeferredHolder<Item, SpawnEggItem> SKELETON_GENERAL_SPAWN_EGG = ITEMS.register("skeleton_general_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.SKELETON_GENERAL.get(), 0xFFFFFF, 0xFFFFFF, new Item.Properties()));
     public static final DeferredHolder<Item, SpawnEggItem> QUEEN_SPIDER_SPAWN_EGG = ITEMS.register("queen_spider_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.QUEEN_SPIDER.get(), 0xFF00FF, 0xFFFFFF, new Item.Properties()));
-    public static final DeferredHolder<Item, SpawnEggItem> IRON_WORM_SPAWN_EGG = ITEMS.register("iron_worm_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.IRON_WORM.get(), 0xAAAAAA, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> IRON_WORM_SPAWN_EGG = ITEMS.register("iron_worm_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.IRON_WORM.get(), WormVariant.IRON.eggPrimary(), WormVariant.IRON.eggSecondary(), new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> EARTH_WORM_SPAWN_EGG = ITEMS.register("earth_worm_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.EARTH_WORM.get(), WormVariant.EARTH.eggPrimary(), WormVariant.EARTH.eggSecondary(), new Item.Properties()));
     public static final DeferredHolder<Item, SpawnEggItem> WEREWOLF_TRIBE_CHIEF_SPAWN_EGG = ITEMS.register("werewolf_tribe_chief_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.WEREWOLF_TRIBE_CHIEF.get(), 0x808080, 0xFFFFFF, new Item.Properties()));
-    public static final DeferredHolder<Item, SpawnEggItem> SKY_SERPENT_SPAWN_EGG = ITEMS.register("sky_serpent_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.SKY_SERPENT.get(), 0xFFFF00, 0xFFFFFF, new Item.Properties()));
-    public static final DeferredHolder<Item, SpawnEggItem> HELL_SERPENT_SPAWN_EGG = ITEMS.register("hell_serpent_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.HELL_SERPENT.get(), 0xFF0000, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> SKY_SERPENT_SPAWN_EGG = ITEMS.register("sky_serpent_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.SKY_SERPENT.get(), WormVariant.SKY.eggPrimary(), WormVariant.SKY.eggSecondary(), new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> HELL_SERPENT_SPAWN_EGG = ITEMS.register("hell_serpent_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.HELL_SERPENT.get(), WormVariant.HELL.eggPrimary(), WormVariant.HELL.eggSecondary(), new Item.Properties()));
+    public static final DeferredHolder<Item, SpawnEggItem> OCEAN_SERPENT_SPAWN_EGG = ITEMS.register("ocean_serpent_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.OCEAN_SERPENT.get(), WormVariant.OCEAN.eggPrimary(), WormVariant.OCEAN.eggSecondary(), new Item.Properties()));
     public static final DeferredHolder<Item, SpawnEggItem> FROZEN_SERPENT_SPAWN_EGG = ITEMS.register("frozen_serpent_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.FROZEN_SERPENT.get(), 0x00FFFF, 0xFFFFFF, new Item.Properties()));
     public static final DeferredHolder<Item, SpawnEggItem> KRAKEN_GUARDIAN_SPAWN_EGG = ITEMS.register("kraken_guardian_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.KRAKEN_GUARDIAN.get(), 0x800080, 0xFFFFFF, new Item.Properties()));
     public static final DeferredHolder<Item, SpawnEggItem> WENDIGO_WARLORD_SPAWN_EGG = ITEMS.register("wendigo_warlord_spawn_egg", () -> new DeferredSpawnEggItem(() -> ModEntities.WENDIGO_WARLORD.get(), 0x000000, 0xFFFFFF, new Item.Properties()));
@@ -344,6 +349,7 @@ public class SenbonzakuraMod {
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::onEntityAttributes);
         //? if neoforge {
+        modEventBus.addListener(this::onRegisterSpawnPlacements);
         NeoForge.EVENT_BUS.addListener(this::onPlayerTick);
         NeoForge.EVENT_BUS.addListener(this::onLevelTick);
         NeoForge.EVENT_BUS.addListener(this::onLivingDamage);
@@ -864,9 +870,11 @@ public class SenbonzakuraMod {
             event.accept(SKELETON_GENERAL_SPAWN_EGG.get());
             event.accept(QUEEN_SPIDER_SPAWN_EGG.get());
             event.accept(IRON_WORM_SPAWN_EGG.get());
+            event.accept(EARTH_WORM_SPAWN_EGG.get());
             event.accept(WEREWOLF_TRIBE_CHIEF_SPAWN_EGG.get());
             event.accept(SKY_SERPENT_SPAWN_EGG.get());
             event.accept(HELL_SERPENT_SPAWN_EGG.get());
+            event.accept(OCEAN_SERPENT_SPAWN_EGG.get());
             event.accept(FROZEN_SERPENT_SPAWN_EGG.get());
             event.accept(KRAKEN_GUARDIAN_SPAWN_EGG.get());
             event.accept(WENDIGO_WARLORD_SPAWN_EGG.get());
@@ -885,15 +893,38 @@ public class SenbonzakuraMod {
         }
     }
 
+    //? if neoforge {
+    private void onRegisterSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+        // The biome modifier JSON decides *where* hell serpents spawn; this only says how.
+        registerWormPlacement(event, ModEntities.IRON_WORM.get());
+        registerWormPlacement(event, ModEntities.EARTH_WORM.get());
+        registerWormPlacement(event, ModEntities.HELL_SERPENT.get());
+        registerWormPlacement(event, ModEntities.SKY_SERPENT.get());
+        // The ocean serpent is water-only: placement requires water at the spawn block.
+        event.register(ModEntities.OCEAN_SERPENT.get(), SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                OceanSerpentEntity::checkOceanSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.REPLACE);
+    }
+
+    private static <T extends WormEntity> void registerWormPlacement(RegisterSpawnPlacementsEvent event,
+                                                                     EntityType<T> type) {
+        event.register(type, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                WormEntity::checkSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+    }
+    //?}
+
     private void onEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.KING_SLIME.get(), KingSlimeEntity.createAttributes().build());
         event.put(ModEntities.ZOMBIE_GENERAL.get(), ZombieGeneralEntity.createAttributes().build());
         event.put(ModEntities.SKELETON_GENERAL.get(), SkeletonGeneralEntity.createAttributes().build());
         event.put(ModEntities.QUEEN_SPIDER.get(), QueenSpiderEntity.createAttributes().build());
-        event.put(ModEntities.IRON_WORM.get(), IronWormEntity.createAttributes().build());
+        event.put(ModEntities.IRON_WORM.get(), WormEntity.createAttributes(WormVariant.IRON).build());
+        event.put(ModEntities.EARTH_WORM.get(), WormEntity.createAttributes(WormVariant.EARTH).build());
         event.put(ModEntities.WEREWOLF_TRIBE_CHIEF.get(), WerewolfTribeChiefEntity.createAttributes().build());
-        event.put(ModEntities.SKY_SERPENT.get(), SkySerpentEntity.createAttributes().build());
-        event.put(ModEntities.HELL_SERPENT.get(), HellSerpentEntity.createAttributes().build());
+        event.put(ModEntities.SKY_SERPENT.get(), WormEntity.createAttributes(WormVariant.SKY).build());
+        event.put(ModEntities.HELL_SERPENT.get(), WormEntity.createAttributes(WormVariant.HELL).build());
+        event.put(ModEntities.OCEAN_SERPENT.get(), WormEntity.createAttributes(WormVariant.OCEAN).build());
         event.put(ModEntities.FROZEN_SERPENT.get(), FrozenSerpentEntity.createAttributes().build());
         event.put(ModEntities.KRAKEN_GUARDIAN.get(), KrakenGuardianEntity.createAttributes().build());
         event.put(ModEntities.WENDIGO_WARLORD.get(), WendigoWarlordEntity.createAttributes().build());

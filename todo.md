@@ -15,15 +15,22 @@
 | Zombie General | 80 | 40 | Zombie | Putrid Bait | Rotten Flesh, Iron Ingots, Forgotten Insignia (50%), Undead Sword (25%), Tomb Chestplate (25%) | ✅ Done | Grey skin texture **DONE**; sweeping cleave AI |
 | Skeleton General | 80 | 40 | Skeleton | Calcium | Bones, Iron Ingots, Forgotten Insignia (50%), Undead Bow (25%), Tomb Chestplate (25%) | ✅ Done | Arrow barrage AI |
 | Queen Spider | 90 | 45 | Spider (2x) | Suspicious Bug | String, Spider Eyes, Queen Silk (50%), Spider Necklace (25%), Webber (25%), Noxious Dagger (10%) | ✅ Done | 2x hitbox; texture **DONE**; web trap AI |
-| Iron Worm | 480 | 240 | Iron Golem | Corroding Lure | Iron Blocks, Meteor Iron Shard, Drill Shaped Teeth, Iron Scale, Iron Bone Fragment, Iron Mandible Blade (1%), Iron Spine Spear (1%) | ✅ Done | Multi-segment concept; leap slam AI |
+| Iron Worm | 480 | 240 | Segmented worm | Corroding Lure | Iron Blocks, Meteor Iron Shard, Drill Shaped Teeth, Iron Scale, Iron Bone Fragment, Iron Mandible Blade (1%), Iron Spine Spear (1%) | ✅ Done | Real multi-part worm; rear-up strike; boss bar |
 
 ## Post-Ender Dragon / Wither
 
 | Boss | HP | Hearts | Reskin Base | Summon Item | Key Drops | Status | Notes |
 |------|-----|--------|-------------|-------------|-----------|--------|-------|
 | Werewolf Tribe Chief | 400 | 200 | Iron Golem | Lunar Howl Totem | Rotten Flesh, Werewolf Fang, Moon Claw (25%), Lunar Pelt (25%), Gold Ingots | ✅ Done | Wolf summon/howl AI |
-| Sky Serpent | 420 | 210 | Iron Golem | Storm Caller Charm | Phantom Membrane, Serpent Fang, Sky Scale (25%), Cloud Essence (25%), Elytra (5%) | ✅ Done | Dive bomb AI |
-| Hell Serpent | 480 | 240 | Iron Golem | Infernal Totem | Magma Cream, Hell Scale (25%), Infernal Core (16%), Netherite Scrap (5%) | ✅ Done | Area damage AI; Nether-restricted |
+| Sky Serpent | 420 | 210 | Segmented worm | Storm Caller Charm | Phantom Membrane, Serpent Fang, Sky Scale (25%), Cloud Essence (25%), Elytra (5%) | ✅ Done | Flying segmented worm; phantom circle/swoop AI |
+| Hell Serpent | 480 | 240 | Segmented worm | Infernal Totem | Magma Cream, Hell Scale (25%), Infernal Core (16%), Netherite Scrap (5%) | ✅ Done | Segmented worm; rear-up strike; Nether biome spawn |
+
+## Regular Worms (non-boss)
+
+| Mob | HP | Spawn | Spawn Egg | Key Drops | Status | Notes |
+|-----|-----|-------|-----------|-----------|--------|-------|
+| Earthworm | 14 | Spawn egg only | Earthworm Spawn Egg | String, Dirt, Ancient Amber (2%) | ✅ Done | 4-segment ground worm |
+| Ocean Serpent | 30 | All ocean biomes | Ocean Serpent Spawn Egg | Prismarine Shard, Ink Sac, Nautilus Shell (10%) | ✅ Done | 7-segment water worm; phantom-style circling |
 
 ## Post-Warden
 
@@ -80,7 +87,7 @@
 
 | System | Status | Notes |
 |--------|--------|-------|
-| All 23 boss entities | ✅ Done | Iron Golem placeholder reskins |
+| All 23 boss entities | ✅ Done | Iron Golem placeholders except the 3 segmented worm bosses |
 | All 23 summon items | ✅ Done | One-time use, dimension restricted |
 | All boss loot tables | ✅ Done | With specified drop rates |
 | All summon recipes | ✅ Done | Crafting shapeless |
@@ -92,6 +99,7 @@
 | Textures: All items | ⬜ Todo | See assets.md |
 | Music disc OGG files | ⬜ Todo | Need audio assets |
 | Item models | ✅ Done | 88 model JSONs created |
-| Spawn eggs for all bosses | ✅ Done | 23 spawn eggs registered |
+| Spawn eggs for all bosses | ✅ Done | 25 spawn eggs registered (incl. Earthworm + Ocean Serpent) |
 | Chaos Mode creative tab | ✅ Done | New tab with all boss spawn eggs |
 | Release as v2.0.6 | ✅ Done | https://github.com/i-is-evil-duck/senbonzakura/releases/tag/v2.0.6 |
+| Release as v2.1.0 | ⬜ Todo | Segmented worms integration |
