@@ -52,7 +52,8 @@ public class KingSlimeEntity extends Slime {
                 .add(Attributes.MAX_HEALTH, 44.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D)
                 .add(Attributes.FOLLOW_RANGE, 16.0D)
-                .add(Attributes.SCALE, 1.0D);
+                .add(Attributes.SCALE, 1.0D)
+                .add(Attributes.GRAVITY, 0.08D);
     }
 
     @Override

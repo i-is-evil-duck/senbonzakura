@@ -3,9 +3,13 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 2.0.4 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 2.0.5 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ## Recap of recent changes
+
+**2.0.5** — Attribute Fixes (gravity)
+- Fixed `generic.gravity` attribute crash: added GRAVITY to all boss attribute suppliers
+- Bosses no longer crash on entity tick (aiStep → travel → getGravity)
 
 **2.0.4** — Renderer + Attribute Fixes
 - Fixed `generic.scale` attribute crash: added SCALE to all boss attribute suppliers

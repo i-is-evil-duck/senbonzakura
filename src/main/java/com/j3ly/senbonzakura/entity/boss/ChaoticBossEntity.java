@@ -54,7 +54,8 @@ public abstract class ChaoticBossEntity extends IronGolem {
                 .add(Attributes.MAX_HEALTH, maxHealth)
                 .add(Attributes.MOVEMENT_SPEED, speed)
                 .add(Attributes.ATTACK_DAMAGE, attackDamage)
-                .add(Attributes.SCALE, 1.0D);
+                .add(Attributes.SCALE, 1.0D)
+                .add(Attributes.GRAVITY, 0.08D);
     }
 
     @Override
