@@ -10,6 +10,7 @@ import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Slime;
@@ -35,8 +36,11 @@ public class KingSlimeEntity extends Slime {
 
     public KingSlimeEntity(EntityType<? extends Slime> type, Level level) {
         super(type, level);
-        // Override size-based health: 44 HP (22 hearts).
+        // setSize() overwrites MAX_HEALTH (size²), MOVEMENT_SPEED and ATTACK_DAMAGE,
+        // so call it FIRST, then apply our custom boss stats.
+        this.setSize(SIZE, false);
         this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(44.0D);
+        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25D);
         this.setHealth(this.getMaxHealth());
         this.bossEvent = new ServerBossEvent(
                 Component.literal("King Slime"),
@@ -44,16 +48,15 @@ public class KingSlimeEntity extends Slime {
                 BossEvent.BossBarOverlay.NOTCHED_20
         );
         this.bossEvent.setVisible(true);
-        this.setSize(SIZE, false);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return AttributeSupplier.builder()
+        // Monster.createMonsterAttributes() includes ATTACK_DAMAGE (required by
+        // Slime.setSize()) plus all LivingEntity defaults.
+        return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 44.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D)
-                .add(Attributes.FOLLOW_RANGE, 16.0D)
-                .add(Attributes.SCALE, 1.0D)
-                .add(Attributes.GRAVITY, 0.08D);
+                .add(Attributes.FOLLOW_RANGE, 16.0D);
     }
 
     @Override
@@ -129,6 +132,7 @@ public class KingSlimeEntity extends Slime {
 
     @Override
     public void die(DamageSource source) {
+        this.bossEvent.removeAllPlayers();
         if (this.level() instanceof ServerLevel serverLevel) {
             // Split into 2-4 medium slimes on death.
             int count = 2 + this.getRandom().nextInt(3);

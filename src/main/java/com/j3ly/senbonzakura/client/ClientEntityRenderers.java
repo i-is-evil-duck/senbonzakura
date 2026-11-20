@@ -25,7 +25,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
  * Tier 1 bosses (Slime/Zombie/Skeleton/Spider) use vanilla renderers;
  * Iron Golem-based bosses use IronGolemRenderer as a placeholder.
  */
-@EventBusSubscriber(modid = SenbonzakuraMod.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = SenbonzakuraMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEntityRenderers {
 
     @SubscribeEvent

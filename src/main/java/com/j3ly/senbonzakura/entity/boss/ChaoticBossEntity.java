@@ -50,12 +50,13 @@ public abstract class ChaoticBossEntity extends IronGolem {
     }
 
     public static AttributeSupplier.Builder createBossAttributes(float maxHealth, double speed, double attackDamage) {
-        return AttributeSupplier.builder()
+        // Start from the vanilla Iron Golem attribute set so every required
+        // LivingEntity attribute (STEP_HEIGHT, GRAVITY, SCALE, KNOCKBACK_RESISTANCE,
+        // SAFE_FALL_DISTANCE, etc.) is present. Override only what we customize.
+        return IronGolem.createAttributes()
                 .add(Attributes.MAX_HEALTH, maxHealth)
                 .add(Attributes.MOVEMENT_SPEED, speed)
-                .add(Attributes.ATTACK_DAMAGE, attackDamage)
-                .add(Attributes.SCALE, 1.0D)
-                .add(Attributes.GRAVITY, 0.08D);
+                .add(Attributes.ATTACK_DAMAGE, attackDamage);
     }
 
     @Override

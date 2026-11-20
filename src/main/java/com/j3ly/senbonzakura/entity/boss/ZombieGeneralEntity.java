@@ -19,9 +19,6 @@ import net.minecraft.world.phys.AABB;
 import java.util.HashSet;
 import java.util.Set;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Zombie General — pre-iron tier boss, 80 HP (40 hearts), vanilla zombie reskin
  * with boss bar. Never despawns naturally.
@@ -44,13 +41,11 @@ public class ZombieGeneralEntity extends Zombie {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return AttributeSupplier.builder()
+        return Zombie.createAttributes()
                 .add(Attributes.MAX_HEALTH, 80.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.3D)
                 .add(Attributes.ATTACK_DAMAGE, 6.0D)
-                .add(Attributes.FOLLOW_RANGE, 16.0D)
-                .add(Attributes.SCALE, 1.0D)
-                .add(Attributes.GRAVITY, 0.08D);
+                .add(Attributes.FOLLOW_RANGE, 16.0D);
     }
 
     @Override

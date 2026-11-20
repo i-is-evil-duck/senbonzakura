@@ -44,7 +44,7 @@ public abstract class BossEntity extends Monster {
     }
 
     public static AttributeSupplier.Builder createBossAttributes(float maxHealth, double speed, double attack) {
-        return AttributeSupplier.builder()
+        return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, maxHealth)
                 .add(Attributes.MOVEMENT_SPEED, speed)
                 .add(Attributes.ATTACK_DAMAGE, attack);

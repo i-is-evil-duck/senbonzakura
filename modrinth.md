@@ -5,9 +5,14 @@ A NeoForge 1.21.1 mod adding legendary weapons, crafting materials, coins, and c
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge (21.1.x)
 - **Java:** 21
-- **Version:** 2.0.5
+- **Version:** 2.0.6
 
 ## Recap of recent changes
+
+**2.0.6** — Comprehensive Boss Fixes
+- Fixed root cause of repeating attribute crashes: all bosses now inherit complete vanilla attribute sets
+- Fixed King Slime spawn NPE, boss health override order, and boss bar cleanup
+- Fixed entity renderer bus, summon dimension restrictions, deep_totem recipe, and null summon entity
 
 **2.0.5** — Attribute Fixes (gravity)
 - Fixed `generic.gravity` attribute crash: added GRAVITY to all boss attribute suppliers

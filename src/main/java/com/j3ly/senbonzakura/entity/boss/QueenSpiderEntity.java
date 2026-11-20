@@ -42,13 +42,11 @@ public class QueenSpiderEntity extends Spider {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return AttributeSupplier.builder()
+        return Spider.createAttributes()
                 .add(Attributes.MAX_HEALTH, 90.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.35D)
                 .add(Attributes.ATTACK_DAMAGE, 5.0D)
-                .add(Attributes.FOLLOW_RANGE, 16.0D)
-                .add(Attributes.SCALE, 1.0D)
-                .add(Attributes.GRAVITY, 0.08D);
+                .add(Attributes.FOLLOW_RANGE, 16.0D);
     }
 
     @Override

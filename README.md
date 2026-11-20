@@ -3,9 +3,18 @@
 A **Minecraft NeoForge 1.21.1** mod adding legendary weapons, crafting materials, coins, and custom enchantments.
 
 **Author**: j3ly  
-**Version**: 2.0.5 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
+**Version**: 2.0.6 (Minecraft 1.21.1, NeoForge 21.1.x, Java 21)
 
 ## Recap of recent changes
+
+**2.0.6** — Comprehensive Boss Fixes
+- Fixed root cause of repeating attribute crashes: all bosses now inherit complete vanilla attribute sets (IronGolem, Mob, Zombie, Skeleton, Spider parents)
+- Fixed King Slime spawn NPE (setSize needs ATTACK_DAMAGE) and boss health override order
+- Fixed entity renderer registration bus (MOD bus instead of GAME bus)
+- Fixed King Slime boss bar not clearing on death
+- Fixed summon items ignoring dimension restrictions
+- Fixed invalid `minecraft:prismarine_block` in deep_totem recipe → `minecraft:prismarine`
+- Fixed null entity type in CorrodingLureItem
 
 **2.0.5** — Attribute Fixes (gravity)
 - Fixed `generic.gravity` attribute crash: added GRAVITY to all boss attribute suppliers

@@ -16,7 +16,7 @@ import java.util.Set;
 public class CorrodingLureItem extends BossSummonItem {
     public CorrodingLureItem(Item.Properties properties) {
         super(
-                null,
+                ModEntities.IRON_WORM.get(),
                 true,
                 Set.of(Level.OVERWORLD),
                 properties

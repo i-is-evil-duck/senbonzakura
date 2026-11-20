@@ -49,6 +49,17 @@ public abstract class BossSummonItem extends Item {
             return InteractionResultHolder.pass(stack);
         }
 
+        // Enforce dimension restrictions (e.g. Nether-only / End-only totems).
+        if (dimensionRestricted && !allowedDimensions.contains(serverLevel.dimension())) {
+            player.displayClientMessage(
+                    net.minecraft.network.chat.Component.literal("This summon cannot be used in this dimension."),
+                    true);
+            return InteractionResultHolder.fail(stack);
+        }
+        if (bossType == null) {
+            return InteractionResultHolder.fail(stack);
+        }
+
         LivingEntity boss = bossType.create(serverLevel);
         if (boss == null) {
             return InteractionResultHolder.fail(stack);

@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    { "id": "minecraft:prismarine_block" },
-    { "id": "minecraft:prismarine_block" },
-    { "id": "minecraft:prismarine_block" },
+    { "id": "minecraft:prismarine" },
+    { "id": "minecraft:prismarine" },
+    { "id": "minecraft:prismarine" },
     { "id": "minecraft:heart_of_the_sea" },
     { "id": "minecraft:nautilus_shell" },
     { "id": "minecraft:nautilus_shell" },
